@@ -1,0 +1,82 @@
+# ==========================
+# CellViT Inference Config
+# ==========================
+
+# Model selection (REQUIRED)
+model:                # REQUIRED | str: Segmentation model to use.
+                      # Choices: ["SAM", "HIPT"]
+# Nuclei classification taxonomy (OPTIONAL)
+nuclei_taxonomy:      # OPTIONAL | str: Defines the nuclei classification taxonomy.
+                      # Choices: ["binary", "pannuke", "consep", "lizard", "midog", "nucls_main", "nucls_super", "ocelot", "panoptils"]
+                      # Default: "pannuke"
+
+# ==========================
+# Inference Settings (OPTIONAL)
+# ==========================
+inference:
+  gpu:                # OPTIONAL | int: GPU ID to use for inference.
+                      # Default: 0 (use first available GPU)
+  enforce_amp:        # OPTIONAL | bool: Whether to use Automatic Mixed Precision (AMP) for inference.
+                      # Default: false (disabled)
+  batch_size:         # OPTIONAL | int: Number of images processed per batch.
+                      # Default: 8
+
+# ==========================
+# Output Settings
+# ==========================
+output_format:
+  outdir:             # REQUIRED | str: Path to the output directory where results will be stored.
+  geojson:            # OPTIONAL | bool: Whether to export results in GeoJSON format (for QuPath or other tools).
+                      # Default: false (disabled)
+  graph:              # OPTIONAL | bool: Whether to generate a cell graph representation.
+                      # Default: false (disabled)
+  compression:        # OPTIONAL | bool: Whether to use Snappy compression for output files.
+                      # Default: false (disabled)
+
+# ==========================
+# Processing Mode (Choose One)
+# ==========================
+# Either `process_wsi` (for a single image) or `process_dataset` (for multiple images) should be used.
+
+# --- Process a Single Whole Slide Image (WSI) ---
+process_wsi:
+  wsi_path:           # REQUIRED | str: Path to the Whole Slide Image (WSI) file.
+  wsi_mpp:            # OPTIONAL | float: Microns per pixel (spatial resolution of the slide).
+                      # Default: Extracted automatically from file (if available).
+  wsi_magnification:  # OPTIONAL | int: Magnification level of the slide (e.g., 20x, 40x).
+                      # Default: Extracted automatically from file (if available).
+
+# --- Process a Dataset (Multiple WSI Files) ---
+process_dataset:
+  wsi_folder:         # REQUIRED (if `wsi_filelist` is NOT used) | str: Path to a folder containing multiple WSI files.
+                      # Either `wsi_folder` OR `wsi_filelist` must be provided (not both).
+  wsi_extension:      # OPTIONAL | str: File extension of WSI files (used for detection).
+                      # Default: "svs"
+  wsi_filelist:       # REQUIRED (if `wsi_folder` is NOT used) | str: Path to a CSV file listing WSI files.
+                      # CSV must have a 'path' column, with optional 'wsi_mpp' and 'wsi_magnification' columns.
+                      # If 'wsi_mpp' and 'wsi_magnification' are provided, they override global settings.
+  wsi_mpp:            # OPTIONAL | float: Microns per pixel (spatial resolution).
+                      # Default: Extracted automatically from file (if available).
+                      # Can be used with both `wsi_folder` and `wsi_filelist`.
+  wsi_magnification:  # OPTIONAL | int: Magnification level of the slides.
+                      # Default: Extracted automatically from file (if available).
+                      # Can be used with both `wsi_folder` and `wsi_filelist`.
+
+# ==========================
+# System Settings (OPTIONAL)
+# ==========================
+system:
+  cpu_count:          # OPTIONAL | int: Number of CPU cores to use for inference.
+                      # Default: Uses system configuration.
+  ray_worker:         # OPTIONAL | int: Number of ray worker to use for inference. Limited by cpu_count.
+                      # Default: Uses system configuration.
+  ray_remote_cpus:    # OPTIONAL | int: Number of cpus per ray worker.
+                      # Default: Uses system configuration.
+  memory:             # OPTIONAL | int: RAM in MB to use
+                      # Default: Uses system configuration
+
+# ==========================
+# Debug Settings (OPTIONAL)
+# ==========================
+debug:                # OPTIONAL | bool: If debug should be used - this changes to logger level and requires ray[default]
+                      # Default: False

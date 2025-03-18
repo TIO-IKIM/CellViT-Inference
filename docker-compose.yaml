@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  cellvit:
+    image: ikimhoerst/cellvit:beta
+    container_name: cellvit++
+    runtime: nvidia
+    deploy:
+      resources:
+        limits:
+          memory: 8g
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - /path/to/local/input:/workspace/CellViT-plus-plus/input-data
+      - /path/to/local/output:/workspace/CellViT-plus-plus/output-data
+    working_dir: /workspace/CellViT-plus-plus
+    stdin_open: true
+    tty: true

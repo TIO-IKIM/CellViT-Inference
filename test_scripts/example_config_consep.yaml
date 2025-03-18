@@ -1,0 +1,23 @@
+# ==========================
+# CellViT Inference Config
+# ==========================
+
+# Model selection (REQUIRED)
+model: SAM
+nuclei_taxonomy: consep
+
+
+output_format:
+  outdir: /home/jovyan/cellvit-small/CellViT-plus-plus/test_database/BRACS/output_consep
+  geojson: True
+
+process_wsi:
+  wsi_path: /home/jovyan/cellvit-small/CellViT-plus-plus/test_database/BRACS/input/BRACS_1640_N_3.tiff
+  wsi_mpp: 0.25
+  wsi_magnification: 40
+
+system:
+  cpu_count: 16
+  ray_remote_cpus: 4
+
+debug: True

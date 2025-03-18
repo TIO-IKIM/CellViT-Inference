@@ -1,0 +1,27 @@
+# pytorch
+*.pt
+*.pth
+*.bin
+
+# vscode
+.vscode
+
+# cache
+*.pyc
+__pycache__/
+**/cache/
+
+# wsi and examples
+*.svs
+*.tiff
+/test_database
+
+# notebooks
+/notebooks
+
+# other
+.DS_Store
+cufile.log
+gdc-client
+cellvit.egg-info
+dist

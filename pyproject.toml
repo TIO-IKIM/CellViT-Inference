@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cellvit"
+version = "0.1.0"
+description = "CellViT Inference Pipeline for Whole Slide Images (WSI) in Memory"
+authors = [
+    { name = "Fabian Hörst", email = "fabian.hoerst@uk-essen.de" }
+]
+license = {text = "CC BY-NC-ND 4.0"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Other",
+]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "colorama",
+    "colour",
+    "einops>=0.6.1",
+    "geojson>=2.0.0",
+    "natsort",
+    "numba>=0.58.0",
+    "numpy<2.0.0",
+    "opencv-python-headless==4.7.0.72",
+    "opt-einsum>=3.3.0",
+    "pandas>=1.4.3,<2.0.0",
+    "pathopatch>=1.0.4",
+    "pydantic==1.10.4",
+    "pydicom==2.4.4",
+    "ray[default]>=2.9.3",
+    "scikit-image>=0.19.3",
+    "scipy>=1.8.0",
+    "shapely==1.8.5.post1",
+    "ujson==5.8.0",
+    "python-snappy",
+    "tqdm",
+    "psutil",
+    "pyaml"
+]
+
+[tool.setuptools]
+packages = {find = {exclude = ["tests", "tests.*"]}}
+
+[project.scripts]
+detect-cells = "cellvit.detect_cells:main"
+check-system = "cellvit.check_system:main"

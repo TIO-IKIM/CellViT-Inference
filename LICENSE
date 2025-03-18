@@ -1,0 +1,18 @@
+“Commons Clause” License Condition v1.0
+
+The Software is provided to you by the Licensor under the License, as defined below, subject to the following condition.
+
+Without limiting other conditions in the License, the grant of rights under the License will not include, and the License does not grant to you, the right to Sell the Software.
+
+For purposes of the foregoing, “Sell” means practicing any or all of the rights granted to you under the License to provide to third parties, for a fee or other consideration (including without limitation fees for hosting or consulting/ support services related to the Software), a product or service whose value derives, entirely or substantially, from the functionality of the Software. Any license notice or attribution required by the License must also include this Commons Clause License Condition notice.
+
+If any parts of this work is used, a citation of the following works is necessary:
+Hörst, F., Rempe, M., Heine, L., Seibold, C., Keyl, J., Baldini, G., Ugurel, S., Siveke, J., Grünwald, B., Egger, J., & Kleesiek, J. (2024). CellViT: Vision Transformers for precise cell segmentation and classification. In Medical Image Analysis (Vol. 94, p. 103143). Elsevier BV. https://doi.org/10.1016/j.media.2024.103143
+
+Hörst, F., Rempe, M., Becker, H., Heine, L., Keyl, J., & Kleesiek, J. (2025). CellViT++: Energy-Efficient and Adaptive Cell Segmentation and Classification Using Foundation Models (Version 1). arXiv. https://doi.org/10.48550/ARXIV.2501.05269
+
+Software: CellViT++
+
+License: Apache 2.0 with Commons Clause
+
+Licensor: Fabian Hörst, Jens Kleesiek
