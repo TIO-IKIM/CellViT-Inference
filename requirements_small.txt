@@ -7,7 +7,7 @@ numba==0.59.0
 opencv-python-headless==4.5.4.58
 opt-einsum==3.3.0
 pandas==1.4.3
-pathopatch>=1.0.4
+pathopatch>=1.0.5
 pyaml==24.7.0
 pydantic==1.10.4
 pydantic-compat==0.1.2

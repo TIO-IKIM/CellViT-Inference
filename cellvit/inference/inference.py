@@ -12,22 +12,14 @@
 # University Medicine Essen
 
 
-import os
 import sys
-
-# get the project root:
-current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.dirname(current_dir)
-sys.path.append(current_dir)
-sys.path.append(project_root)
-project_root = os.path.dirname(project_root)
-sys.path.append(project_root)
 
 import itertools
 import logging
 import uuid
 from pathlib import Path
 from typing import Callable, List, Literal, Tuple, Union
+from importlib.resources import files
 
 import numpy as np
 import pandas as pd
@@ -63,6 +55,9 @@ from cellvit.utils.cache_models import (
 from cellvit.utils.logger import Logger
 from cellvit.utils.ressource_manager import SystemConfiguration, retrieve_actor_usage
 from cellvit.utils.tools import unflatten_dict
+
+PYTHON_PATH = sys.executable
+CHECK_RAY_PATH = str(files("cellvit.utils").joinpath("check_ray.py"))
 
 
 class CellViTInference:
@@ -214,6 +209,7 @@ class CellViTInference:
         logger = Logger(
             level=level,
         )
+        self.logger = logger.create_logger()
         if self.debug:
             if not ray._private.utils.check_dashboard_dependencies_installed():
                 self.logger.error(
@@ -222,7 +218,6 @@ class CellViTInference:
                     "    pip install -U 'ray[default]'\n\n"
                     "This debug session will not run with ray-dashboard for debugging."
                 )
-        self.logger = logger.create_logger()
 
     def _load_model(self) -> None:
         """Load model and checkpoint and load the state_dict"""
@@ -420,8 +415,7 @@ class CellViTInference:
 
     def _setup_worker(self) -> None:
         """Setup the worker for inference"""
-        runtime_env = {"env_vars": {"PYTHONPATH": project_root}}
-        print(runtime_env)
+        runtime_env = {"env_vars": {"PYTHONPATH": PYTHON_PATH}}
         # Set the global logging settings
 
         if self.debug:

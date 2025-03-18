@@ -8,16 +8,6 @@
 
 import os
 
-import sys
-
-current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.dirname(current_dir)
-sys.path.append(current_dir)
-sys.path.append(project_root)
-project_root = os.path.dirname(project_root)
-sys.path.append(project_root)
-
-
 from cellvit.config.config import CACHE_DIR
 from cellvit.utils.download import check_and_download
 from cellvit.utils.logger import PrintLogger

@@ -338,7 +338,7 @@ dependencies:
       - pandas==1.4.3
       - pandocfilters==1.5.1
       - parso==0.8.3
-      - pathopatch==1.0.2
+      - pathopatch==1.0.5
       - pathspec==0.12.1
       - pathtools==0.1.2
       - patsy==0.5.6

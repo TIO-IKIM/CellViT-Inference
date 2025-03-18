@@ -196,7 +196,7 @@ class InferenceConfiguration:
         enforce_amp = inference_config.get("enforce_amp")
         if enforce_amp is not None:
             assert isinstance(enforce_amp, bool), "AMP must be of type boolean"
-            self.enforce_amp = config["enforce_amp"]
+            self.enforce_amp = enforce_amp
 
     def __set_batch_size(self, config: dict) -> None:
         """Sets the batch size to use for inference
@@ -501,24 +501,21 @@ class InferenceWSIParser:
             help="Path to a YAML configuration file. If provided, CLI arguments are ignored.",
         )
 
-        # === CLI Arguments Group ===
         parser.add_argument(
             "--model",
             type=str,
             choices=["SAM", "HIPT"],
-            help="Segmentation model to use. Allowed values: 'SAM' or 'HIPT'.",
+            help="Segmentation model to use",
         )
 
-        group_classifier = parser.add_mutually_exclusive_group()
-        group_classifier.add_argument(
-            "--binary",
-            action="store_true",
-            help="Use this for cell-only detection/segmentation without classifier. Cannot be used together with --classifier_path.",
-        )
-        group_classifier.add_argument(
-            "--classifier",
+        # Nuclei classification taxonomy (OPTIONAL)
+        parser.add_argument(
+            "--nuclei_taxonomy",
             type=str,
+            default="pannuke",
             choices=[
+                "binary",
+                "pannuke",
                 "consep",
                 "lizard",
                 "midog",
@@ -527,112 +524,178 @@ class InferenceWSIParser:
                 "ocelot",
                 "panoptils",
             ],
-            help="Select a classifier to use instead of the default PanNuke classes. "
-            "A label map with an overview is provided in each README for the respective classifier. "
-            "Cannot be used together with --binary.",
-            default=None,
+            help="Defines the nuclei classification taxonomy",
         )
 
-        parser.add_argument(
-            "--gpu", type=int, help="Cuda-GPU ID for inference. Default: 0", default=0
+        # Inference Settings
+        inference_group = parser.add_argument_group("Inference Settings")
+        inference_group.add_argument(
+            "--gpu", type=int, default=0, help="GPU ID to use for inference"
         )
-        parser.add_argument(
+        inference_group.add_argument(
             "--enforce_amp",
             action="store_true",
-            help="Whether to use mixed precision for inference (enforced). Otherwise network default training settings are used."
-            " Default: False",
+            help="Whether to use Automatic Mixed Precision (AMP) for inference",
         )
-        parser.add_argument(
+        inference_group.add_argument(
             "--batch_size",
             type=int,
-            help="Inference batch-size. Default: 8",
             default=8,
+            help="Number of images processed per batch",
         )
-        parser.add_argument(
+
+        # Output Settings
+        output_group = parser.add_argument_group("Output Settings")
+        output_group.add_argument(
             "--outdir",
             type=str,
-            help="Output directory to store results.",
+            required=True,
+            help="Path to the output directory where results will be stored",
         )
-        parser.add_argument(
+        output_group.add_argument(
             "--geojson",
             action="store_true",
-            help="Set this flag to export results as additional geojson files for loading them into Software like QuPath.",
+            help="Whether to export results in GeoJSON format (for QuPath or other tools)",
         )
-        parser.add_argument(
+        output_group.add_argument(
             "--graph",
             action="store_true",
-            help="Set this flag to export results as pytorch graph including embeddings (.pt) file.",
+            help="Whether to generate a cell graph representation",
         )
-        parser.add_argument(
+        output_group.add_argument(
             "--compression",
             action="store_true",
-            help="Set this flag to export results as snappy compressed file",
-        )
-        subparsers = parser.add_subparsers(
-            dest="command",
-            description="Main run command for either performing inference on single WSI-file or on whole dataset",
-        )
-        subparser_wsi = subparsers.add_parser(
-            "process_wsi", description="Process a single WSI file"
-        )
-        subparser_wsi.add_argument(
-            "--wsi_path", type=str, help="Path to WSI file", required=True
-        )
-        subparser_wsi.add_argument(
-            "--wsi_properties",
-            type=parse_wsi_properties,
-            help="WSI Metadata for processing, fields are slide_mpp and magnification. Provide as JSON string.",
-        )
-        subparser_wsi.add_argument(
-            "--preprocessing_config",
-            type=str,
-            help="Path to a .yaml file containing preprocessing configurations, optional",
+            help="Whether to use Snappy compression for output files",
         )
 
-        subparser_dataset = subparsers.add_parser(
-            "process_dataset",
-            description="Process a whole dataset",
+        # Processing Mode
+        mode_group = parser.add_argument_group("Processing Mode (Choose One)")
+        mode_subparsers = parser.add_subparsers(
+            dest="mode", required=True, help="Select processing mode"
         )
-        group = subparser_dataset.add_mutually_exclusive_group(required=True)
-        group.add_argument(
-            "--wsi_folder", type=str, help="Path to the folder where all WSI are stored"
+
+        # Single WSI processing
+        wsi_parser = mode_subparsers.add_parser(
+            "process_wsi", help="Process a single Whole Slide Image"
         )
-        group.add_argument(
-            "--filelist",
+        wsi_parser.add_argument(
+            "--wsi_path",
             type=str,
-            help="Filelist with WSI to process. Must be a .csv file with one row 'path' denoting the paths to all WSI to process. "
-            "In addition, WSI properties can be provided by adding two additional columns, named 'slide_mpp' and 'magnification'. "
-            "Other cols are discarded.",
-            default=None,
+            required=True,
+            help="Path to the Whole Slide Image (WSI) file",
         )
-        subparser_dataset.add_argument(
+        wsi_parser.add_argument(
+            "--wsi_mpp",
+            type=float,
+            help="Microns per pixel (spatial resolution of the slide)",
+        )
+        wsi_parser.add_argument(
+            "--wsi_magnification",
+            type=int,
+            help="Magnification level of the slide (e.g., 20x, 40x)",
+        )
+
+        # Dataset processing
+        dataset_parser = mode_subparsers.add_parser(
+            "process_dataset", help="Process multiple WSI files"
+        )
+        wsi_source_group = dataset_parser.add_mutually_exclusive_group(required=True)
+        wsi_source_group.add_argument(
+            "--wsi_folder",
+            type=str,
+            help="Path to a folder containing multiple WSI files",
+        )
+        wsi_source_group.add_argument(
+            "--wsi_filelist",
+            type=str,
+            help="Path to a CSV file listing WSI files (must have a 'path' column)",
+        )
+        dataset_parser.add_argument(
             "--wsi_extension",
             type=str,
-            help="The extension types used for the WSI files, see configs.python.config (WSI_EXT)",
             default="svs",
+            help="File extension of WSI files (used for detection)",
         )
-        subparser_dataset.add_argument(
-            "--preprocessing_config",
-            type=str,
-            help="Path to a .yaml file containing preprocessing configurations, optional",
+        dataset_parser.add_argument(
+            "--wsi_mpp", type=float, help="Microns per pixel (spatial resolution)"
+        )
+        dataset_parser.add_argument(
+            "--wsi_magnification", type=int, help="Magnification level of the slides"
         )
 
-        subparser_system = subparsers.add_parser(
-            "system_arguments", description="System-related settings"
+        # System Settings
+        system_group = parser.add_argument_group("System Settings")
+        system_group.add_argument(
+            "--cpu_count", type=int, help="Number of CPU cores to use for inference"
         )
-        subparser_system.add_argument(
-            "--cpu_count",
+        system_group.add_argument(
+            "--ray_worker",
             type=int,
-            help="Number of CPU cores to use/available. Recommend to first test automatic derivation, and just change if problems occur. "
-            "Default: System configuration is used.",
-            default=None,
+            help="Number of ray worker to use for inference (limited by cpu-count)",
+        )
+        system_group.add_argument(
+            "--ray_remote_cpus", type=int, help="Number of CPUs per ray worker"
+        )
+        system_group.add_argument("--memory", type=int, help="RAM in MB to use")
+
+        # Debug Settings
+        parser.add_argument(
+            "--debug",
+            action="store_true",
+            help="Enable debug mode (changes logger level and requires ray[default])",
         )
 
         self.parser = parser
 
-    def _transform_cli_to_yaml_structure(self) -> dict:
-        # TODO: Implement transformation of CLI arguments to YAML structure for consistency
-        pass
+    def _transform_cli_to_yaml_structure(self, opt) -> dict:
+        opt_yaml_style = {}
+        # general
+        opt_yaml_style["model"] = opt["model"]
+        opt_yaml_style["nuclei_taxonomy"] = opt["nuclei_taxonomy"]
+
+        # inference
+        opt_yaml_style["inference"] = {}
+        opt_yaml_style["inference"]["gpu"] = opt["gpu"]
+        opt_yaml_style["inference"]["enforce_amp"] = opt["enforce_amp"]
+        opt_yaml_style["inference"]["batch_size"] = opt["batch_size"]
+
+        # output format
+        opt_yaml_style["output_format"] = {}
+        opt_yaml_style["output_format"]["outdir"] = opt["outdir"]
+        opt_yaml_style["output_format"]["geojson"] = opt["geojson"]
+        opt_yaml_style["output_format"]["graph"] = opt["graph"]
+        opt_yaml_style["output_format"]["compression"] = opt["compression"]
+
+        # system setting
+        opt_yaml_style["system"] = {}
+        opt_yaml_style["system"]["cpu_count"] = opt["cpu_count"]
+        opt_yaml_style["system"]["ray_worker"] = opt["ray_worker"]
+        opt_yaml_style["system"]["ray_remote_cpus"] = opt["ray_remote_cpus"]
+        opt_yaml_style["system"]["memory"] = opt["memory"]
+        opt_yaml_style["debug"] = opt["debug"]
+
+        if opt["mode"] == "process_wsi":
+            opt_yaml_style["process_wsi"] = {}
+            opt_yaml_style["process_wsi"]["wsi_path"] = opt["wsi_path"]
+            opt_yaml_style["process_wsi"]["wsi_mpp"] = opt["wsi_mpp"]
+            opt_yaml_style["process_wsi"]["wsi_magnification"] = opt[
+                "wsi_magnification"
+            ]
+        elif opt["mode"] == "process_dataset":
+            opt_yaml_style["process_dataset"] = {}
+            opt_yaml_style["process_dataset"]["wsi_folder"] = opt["wsi_folder"]
+            opt_yaml_style["process_dataset"]["wsi_extension"] = opt["wsi_extension"]
+            opt_yaml_style["process_dataset"]["wsi_filelist"] = opt["wsi_filelist"]
+            opt_yaml_style["process_dataset"]["wsi_mpp"] = opt["wsi_mpp"]
+            opt_yaml_style["process_dataset"]["wsi_magnification"] = opt[
+                "wsi_magnification"
+            ]
+        else:
+            raise NotImplementedError(
+                "Problem occured - use either process_wsi or process_dataset"
+            )
+
+        return opt_yaml_style
 
     def parse_arguments(self) -> dict:
         opt = self.parser.parse_args()
@@ -641,7 +704,7 @@ class InferenceWSIParser:
             with open(opt["config"], "r") as f:
                 config = yaml.safe_load(f)
         else:
-            opt = self._transform_cli_to_yaml_structure()
+            config = self._transform_cli_to_yaml_structure(opt)
 
         inf_conf = InferenceConfiguration(config)
         return inf_conf

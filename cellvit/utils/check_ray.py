@@ -11,13 +11,7 @@ import sys
 import ray
 import time
 
-# Get the current directory and project root
-current_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.dirname(current_dir)
-sys.path.append(current_dir)
-sys.path.append(project_root)
-project_root = os.path.dirname(project_root)
-sys.path.append(project_root)
+PYTHON_PATH = sys.executable
 
 
 # Logger function
@@ -75,7 +69,7 @@ def main():
 
     # Initialize Ray with runtime environment
     runtime_env = {
-        "env_vars": {"PYTHONPATH": project_root}  # Set PYTHONPATH for workers
+        "env_vars": {"PYTHONPATH": PYTHON_PATH}  # Set PYTHONPATH for workers
     }
 
     try:
