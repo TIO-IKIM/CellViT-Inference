@@ -294,7 +294,7 @@ This download example files that are placed inside the [`./test_database`](/test
 
   ```bash
   python3 ./cellvit/detect_cells.py \
-    --model ./checkpoints/CellViT-SAM-H-x40-AMP.pth \
+    --model SAM \
     --outdir ./test-results/x_40/minimal \
     process_wsi \
     --wsi_path ./test_database/x40_svs/JP2K-33003-2.svs

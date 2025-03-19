@@ -12,6 +12,7 @@ import pandas as pd
 import json
 import yaml
 import pandas as pd
+import threading
 
 
 def parse_wsi_properties(wsi_properties_str):
@@ -438,6 +439,13 @@ class InferenceConfiguration:
             assert (
                 "wsi_folder" in process_dataset or "wsi_filelist" in process_dataset
             ), "WSI folder or filelist must be provided"
+            assert (
+                "wsi_folder" in process_dataset
+                and process_dataset["wsi_folder"] is not None
+            ) ^ (
+                "wsi_filelist" in process_dataset
+                and process_dataset["wsi_filelist"] is not None
+            ), "Either 'wsi_folder' or 'wsi_filelist' must be provided, but not both."
             if "wsi_folder" in process_dataset:
                 assert isinstance(
                     process_dataset["wsi_folder"], str
@@ -549,7 +557,6 @@ class InferenceWSIParser:
         output_group.add_argument(
             "--outdir",
             type=str,
-            required=True,
             help="Path to the output directory where results will be stored",
         )
         output_group.add_argument(
@@ -571,7 +578,7 @@ class InferenceWSIParser:
         # Processing Mode
         mode_group = parser.add_argument_group("Processing Mode (Choose One)")
         mode_subparsers = parser.add_subparsers(
-            dest="mode", required=True, help="Select processing mode"
+            dest="mode", help="Select processing mode"
         )
 
         # Single WSI processing
@@ -709,14 +716,38 @@ class InferenceWSIParser:
         inf_conf = InferenceConfiguration(config)
         return inf_conf
 
-    # def _check_arguments(self, opt: dict) -> None:
 
-    #     if "wsi_properties" in opt:
-    #         if opt["wsi_properties"] is not None:
-    #             allowed_keys = {"slide_mpp", "magnification"}
-    #             assert (
-    #                 type(opt["wsi_properties"]) == dict
-    #             ), "WSI properties must be a dictionary"
-    #             assert set(opt["wsi_properties"].keys()).issubset(
-    #                 allowed_keys
-    #             ), "WSI properties can only contain 'slide_mpp' and 'magnification'"
+def get_user_input_with_timeout(
+    prompt: str, timeout: int = 5, default: bool = True
+) -> bool:
+    """Prompt user input, return after timeout
+
+    Args:
+        prompt (str): Prompt to ask
+        timeout (int, optional): Timeout. Defaults to 5.
+        default (bool, optional): Default return value. Defaults to 1 ("yes").
+
+    Returns:
+        bool: Yes (1) or No (0)
+    """
+    print(
+        f"{prompt} (yes/no) [default: {['no','yes'][default]} in {timeout} seconds]: ",
+        end="",
+        flush=True,
+    )
+
+    result = default
+
+    def user_input():
+        response = input().strip().lower()
+        if response in ["yes", "y"]:
+            result = 1
+        elif response in ["no", "n"]:
+            result = 0
+
+    thread = threading.Thread(target=user_input)
+    thread.daemon = True
+    thread.start()
+    thread.join(timeout)
+
+    return result
