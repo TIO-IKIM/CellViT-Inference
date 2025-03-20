@@ -109,6 +109,12 @@ class InferenceConfiguration:
         else:
             raise KeyError(f"Key '{key}' not found in InferenceConfiguration")
 
+    def __setitem__(self, key, value):
+        if hasattr(self, key):
+            setattr(self, key, value)
+        else:
+            raise KeyError(f"Key '{key}' not found in InferenceConfiguration")
+
     def __set_model(self, config: dict) -> None:
         """Sets the model to use for inference
 
@@ -122,11 +128,11 @@ class InferenceConfiguration:
         """
         assert "model" in config, "Model must be provided in config"
         assert isinstance(config["model"], str), "Model must be of type string"
-        assert config["model"] in [
+        assert config["model"].upper() in [
             "SAM",
             "HIPT",
         ], "Model must be either 'SAM' or 'HIPT'"
-        self.model = config["model"]
+        self.model = config["model"].upper()
 
     def __set_nuclei_taxonomy(self, config: dict) -> None:
         """Sets the nuclei taxonomy to use for inference
@@ -141,6 +147,7 @@ class InferenceConfiguration:
         """
         if "nuclei_taxonomy" in config:
             if config["nuclei_taxonomy"] is not None:
+                config["nuclei_taxonomy"] = config["nuclei_taxonomy"].lower()
                 assert isinstance(
                     config["nuclei_taxonomy"], str
                 ), "Nuclei taxonomy must be of type string"
@@ -736,18 +743,18 @@ def get_user_input_with_timeout(
         flush=True,
     )
 
-    result = default
+    result = [default]
 
     def user_input():
         response = input().strip().lower()
         if response in ["yes", "y"]:
-            result = 1
+            result[0] = True
         elif response in ["no", "n"]:
-            result = 0
+            result[0] = False
 
     thread = threading.Thread(target=user_input)
     thread.daemon = True
     thread.start()
     thread.join(timeout)
 
-    return result
+    return result[0]

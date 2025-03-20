@@ -1,0 +1,19 @@
+# ==========================
+# CellViT Inference Config
+# ==========================
+
+# Model selection (REQUIRED)
+model: SAM
+nuclei_taxonomy: panoptils
+
+output_format:
+  outdir: ./test_database_2/Phillips/output
+  geojson: True
+
+process_wsi:
+  wsi_path: ./test_database_2/Phillips/input/Philips-1.tiff
+
+system:
+  cpu_count: 16
+
+debug: True

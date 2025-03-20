@@ -639,7 +639,15 @@ def get_used_memory_slurm() -> float:
 
 def retrieve_actor_usage() -> List[float]:
     actor_pids = [f["Pid"] for f in ray._private.state.actors().values()]
-    return [psutil.Process(pid).memory_info().rss / (1024 * 1024) for pid in actor_pids]
+    memory_usage = []
+    for actor_pid in actor_pids:
+        try:
+            mem = psutil.Process(actor_pid).memory_info().rss / (1024 * 1024)
+            memory_usage.append(mem)
+        except:
+            pass
+
+    return memory_usage
 
 
 class SystemConfiguration:
@@ -743,6 +751,7 @@ class SystemConfiguration:
 
     def overwrite_available_cpus(self, cpu_count: int) -> None:
         self.cpu_count = cpu_count
+        self._calculate_ray_worker()
 
     def overwrite_memory(self, memory: int) -> None:
         self.memory = memory

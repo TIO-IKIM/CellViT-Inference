@@ -62,6 +62,16 @@ def load_wsi_meta(
         slide_mag = wsi_magnification
     elif "openslide.objective-power" in slide_openslide.properties:
         slide_mag = float(slide_openslide.properties.get("openslide.objective-power"))
+    elif 0.20 <= slide_mpp <= 0.30:
+        logger.warning(
+            "Based on resolution we assume x40 magnification. If not, please manually define magnification."
+        )
+        slide_mag = 40.0
+    elif 0.40 <= slide_mpp <= 0.60:
+        logger.warning(
+            "Based on resolution we assume x20 magnification. If not, please manually define magnification."
+        )
+        slide_mag = 20.0
     else:
         raise NotImplementedError(
             "Magnification must be defined either by metadata or by config file!"

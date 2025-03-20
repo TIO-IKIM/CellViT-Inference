@@ -702,7 +702,7 @@ class CellViTInference:
         if self.debug:
             (wsi_outdir / "masks").mkdir(exist_ok=True, parents=True)
             for img_name, img in wsi_inference_dataset.mask_images.items():
-                img.save(wsi_outdir / f"{img_name}.jpeg", quality=50)
+                img.save(wsi_outdir / "masks" / f"{img_name}.jpeg", quality=50)
         wsi_inference_dataset.mask_images = None  # clean to free up memory
 
         wsi_inference_dataloader = LivePatchWSIDataloader(
@@ -794,7 +794,9 @@ class CellViTInference:
                 percentage_actor_alloc = (
                     sum(retrieve_actor_usage()) / self.system_configuration.memory * 100
                 )
-                if percentage_actor_alloc >= 50 and memory_percentage >= 80:
+                if (
+                    percentage_actor_alloc >= 50 or percentage_actor_alloc <= 0.1
+                ) and memory_percentage >= 70:
                     pbar.set_postfix(status="Re-register worker")
                     batch_results = ray.get(call_ids)
                     batch_results_list.append(batch_results)
@@ -805,7 +807,7 @@ class CellViTInference:
                         BatchPoolingActor.remote(postprocessor, self.run_conf)
                         for i in range(self.system_configuration["ray_worker"])
                     ]
-                pbar.set_postfix(status="Running CellViT...")
+
                 pbar.total = len(wsi_inference_dataloader)
 
             self.logger.info("Waiting for final batches to be processed...")

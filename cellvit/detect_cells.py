@@ -9,8 +9,8 @@ from cellvit.inference.cli import InferenceWSIParser, get_user_input_with_timeou
 from cellvit.inference.inference import CellViTInference
 from cellvit.utils.ressource_manager import SystemConfiguration
 from pathlib import Path
-import pandas as pd
 import ujson as json
+import numpy as np
 
 
 def main():
@@ -56,25 +56,78 @@ def main():
     elif command.lower() == "process_dataset":
         celldetector.logger.info("Processing whole dataset")
         if args["wsi_filelist"] is not None:
-            # TODO: do this
-            celldetector.logger.info(f"Loading files from filelist {args['filelist']}")
-            wsi_filelist = pd.read_csv(args["filelist"], delimiter=",")
-            wsi_filelist = wsi_filelist.to_dict(orient="records")
+            celldetector.logger.info(f"Loading files from filelist")
+            args["wsi_filelist"]["path"] = args["wsi_filelist"]["path"].apply(
+                lambda x: Path(x)
+            )
+            args["wsi_filelist"]["filename"] = args["wsi_filelist"]["path"].apply(
+                lambda x: x.name
+            )
 
-            # already processed files
+            # check if files are already processed
+            if (celldetector.outdir / "processed_files.json").exists():
+                processed_files = []
+                with open(celldetector.outdir / "processed_files.json", "r") as f:
+                    processed_files = json.load(f)
+                if len(processed_files) != 0:
+                    celldetector.logger.info(
+                        f"Found processed files: {len(processed_files)}"
+                    )
+                    remove_files = get_user_input_with_timeout(
+                        f"Should the {len(processed_files)} found files be removed from the processing stack?"
+                    )
+                    if remove_files:
+                        print("\n")
+                        args.wsi_filelist = args["wsi_filelist"][
+                            ~args["wsi_filelist"]["filename"].isin(processed_files)
+                        ]
 
-            for wsi_index, wsi in enumerate(wsi_filelist):
-                celldetector.logger.info(f"Progress: {wsi_index+1}/{len(wsi_filelist)}")
-                wsi_path = Path(wsi["path"])
-                wsi_properties = {}
-                if "slide_mpp" in wsi:
-                    wsi_properties["slide_mpp"] = wsi["slide_mpp"]
-                if "magnification" in wsi:
-                    wsi_properties["magnification"] = wsi["magnification"]
+                        celldetector.logger.info(
+                            f"New processing amount: {len(args['wsi_filelist'])}"
+                        )
+
+            for wsi_index in range(len(args["wsi_filelist"])):
+                celldetector.logger.info(
+                    f"Progress: {wsi_index+1}/{len(args['wsi_filelist'])}"
+                )
+                wsi_path = args["wsi_filelist"].iloc[wsi_index]["path"]
+                column_names = list(args["wsi_filelist"].columns)
+
+                if "wsi_mpp" in column_names:
+                    wsi_mpp = args["wsi_filelist"].iloc[wsi_index]["wsi_mpp"]
+                    if wsi_mpp is not None:
+                        if np.isnan(wsi_mpp):
+                            wsi_mpp = None
+                        if args["wsi_mpp"]:
+                            wsi_mpp = args["wsi_mpp"]
+                        assert isinstance(
+                            wsi_mpp, (int, float)
+                        ), "WSI mpp must be an int or float"
+                elif args["wsi_mpp"]:
+                    wsi_mpp = args["wsi_mpp"]
+                else:
+                    wsi_mpp = None
+                if "wsi_magnification" in column_names:
+                    wsi_magnification = args["wsi_filelist"].iloc[wsi_index][
+                        "wsi_magnification"
+                    ]
+                    if wsi_magnification is not None:
+                        if np.isnan(wsi_magnification):
+                            wsi_magnification = None
+                            if args["wsi_magnification"]:
+                                wsi_magnification = args["wsi_magnification"]
+                        assert isinstance(
+                            wsi_magnification, (int, float)
+                        ), "WSI magn must be an int or float"
+                elif args["wsi_magnification"]:
+                    wsi_magnification = args["wsi_magnification"]
+                else:
+                    wsi_magnification = None
+
                 celldetector.process_wsi(
                     wsi_path=wsi_path,
-                    wsi_properties=wsi_properties,
-                    resolution=args["resolution"],
+                    wsi_mpp=wsi_mpp,
+                    wsi_magnification=wsi_magnification,
                 )
 
         elif args["wsi_folder"] is not None:
