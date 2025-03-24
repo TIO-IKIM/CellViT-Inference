@@ -422,10 +422,17 @@ class InferenceConfiguration:
             assert Path(
                 config["process_wsi"]["wsi_path"]
             ).exists(), "WSI path does not exist"
-            assert Path(
-                config["process_wsi"]["wsi_path"]
-            ).is_file(), "WSI path is not a file"
-            self.wsi_path = Path(config["process_wsi"]["wsi_path"])
+            if not Path(config["process_wsi"]["wsi_path"]).is_file():
+                wsi_path = Path(config["process_wsi"]["wsi_path"])
+                files_sorted = sorted(
+                    wsi_path.glob("*.dcm"), key=lambda f: f.stat().st_size, reverse=True
+                )
+
+                if not len(files_sorted) > 0:
+                    raise FileNotFoundError("WSI path is not a file")
+                self.wsi_path = files_sorted[0]
+            else:
+                self.wsi_path = Path(config["process_wsi"]["wsi_path"])
 
             wsi_mpp = config["process_wsi"].get("wsi_mpp")
             if wsi_mpp is not None:

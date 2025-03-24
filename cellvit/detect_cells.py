@@ -63,7 +63,26 @@ def main():
             args["wsi_filelist"]["filename"] = args["wsi_filelist"]["path"].apply(
                 lambda x: x.name
             )
-
+            wsi_index_keep = []
+            for wsi_index, wsi_file in enumerate(args["wsi_filelist"]["path"]):
+                wsi_file = Path(wsi_file)
+                if wsi_file.is_dir():
+                    files_sorted = sorted(
+                        wsi_file.glob("*.dcm"),
+                        key=lambda f: f.stat().st_size,
+                        reverse=True,
+                    )
+                    if len(files_sorted) != 0:
+                        args["wsi_filelist"].at[wsi_index, "path"] = str(
+                            files_sorted[0]
+                        )  # Assign the largest file
+                        wsi_index_keep.append(wsi_index)
+                else:
+                    if wsi_file.exist():
+                        wsi_index_keep.append(wsi_index)
+            args["wsi_filelist"] = (
+                args["wsi_filelist"].loc[wsi_index_keep].reset_index(drop=True)
+            )
             # check if files are already processed
             if (celldetector.outdir / "processed_files.json").exists():
                 processed_files = []
@@ -134,12 +153,34 @@ def main():
             celldetector.logger.info(
                 f"Loading all files from folder {args['wsi_folder']}. No filelist provided."
             )
-            wsi_filelist = [
-                f
-                for f in sorted(
-                    Path(args["wsi_folder"]).glob(f"**/*.{args['wsi_extension']}")
-                )
-            ]
+            if args["wsi_extension"].lower() == "dcm":
+                wsi_subfolder = [
+                    f for f in sorted(Path(args["wsi_folder"]).iterdir()) if f.is_dir()
+                ]
+                cleaned_folders = []
+                for wsi_folder in wsi_subfolder:
+                    files_sorted = sorted(
+                        wsi_folder.glob("*.dcm"),
+                        key=lambda f: f.stat().st_size,
+                        reverse=True,
+                    )
+                    if len(files_sorted) != 0:
+                        cleaned_folders.append(wsi_folder)
+                wsi_filelist = []
+                for wsi_folder in cleaned_folders:
+                    files_sorted = sorted(
+                        wsi_folder.glob("*.dcm"),
+                        key=lambda f: f.stat().st_size,
+                        reverse=True,
+                    )
+                    wsi_filelist.append(files_sorted[0])
+            else:
+                wsi_filelist = [
+                    f
+                    for f in sorted(
+                        Path(args["wsi_folder"]).glob(f"**/*.{args['wsi_extension']}")
+                    )
+                ]
             celldetector.logger.info(f"Found {len(wsi_filelist)} files inside folder")
 
             # check if files are already processed

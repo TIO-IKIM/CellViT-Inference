@@ -11,6 +11,7 @@ from cellvit.inference.cli import InferenceConfiguration
 from pathlib import Path
 import pandas as pd
 from unittest.mock import patch
+import shutil
 
 
 class TestInferenceConfiguration(unittest.TestCase):
@@ -55,7 +56,7 @@ class TestInferenceConfiguration(unittest.TestCase):
         if self.temp_wsi_file.exists():
             self.temp_wsi_file.unlink()
         if self.temp_dir.exists():
-            self.temp_dir.rmdir()
+            shutil.rmtree(self.temp_dir)
 
     @patch("torch.cuda.device_count")
     def test_valid_configuration(self, mock_device_count):

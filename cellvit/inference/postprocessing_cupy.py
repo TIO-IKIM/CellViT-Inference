@@ -566,7 +566,7 @@ class DetectionCellPostProcessor:
 
 
 def create_batch_pooling_actor(num_cpus: int = 8):
-    @ray.remote(num_cpus=num_cpus)
+    @ray.remote(num_cpus=num_cpus, num_gpus=0.1)
     class BatchPoolingActor:
         def __init__(
             self,
