@@ -9,17 +9,20 @@ import os
 
 os.environ["CELLVIT_CACHE"] = "tests/test_data/temp_cache"
 
-import unittest
-from unittest.mock import patch, MagicMock
-
-from cellvit.inference.inference import CellViTInference
-from cellvit.utils.ressource_manager import SystemConfiguration
-from cellvit.config.config import TYPE_NUCLEI_DICT_PANNUKE
 import shutil
+import unittest
+from unittest.mock import MagicMock, patch
+
+import pytest
+
+from cellvit.config.config import TYPE_NUCLEI_DICT_PANNUKE
+from cellvit.inference.inference import CellViTInference
 from cellvit.models.cell_segmentation.cellvit_256 import CellViT256
 from cellvit.models.cell_segmentation.cellvit_sam import CellViTSAM
+from cellvit.utils.ressource_manager import SystemConfiguration
 
 
+@pytest.mark.slow
 class TestCellViTInferenceModel(unittest.TestCase):
     """Test for the _load_classifier method of the CellViTInference class."""
 

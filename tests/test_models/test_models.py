@@ -6,13 +6,15 @@
 # University Medicine Essen
 
 import unittest
+
 import torch
 from torch import nn
+
 from cellvit.models.base.vision_transformer import (
-    VisionTransformer,
-    PatchEmbed,
     Attention,
     Mlp,
+    PatchEmbed,
+    VisionTransformer,
 )
 
 

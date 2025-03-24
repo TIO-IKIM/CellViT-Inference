@@ -7,25 +7,25 @@
 
 import os
 import unittest
-from unittest.mock import patch, mock_open, MagicMock
 from unittest import TestCase
+from unittest.mock import MagicMock, mock_open, patch
 
 from cellvit.utils.ressource_manager import (
+    SystemConfiguration,
     detect_runtime_environment,
-    is_slurm,
-    is_kubernetes,
-    is_docker,
-    is_vm,
-    get_cpu_memory_slurm,
     get_cpu_memory_kubernetes,
-    get_cpu_resources,
+    get_cpu_memory_slurm,
     get_cpu_memory_vm_or_server,
+    get_cpu_resources,
     get_gpu_resources,
     get_used_memory,
     get_used_memory_kubernetes,
     get_used_memory_process,
     get_used_memory_slurm,
-    SystemConfiguration,
+    is_docker,
+    is_kubernetes,
+    is_slurm,
+    is_vm,
 )
 
 

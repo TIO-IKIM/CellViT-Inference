@@ -6,7 +6,8 @@
 # University Medicine Essen
 
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
 from cellvit.utils.check_module import check_module, perform_module_check
 
 

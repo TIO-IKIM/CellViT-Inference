@@ -5,9 +5,9 @@
 # Institute for Artifical Intelligence in Medicine,
 # University Medicine Essen
 
-import unittest
-from unittest.mock import patch, MagicMock
 import sys
+import unittest
+from unittest.mock import MagicMock, patch
 
 
 class TestCheckCuPy(unittest.TestCase):

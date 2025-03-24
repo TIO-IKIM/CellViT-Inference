@@ -6,24 +6,26 @@
 # University Medicine Essen
 # ruff: noqa: F401
 
+import logging
+import os
+import sys
 import unittest
+from unittest.mock import patch
+
 import numpy as np
+import pandas as pd
+
 from cellvit.utils.tools import (
-    get_bounding_box,
-    remove_small_objects,
+    close_logger,
     flatten_dict,
-    unflatten_dict,
+    get_bounding_box,
     get_size_of_dict,
     load_wsi_files_from_csv,
-    close_logger,
-    remove_parameter_tag,
     remap_label,
+    remove_parameter_tag,
+    remove_small_objects,
+    unflatten_dict,
 )
-import sys
-import os
-import pandas as pd
-import logging
-from unittest.mock import patch
 
 
 class TestGetBoundingBox(unittest.TestCase):

@@ -9,14 +9,14 @@ import os
 
 os.environ["CELLVIT_CACHE"] = "tests/test_data/temp_cache"
 
+import shutil
 import unittest
-from unittest.mock import patch, MagicMock
 from pathlib import Path
+from unittest.mock import MagicMock, patch
 
+from cellvit.config.config import TYPE_NUCLEI_DICT_PANNUKE
 from cellvit.inference.inference import CellViTInference, LinearClassifier
 from cellvit.utils.ressource_manager import SystemConfiguration
-from cellvit.config.config import TYPE_NUCLEI_DICT_PANNUKE
-import shutil
 
 
 class TestCellViTInferenceLoadClassifier(unittest.TestCase):

@@ -5,10 +5,11 @@
 # Institute for Artifical Intelligence in Medicine,
 # University Medicine Essen
 
-import unittest
 import logging
+import unittest
 from pathlib import Path
-from cellvit.utils.logger import Logger, NullLogger, PrintLogger, ColoredFormatter
+
+from cellvit.utils.logger import ColoredFormatter, Logger, NullLogger, PrintLogger
 
 
 class TestLogger(unittest.TestCase):

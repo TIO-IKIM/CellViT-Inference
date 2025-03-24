@@ -6,7 +6,9 @@
 # University Medicine Essen
 
 import unittest
+
 import torch
+
 from cellvit.models.classifier.linear_classifier import LinearClassifier
 
 

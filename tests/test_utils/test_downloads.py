@@ -10,20 +10,19 @@ import os
 os.environ["CELLVIT_CACHE"] = "tests/test_data/temp_cache"
 
 import shutil
+import time
 import unittest
-from unittest.mock import MagicMock
 from pathlib import Path
+from unittest.mock import MagicMock
+
+import pytest
+
+from cellvit.config.config import CACHE_DIR
 from cellvit.utils.cache_models import (
-    cache_cellvit_sam_h,
     cache_cellvit_256,
+    cache_cellvit_sam_h,
     cache_classifier,
 )
-from cellvit.config.config import CACHE_DIR
-from cellvit.utils.cache_models import cache_cellvit_sam_h
-from cellvit.utils.cache_models import cache_cellvit_256
-from cellvit.utils.cache_models import cache_classifier
-import time
-import pytest
 
 
 @pytest.mark.slow

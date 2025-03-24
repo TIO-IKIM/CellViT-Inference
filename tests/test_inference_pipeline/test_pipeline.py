@@ -5,16 +5,20 @@
 # Institute for Artifical Intelligence in Medicine,
 # University Medicine Essen
 
+import os
+import shutil
+import tempfile
 import unittest
 from pathlib import Path
-import tempfile
-import shutil
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
+import pytest
+
 from cellvit.inference.inference import CellViTInference
 from cellvit.utils.ressource_manager import SystemConfiguration
-import os
 
 
+@pytest.mark.slow
 class TestCellViTInference(unittest.TestCase):
     def setUp(self):
         # Create a temporary directory for outputs

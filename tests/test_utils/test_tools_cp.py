@@ -7,7 +7,8 @@
 # ruff: noqa: F401
 
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
+
 import numpy as np
 
 # Cupy-Verfügbarkeit prüfen

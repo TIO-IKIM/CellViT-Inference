@@ -5,11 +5,13 @@
 # Institute for Artifical Intelligence in Medicine,
 # University Medicine Essen
 
-import unittest
-from unittest.mock import patch, MagicMock
 import io
+import unittest
+from unittest.mock import MagicMock, patch
+
 import ray
-from cellvit.utils.check_ray import log_message, test_import, main
+
+from cellvit.utils.check_ray import log_message, main, test_import
 
 
 class TestCheckRay(unittest.TestCase):
