@@ -162,10 +162,10 @@ class CellViTInference:
                 Remove padding from the WSI
         """
         # hand over parameters
-        self.model_name: str = model_name
+        self.model_name: str = model_name.upper()
         self.outdir: Path = Path(outdir)
         self.system_configuration: SystemConfiguration = system_configuration
-        self.nuclei_taxonomy: str = nuclei_taxonomy
+        self.nuclei_taxonomy: str = nuclei_taxonomy.lower()
         self.batch_size: int = batch_size
         self.patch_size: int = patch_size
         self.overlap: int = overlap
@@ -341,7 +341,7 @@ class CellViTInference:
                     self.logger.info("Using Lizard classifier")
                     model_checkpoint = classifier_path / "lizard.pth"
                 case "consep":
-                    self.logger.info("Using Lizard classifier")
+                    self.logger.info("Using CoNSeP classifier")
                     model_checkpoint = classifier_path / "consep.pth"
                 case "midog":
                     self.logger.info("Using MIDOG classifier")
@@ -362,7 +362,7 @@ class CellViTInference:
                     self.logger.error(
                         f"Unknown classifier: {self.nuclei_taxonomy}, using default settings"
                     )
-
+                    raise NotImplementedError("Unknown classifier")
             assert (
                 model_checkpoint.exists()
             ), f"Classifier cannot be loaded - Expecting {str(model_checkpoint)}"

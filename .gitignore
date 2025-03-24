@@ -26,3 +26,8 @@ cufile.log
 gdc-client
 cellvit.egg-info
 dist
+
+./tests/data
+./tests/test_data
+
+.coverage*

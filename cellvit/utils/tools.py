@@ -17,10 +17,22 @@ import pandas as pd
 from scipy import ndimage
 
 
-def get_bounding_box(img):
-    """Get bounding box coordinate information."""
+def get_bounding_box(img: np.ndarray) -> List[int]:
+    """Get the bounding box of a binary image.
+
+    Args:
+        img (np.ndarray): Binary image (2D array) where non-zero values represent the object.
+
+    Returns:
+        List[int]: Bounding box coordinates in the format [rmin, rmax, cmin, cmax].
+    """    
     rows = np.any(img, axis=1)
     cols = np.any(img, axis=0)
+
+    # if the image is empty, return empty list    
+    if not np.any(rows) or not np.any(cols):
+        return []
+    
     rmin, rmax = np.where(rows)[0][[0, -1]]
     cmin, cmax = np.where(cols)[0][[0, -1]]
     # due to python indexing, need to add 1 to max
@@ -97,7 +109,6 @@ def flatten_dict(d: dict, parent_key: str = "", sep: str = ".") -> dict:
             items.append((new_key, v))
     return dict(items)
 
-
 def unflatten_dict(d: dict, sep: str = ".") -> dict:
     """Unflatten a flattened dictionary (created a nested dictionary)
 
@@ -109,15 +120,30 @@ def unflatten_dict(d: dict, sep: str = ".") -> dict:
         dict: Nested dict
     """
     output_dict = {}
-    for key, value in d.items():
+    
+    # Sortieren der Schlüssel nach Länge, damit tiefere Pfade zuletzt verarbeitet werden
+    sorted_items = sorted(d.items(), key=lambda x: len(x[0].split(sep)))
+    
+    for key, value in sorted_items:
         keys = key.split(sep)
-        d = output_dict
+        current = output_dict
+        
         for k in keys[:-1]:
-            d = d.setdefault(k, {})
-        d[keys[-1]] = value
+            # Wenn der Schlüssel bereits existiert aber kein Dictionary ist,
+            # ersetzen wir ihn durch ein Dictionary
+            if k in current and not isinstance(current[k], dict):
+                current[k] = {}
+            
+            # Hinzufügen des Schlüssels falls nicht vorhanden
+            if k not in current:
+                current[k] = {}
+            
+            current = current[k]
+        
+        # Setzen des endgültigen Wertes
+        current[keys[-1]] = value
 
     return output_dict
-
 
 def get_size_of_dict(d: dict) -> int:
     size = sys.getsizeof(d)

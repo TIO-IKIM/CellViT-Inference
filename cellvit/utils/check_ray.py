@@ -73,7 +73,7 @@ def main():
     }
 
     try:
-        ray.init(runtime_env=runtime_env)
+        ray.init(runtime_env=runtime_env, ignore_reinit_error=True)
         log_message("\nRay initialized successfully.")
     except Exception as e:
         log_message(f"Error initializing Ray: {str(e)}", level="ERROR")

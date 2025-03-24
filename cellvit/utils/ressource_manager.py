@@ -4,11 +4,11 @@ import psutil
 import subprocess
 import re
 import logging
+import ray
 from typing import Dict, Any, Optional, List, Tuple, Literal
 from cellvit.utils.logger import NullLogger
 from cellvit.utils.check_module import check_module
 from cellvit.utils.check_cupy import check_cupy
-import ray
 
 
 def detect_runtime_environment() -> str:
