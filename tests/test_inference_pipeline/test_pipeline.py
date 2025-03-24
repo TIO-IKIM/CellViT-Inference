@@ -6,6 +6,13 @@
 # University Medicine Essen
 
 import os
+import torch
+
+if torch.cuda.is_available():
+    os.environ["RAY_GPUS_DEACTIVATION"] = "0"
+else:
+    os.environ["RAY_GPUS_DEACTIVATION"] = "1"
+
 import shutil
 import tempfile
 import unittest

@@ -29,5 +29,6 @@ dist
 
 ./tests/data
 ./tests/test_data
+!tests/data/test_wsi_database/BRACS_1640_N_3_cropped.tiff
 
 .coverage*

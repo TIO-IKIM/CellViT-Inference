@@ -1,9 +1,0 @@
-name: cellvit_env
-channels:
-  - nvidia
-  - rapidsai
-  - conda-forge
-
-dependencies:
-  - openslide=4.0.0=h58ba908_1
-  - pip=24.0

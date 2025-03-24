@@ -6,7 +6,7 @@
 # @ Fabian Hörst, fabian.hoerst@uk-essen.de
 # Institute for Artifical Intelligence in Medicine,
 # University Medicine Essen
-
+from os import environ
 from typing import List, Tuple, Union
 from torch import nn
 import cv2
@@ -566,7 +566,12 @@ class DetectionCellPostProcessor:
 
 
 def create_batch_pooling_actor(num_cpus: int = 8):
-    @ray.remote(num_cpus=num_cpus, num_gpus=0.1)
+    num_gpus = 0.1
+    if environ.get("RAY_GPUS_DEACTIVATION") is not None:
+        if environ.get("RAY_GPUS_DEACTIVATION") == "1":
+            num_gpus = 0
+
+    @ray.remote(num_cpus=num_cpus, num_gpus=num_gpus)
     class BatchPoolingActor:
         def __init__(
             self,
