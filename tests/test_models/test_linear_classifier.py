@@ -1,6 +1,14 @@
+# -*- coding: utf-8 -*-
+# Test linear classifier for CellViT
+#
+# @ Fabian Hörst, fabian.hoerst@uk-essen.de
+# Institute for Artifical Intelligence in Medicine,
+# University Medicine Essen
+
 import unittest
 import torch
 from cellvit.models.classifier.linear_classifier import LinearClassifier
+
 
 class TestLinearClassifier(unittest.TestCase):
     def test_linear_classifier_forward(self):
@@ -45,7 +53,9 @@ class TestLinearClassifier(unittest.TestCase):
         output = model(input_tensor)
 
         # Check if dropout is applied (output should not be identical to input)
-        self.assertFalse(torch.equal(output, model.fc2(model.activation(model.fc1(input_tensor)))))
+        self.assertFalse(
+            torch.equal(output, model.fc2(model.activation(model.fc1(input_tensor))))
+        )
 
     def test_linear_classifier_no_dropout(self):
         """Test case to check behavior when dropout is 0"""
@@ -65,7 +75,9 @@ class TestLinearClassifier(unittest.TestCase):
         output = model(input_tensor)
 
         # Check if output is consistent (dropout should not alter the output)
-        self.assertTrue(torch.equal(output, model.fc2(model.activation(model.fc1(input_tensor)))))
+        self.assertTrue(
+            torch.equal(output, model.fc2(model.activation(model.fc1(input_tensor))))
+        )
 
     def test_linear_classifier_initialization(self):
         """Test case to check if model initializes correctly"""
@@ -102,7 +114,9 @@ class TestLinearClassifier(unittest.TestCase):
         output = model(input_tensor)
 
         # Check if activation is applied correctly
-        self.assertTrue(torch.equal(intermediate_output, model.activation(model.fc1(input_tensor))))
+        self.assertTrue(
+            torch.equal(intermediate_output, model.activation(model.fc1(input_tensor)))
+        )
 
 
 if __name__ == "__main__":

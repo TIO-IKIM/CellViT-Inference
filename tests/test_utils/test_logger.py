@@ -1,8 +1,15 @@
+# -*- coding: utf-8 -*-
+# Test Logger for CellViT
+#
+# @ Fabian Hörst, fabian.hoerst@uk-essen.de
+# Institute for Artifical Intelligence in Medicine,
+# University Medicine Essen
+
 import unittest
 import logging
-import os
 from pathlib import Path
 from cellvit.utils.logger import Logger, NullLogger, PrintLogger, ColoredFormatter
+
 
 class TestLogger(unittest.TestCase):
     def setUp(self):
@@ -44,7 +51,9 @@ class TestLogger(unittest.TestCase):
         logger_instance = Logger(level="INFO")
         logger = logger_instance.create_logger()
         self.assertIsInstance(logger, logging.Logger)
-        self.assertEqual(logger.level, logging.DEBUG)  # Logger is set to DEBUG internally
+        self.assertEqual(
+            logger.level, logging.DEBUG
+        )  # Logger is set to DEBUG internally
 
     def test_logger_creation_with_file_handler(self):
         """Test Logger creation with file handler."""
@@ -64,7 +73,13 @@ class TestLogger(unittest.TestCase):
         """Test ColoredFormatter formats messages with color codes."""
         formatter = ColoredFormatter("%(levelname)s - %(message)s")
         record = logging.LogRecord(
-            name="test", level=logging.INFO, pathname="", lineno=0, msg="Test message", args=(), exc_info=None
+            name="test",
+            level=logging.INFO,
+            pathname="",
+            lineno=0,
+            msg="Test message",
+            args=(),
+            exc_info=None,
         )
         formatted_message = formatter.format(record)
         self.assertIn("Test message", formatted_message)
@@ -75,7 +90,9 @@ class TestLogger(unittest.TestCase):
         self.log_file.touch()
         logger_instance = Logger(level="INFO", log_dir=self.log_dir)
         logger_instance.create_logger()
-        self.assertTrue(self.log_file.exists())  # Ensure the file still exists after rollover
+        self.assertTrue(
+            self.log_file.exists()
+        )  # Ensure the file still exists after rollover
 
 
 if __name__ == "__main__":

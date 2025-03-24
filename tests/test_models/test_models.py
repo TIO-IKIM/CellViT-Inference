@@ -1,7 +1,20 @@
+# -*- coding: utf-8 -*-
+# Test Models for CellViT
+#
+# @ Fabian Hörst, fabian.hoerst@uk-essen.de
+# Institute for Artifical Intelligence in Medicine,
+# University Medicine Essen
+
 import unittest
 import torch
 from torch import nn
-from cellvit.models.base.vision_transformer import VisionTransformer, PatchEmbed, Attention, Mlp
+from cellvit.models.base.vision_transformer import (
+    VisionTransformer,
+    PatchEmbed,
+    Attention,
+    Mlp,
+)
+
 
 class TestVisionTransformer(unittest.TestCase):
     def setUp(self):
@@ -19,7 +32,7 @@ class TestVisionTransformer(unittest.TestCase):
             img_size=self.img_size,
             patch_size=self.patch_size,
             num_classes=self.num_classes,
-            embed_dim=self.embed_dim
+            embed_dim=self.embed_dim,
         )
         x = torch.randn(self.batch_size, self.in_chans, *self.img_size)
         with torch.no_grad():
@@ -32,12 +45,14 @@ class TestVisionTransformer(unittest.TestCase):
             img_size=img_size,
             patch_size=self.patch_size,
             in_chans=self.in_chans,
-            embed_dim=self.embed_dim
+            embed_dim=self.embed_dim,
         )
         x = torch.randn(self.batch_size, self.in_chans, img_size, img_size)
         output = model(x)
         expected_num_patches = (img_size // self.patch_size) ** 2
-        self.assertEqual(output.shape, (self.batch_size, expected_num_patches, self.embed_dim))
+        self.assertEqual(
+            output.shape, (self.batch_size, expected_num_patches, self.embed_dim)
+        )
 
     def test_positional_embedding_interpolation(self):
         model = VisionTransformer(img_size=[224], patch_size=16)
@@ -64,7 +79,10 @@ class TestVisionTransformer(unittest.TestCase):
         x = torch.randn(self.batch_size, seq_length, self.embed_dim)
         output, attn_weights = model(x)
         self.assertEqual(output.shape, (self.batch_size, seq_length, self.embed_dim))
-        self.assertEqual(attn_weights.shape, (self.batch_size, self.num_heads, seq_length, seq_length))
+        self.assertEqual(
+            attn_weights.shape,
+            (self.batch_size, self.num_heads, seq_length, seq_length),
+        )
 
     def test_mlp_output_shape(self):
         in_features = 768
@@ -98,5 +116,6 @@ class TestVisionTransformer(unittest.TestCase):
         for output in outputs:
             self.assertEqual(output.shape, (1, num_patches + 1, self.embed_dim))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

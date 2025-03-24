@@ -1,8 +1,14 @@
+# -*- coding: utf-8 -*-
+# Test  Ressource Manager
+#
+# @ Fabian Hörst, fabian.hoerst@uk-essen.de
+# Institute for Artifical Intelligence in Medicine,
+# University Medicine Essen
+
 import os
 import unittest
 from unittest.mock import patch, mock_open, MagicMock
 from unittest import TestCase
-import subprocess
 
 from cellvit.utils.ressource_manager import (
     detect_runtime_environment,
@@ -19,9 +25,8 @@ from cellvit.utils.ressource_manager import (
     get_used_memory_kubernetes,
     get_used_memory_process,
     get_used_memory_slurm,
-    SystemConfiguration
+    SystemConfiguration,
 )
-
 
 
 class TestRessourceManager(unittest.TestCase):
@@ -137,23 +142,33 @@ class TestRessourceManagerCPU(TestCase):
         self.assertAlmostEqual(cpu_count, 0.2)
         self.assertEqual(memory_mb, 512)
 
-    @patch("os.path.exists", side_effect=lambda path: path in [
-        "/sys/fs/cgroup/cpu/cpu.cfs_quota_us", 
-        "/sys/fs/cgroup/cpu/cpu.cfs_period_us"
-    ])
-    @patch("builtins.open", side_effect=lambda path, *args, **kwargs: 
-        mock_open(read_data="100000\n").return_value if path == "/sys/fs/cgroup/cpu/cpu.cfs_quota_us" 
-        else mock_open(read_data="100000\n").return_value if path == "/sys/fs/cgroup/cpu/cpu.cfs_period_us"
-        else mock_open().return_value
+    @patch(
+        "os.path.exists",
+        side_effect=lambda path: path
+        in [
+            "/sys/fs/cgroup/cpu/cpu.cfs_quota_us",
+            "/sys/fs/cgroup/cpu/cpu.cfs_period_us",
+        ],
+    )
+    @patch(
+        "builtins.open",
+        side_effect=lambda path, *args, **kwargs: mock_open(
+            read_data="100000\n"
+        ).return_value
+        if path == "/sys/fs/cgroup/cpu/cpu.cfs_quota_us"
+        else mock_open(read_data="100000\n").return_value
+        if path == "/sys/fs/cgroup/cpu/cpu.cfs_period_us"
+        else mock_open().return_value,
     )
     @patch("psutil.cpu_count", return_value=4)
-    def test_get_cpu_memory_kubernetes_with_cgroups(self, mock_cpu_count, mock_open, mock_exists):
+    def test_get_cpu_memory_kubernetes_with_cgroups(
+        self, mock_cpu_count, mock_open, mock_exists
+    ):
         """Test get_cpu_memory_kubernetes with cgroups."""
         cpu_count, memory_mb = get_cpu_memory_kubernetes()
         self.assertEqual(cpu_count, 1)  # 100000 quota / 100000 period = 1 CPU
         self.assertIsNotNone(memory_mb)  # Memory fallback to psutil
 
-        
     @patch("psutil.cpu_count", return_value=16)
     @patch("psutil.virtual_memory")
     def test_get_cpu_memory_vm_or_server(self, mock_virtual_memory, mock_cpu_count):
@@ -162,11 +177,19 @@ class TestRessourceManagerCPU(TestCase):
         self.assertEqual(cpu_count, 16)
         self.assertEqual(memory_mb, 32768)
 
+
 class TestGetCPUResourceFunction(TestCase):
-    @patch("cellvit.utils.ressource_manager.detect_runtime_environment", return_value="slurm")
-    @patch("cellvit.utils.ressource_manager.get_cpu_memory_slurm", return_value=(4, 8192))
+    @patch(
+        "cellvit.utils.ressource_manager.detect_runtime_environment",
+        return_value="slurm",
+    )
+    @patch(
+        "cellvit.utils.ressource_manager.get_cpu_memory_slurm", return_value=(4, 8192)
+    )
     @patch("cellvit.utils.ressource_manager.NullLogger")
-    def test_get_cpu_resources_slurm(self, mock_logger, mock_get_cpu_memory_slurm, mock_detect_env):
+    def test_get_cpu_resources_slurm(
+        self, mock_logger, mock_get_cpu_memory_slurm, mock_detect_env
+    ):
         """Test get_cpu_resources for Slurm environment."""
         logger = mock_logger()
         cpu_stats, env = get_cpu_resources(logger)
@@ -176,10 +199,18 @@ class TestGetCPUResourceFunction(TestCase):
         logger.info.assert_any_call("Available cores: 4")
         logger.info.assert_any_call("Available memory: 8.0 (GB)")
 
-    @patch("cellvit.utils.ressource_manager.detect_runtime_environment", return_value="kubernetes")
-    @patch("cellvit.utils.ressource_manager.get_cpu_memory_kubernetes", return_value=(2, 4096))
+    @patch(
+        "cellvit.utils.ressource_manager.detect_runtime_environment",
+        return_value="kubernetes",
+    )
+    @patch(
+        "cellvit.utils.ressource_manager.get_cpu_memory_kubernetes",
+        return_value=(2, 4096),
+    )
     @patch("cellvit.utils.ressource_manager.NullLogger")
-    def test_get_cpu_resources_kubernetes(self, mock_logger, mock_get_cpu_memory_kubernetes, mock_detect_env):
+    def test_get_cpu_resources_kubernetes(
+        self, mock_logger, mock_get_cpu_memory_kubernetes, mock_detect_env
+    ):
         """Test get_cpu_resources for Kubernetes environment."""
         logger = mock_logger()
         cpu_stats, env = get_cpu_resources(logger)
@@ -189,10 +220,17 @@ class TestGetCPUResourceFunction(TestCase):
         logger.info.assert_any_call("Available cores: 2")
         logger.info.assert_any_call("Available memory: 4.0 (GB)")
 
-    @patch("cellvit.utils.ressource_manager.detect_runtime_environment", return_value="docker")
-    @patch("cellvit.utils.ressource_manager.get_cpu_memory_docker", return_value=(8, 16384))
+    @patch(
+        "cellvit.utils.ressource_manager.detect_runtime_environment",
+        return_value="docker",
+    )
+    @patch(
+        "cellvit.utils.ressource_manager.get_cpu_memory_docker", return_value=(8, 16384)
+    )
     @patch("cellvit.utils.ressource_manager.NullLogger")
-    def test_get_cpu_resources_docker(self, mock_logger, mock_get_cpu_memory_docker, mock_detect_env):
+    def test_get_cpu_resources_docker(
+        self, mock_logger, mock_get_cpu_memory_docker, mock_detect_env
+    ):
         """Test get_cpu_resources for Docker environment."""
         logger = mock_logger()
         cpu_stats, env = get_cpu_resources(logger)
@@ -202,10 +240,17 @@ class TestGetCPUResourceFunction(TestCase):
         logger.info.assert_any_call("Available cores: 8")
         logger.info.assert_any_call("Available memory: 16.0 (GB)")
 
-    @patch("cellvit.utils.ressource_manager.detect_runtime_environment", return_value="vm")
-    @patch("cellvit.utils.ressource_manager.get_cpu_memory_vm_or_server", return_value=(16, 32768))
+    @patch(
+        "cellvit.utils.ressource_manager.detect_runtime_environment", return_value="vm"
+    )
+    @patch(
+        "cellvit.utils.ressource_manager.get_cpu_memory_vm_or_server",
+        return_value=(16, 32768),
+    )
     @patch("cellvit.utils.ressource_manager.NullLogger")
-    def test_get_cpu_resources_vm(self, mock_logger, mock_get_cpu_memory_vm_or_server, mock_detect_env):
+    def test_get_cpu_resources_vm(
+        self, mock_logger, mock_get_cpu_memory_vm_or_server, mock_detect_env
+    ):
         """Test get_cpu_resources for VM environment."""
         logger = mock_logger()
         cpu_stats, env = get_cpu_resources(logger)
@@ -215,10 +260,18 @@ class TestGetCPUResourceFunction(TestCase):
         logger.info.assert_any_call("Available cores: 16")
         logger.info.assert_any_call("Available memory: 32.0 (GB)")
 
-    @patch("cellvit.utils.ressource_manager.detect_runtime_environment", return_value="server")
-    @patch("cellvit.utils.ressource_manager.get_cpu_memory_vm_or_server", return_value=(32, 65536))
+    @patch(
+        "cellvit.utils.ressource_manager.detect_runtime_environment",
+        return_value="server",
+    )
+    @patch(
+        "cellvit.utils.ressource_manager.get_cpu_memory_vm_or_server",
+        return_value=(32, 65536),
+    )
     @patch("cellvit.utils.ressource_manager.NullLogger")
-    def test_get_cpu_resources_server(self, mock_logger, mock_get_cpu_memory_vm_or_server, mock_detect_env):
+    def test_get_cpu_resources_server(
+        self, mock_logger, mock_get_cpu_memory_vm_or_server, mock_detect_env
+    ):
         """Test get_cpu_resources for server environment."""
         logger = mock_logger()
         cpu_stats, env = get_cpu_resources(logger)
@@ -227,6 +280,7 @@ class TestGetCPUResourceFunction(TestCase):
         logger.info.assert_any_call("Environment: server")
         logger.info.assert_any_call("Available cores: 32")
         logger.info.assert_any_call("Available memory: 64.0 (GB)")
+
 
 class TestRessourceManagerGPU(TestCase):
     @patch("cellvit.utils.ressource_manager.NullLogger")
@@ -245,7 +299,9 @@ class TestRessourceManagerGPU(TestCase):
     @patch("torch.cuda.is_available", return_value=True)
     @patch("torch.cuda.device_count", return_value=2)
     @patch("torch.backends.cudnn.version", return_value=8000)
-    @patch("torch.cuda.get_device_name", side_effect=["GPU 0", "GPU 1", "GPU 2", "GPU 3"])
+    @patch(
+        "torch.cuda.get_device_name", side_effect=["GPU 0", "GPU 1", "GPU 2", "GPU 3"]
+    )
     @patch("torch.cuda.get_device_properties")
     @patch("torch.cuda.memory_allocated", side_effect=[1e9, 2e9])
     @patch("torch.cuda.memory_reserved", side_effect=[1.5e9, 2.5e9])
@@ -261,7 +317,7 @@ class TestRessourceManagerGPU(TestCase):
         mock_logger,
     ):
         """Test get_gpu_resources with available GPUs."""
-        # hint: mock more cpu devices than available 
+        # hint: mock more cpu devices than available
         logger = mock_logger()
         mock_get_device_properties.side_effect = [
             MagicMock(total_memory=8e9, major=7, minor=5),
@@ -284,23 +340,25 @@ class TestRessourceManagerGPU(TestCase):
         self.assertEqual(device_0["total_memory_gb"], 8.0)
         self.assertEqual(device_0["compute_capability"], "7.5")
 
-
         device_1 = gpu_resources["devices"][1]
         self.assertEqual(device_1["name"], "GPU 1")
         self.assertEqual(device_1["total_memory_gb"], 8.0)
         self.assertEqual(device_1["compute_capability"], "7.5")
 
-
     @patch("cellvit.utils.ressource_manager.NullLogger")
     @patch("torch.cuda.is_available", side_effect=ImportError)
-    def test_get_gpu_resources_pytorch_not_installed(self, mock_is_available, mock_logger):
+    def test_get_gpu_resources_pytorch_not_installed(
+        self, mock_is_available, mock_logger
+    ):
         """Test get_gpu_resources when PyTorch is not installed."""
         logger = mock_logger()
         gpu_resources = get_gpu_resources(logger)
         self.assertFalse(gpu_resources["has_gpu"])
         self.assertEqual(gpu_resources["gpu_count"], 0)
         self.assertEqual(gpu_resources["details"]["error"], "PyTorch not installed")
-        logger.error.assert_called_once_with("PyTorch not installed. Cannot check GPU availability.")
+        logger.error.assert_called_once_with(
+            "PyTorch not installed. Cannot check GPU availability."
+        )
 
     @patch("cellvit.utils.ressource_manager.NullLogger")
     @patch("torch.cuda.is_available", side_effect=Exception("Unexpected error"))
@@ -311,8 +369,9 @@ class TestRessourceManagerGPU(TestCase):
         self.assertFalse(gpu_resources["has_gpu"])
         self.assertEqual(gpu_resources["gpu_count"], 0)
         self.assertEqual(gpu_resources["details"]["error"], "Unexpected error")
-        logger.error.assert_called_once_with("Unexpected error during GPU check: Unexpected error")
-
+        logger.error.assert_called_once_with(
+            "Unexpected error during GPU check: Unexpected error"
+        )
 
 
 class TestGetUsedMemory(TestCase):
@@ -323,7 +382,9 @@ class TestGetUsedMemory(TestCase):
         self.assertEqual(memory, 1024.0)
         mock_get_used_memory_slurm.assert_called_once()
 
-    @patch("cellvit.utils.ressource_manager.get_used_memory_kubernetes", return_value=512.0)
+    @patch(
+        "cellvit.utils.ressource_manager.get_used_memory_kubernetes", return_value=512.0
+    )
     def test_get_used_memory_kubernetes(self, mock_get_used_memory_kubernetes):
         """Test get_used_memory for Kubernetes."""
         memory = get_used_memory("kubernetes")
@@ -337,7 +398,9 @@ class TestGetUsedMemory(TestCase):
         self.assertEqual(memory, 256.0)
         mock_get_used_memory_docker.assert_called_once()
 
-    @patch("cellvit.utils.ressource_manager.get_used_memory_process", return_value=128.0)
+    @patch(
+        "cellvit.utils.ressource_manager.get_used_memory_process", return_value=128.0
+    )
     def test_get_used_memory_vm_or_server(self, mock_get_used_memory_process):
         """Test get_used_memory for VM or server."""
         memory = get_used_memory("vm")
@@ -353,7 +416,10 @@ class TestGetUsedMemory(TestCase):
         memory = get_used_memory_process()
         self.assertEqual(memory, 50.0)
 
-    @patch("os.path.exists", side_effect=lambda path: path == "/sys/fs/cgroup/memory/memory.usage_in_bytes")
+    @patch(
+        "os.path.exists",
+        side_effect=lambda path: path == "/sys/fs/cgroup/memory/memory.usage_in_bytes",
+    )
     @patch("builtins.open", new_callable=mock_open, read_data="104857600")  # 100 MB
     def test_get_used_memory_kubernetes_with_cgroup(self, mock_open, mock_exists):
         """Test get_used_memory_kubernetes with cgroup."""
@@ -362,7 +428,9 @@ class TestGetUsedMemory(TestCase):
 
     @patch("os.path.exists", return_value=False)
     @patch("cellvit.utils.ressource_manager.get_used_memory_process", return_value=64.0)
-    def test_get_used_memory_kubernetes_fallback(self, mock_get_used_memory_process, mock_exists):
+    def test_get_used_memory_kubernetes_fallback(
+        self, mock_get_used_memory_process, mock_exists
+    ):
         """Test get_used_memory_kubernetes with fallback to process memory."""
         memory = get_used_memory_kubernetes()
         self.assertEqual(memory, 64.0)
@@ -378,9 +446,14 @@ class TestGetUsedMemory(TestCase):
 
     @patch("os.environ", {"SLURM_JOB_ID": "12345"})
     @patch("subprocess.check_output", side_effect=FileNotFoundError)
-    @patch("os.path.exists", side_effect=lambda path: path == "/sys/fs/cgroup/memory/memory.usage_in_bytes")
+    @patch(
+        "os.path.exists",
+        side_effect=lambda path: path == "/sys/fs/cgroup/memory/memory.usage_in_bytes",
+    )
     @patch("builtins.open", new_callable=mock_open, read_data="209715200")  # 200 MB
-    def test_get_used_memory_slurm_with_cgroup(self, mock_open, mock_exists, mock_subprocess):
+    def test_get_used_memory_slurm_with_cgroup(
+        self, mock_open, mock_exists, mock_subprocess
+    ):
         """Test get_used_memory_slurm with cgroup."""
         memory = get_used_memory_slurm()
         self.assertEqual(memory, 200.0)
@@ -389,7 +462,9 @@ class TestGetUsedMemory(TestCase):
     @patch("subprocess.check_output", side_effect=FileNotFoundError)
     @patch("os.path.exists", return_value=False)
     @patch("cellvit.utils.ressource_manager.get_used_memory_process", return_value=32.0)
-    def test_get_used_memory_slurm_fallback(self, mock_get_used_memory_process, mock_exists, mock_subprocess):
+    def test_get_used_memory_slurm_fallback(
+        self, mock_get_used_memory_process, mock_exists, mock_subprocess
+    ):
         """Test get_used_memory_slurm with fallback to process memory."""
         memory = get_used_memory_slurm()
         self.assertEqual(memory, 32.0)
@@ -402,7 +477,11 @@ class TestSystemConfiguration(unittest.TestCase):
     @patch("cellvit.utils.ressource_manager.check_module")
     @patch("cellvit.utils.ressource_manager.check_cupy")
     def test_initialization(
-        self, mock_check_cupy, mock_check_module, mock_get_gpu_resources, mock_get_cpu_resources
+        self,
+        mock_check_cupy,
+        mock_check_module,
+        mock_get_gpu_resources,
+        mock_get_cpu_resources,
     ):
         # Mock CPU and GPU resources
         mock_get_cpu_resources.return_value = ((8, 16384), "docker")
@@ -480,21 +559,25 @@ class TestSystemConfiguration(unittest.TestCase):
         mock_logger.info.assert_any_call("         SYSTEM CONFIGURATION           ")
         mock_logger.info.assert_any_call("========================================")
         mock_logger.info.assert_any_call(f"CPU count:          {config.cpu_count}")
-        mock_logger.info.assert_any_call(f"Memory:             {config.memory / 1024:.2f} GB")
+        mock_logger.info.assert_any_call(
+            f"Memory:             {config.memory / 1024:.2f} GB"
+        )
         mock_logger.info.assert_any_call(f"GPU count:          {config.gpu_count}")
         mock_logger.info.assert_any_call(f"Used GPU-ID:        {config.gpu_index}")
-        mock_logger.info.assert_any_call(f"GPU memory:         {config.gpu_memory:.2f} GB")
+        mock_logger.info.assert_any_call(
+            f"GPU memory:         {config.gpu_memory:.2f} GB"
+        )
         mock_logger.info.assert_any_call(f"Ray available:      {config.ray}")
         mock_logger.info.assert_any_call(f"Ray worker count:   {config.ray_worker}")
-        mock_logger.info.assert_any_call(f"Ray remote cpus:    {config.ray_remote_cpus}")
+        mock_logger.info.assert_any_call(
+            f"Ray remote cpus:    {config.ray_remote_cpus}"
+        )
         mock_logger.info.assert_any_call(f"Cupy available:     {config.cupy}")
         mock_logger.info.assert_any_call(f"Cucim available:    {config.cucim}")
         mock_logger.info.assert_any_call(f"Numba available:    {config.numba}")
         mock_logger.info.assert_any_call("========================================")
         mock_logger.info.assert_any_call("       SYSTEM LOADED SUCCESSFULLY       ")
         mock_logger.info.assert_any_call("========================================")
-
-
 
 
 if __name__ == "__main__":

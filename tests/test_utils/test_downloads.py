@@ -1,11 +1,23 @@
+# -*- coding: utf-8 -*-
+# Test Cache Models for CellViT
+#
+# @ Fabian Hörst, fabian.hoerst@uk-essen.de
+# Institute for Artifical Intelligence in Medicine,
+# University Medicine Essen
+
 import os
+
 os.environ["CELLVIT_CACHE"] = "tests/test_data/temp_cache"
 
 import shutil
 import unittest
 from unittest.mock import MagicMock
 from pathlib import Path
-from cellvit.utils.cache_models import cache_cellvit_sam_h, cache_cellvit_256, cache_classifier
+from cellvit.utils.cache_models import (
+    cache_cellvit_sam_h,
+    cache_cellvit_256,
+    cache_classifier,
+)
 from cellvit.config.config import CACHE_DIR
 from cellvit.utils.cache_models import cache_cellvit_sam_h
 from cellvit.utils.cache_models import cache_cellvit_256
@@ -13,9 +25,9 @@ from cellvit.utils.cache_models import cache_classifier
 import time
 import pytest
 
+
 @pytest.mark.slow
 class TestCacheModels(unittest.TestCase):
-
     def tearDown(self):
         # Clean up the temporary cache directory
         if os.path.exists(CACHE_DIR):
@@ -47,14 +59,16 @@ class TestCacheModels(unittest.TestCase):
         result = cache_cellvit_256(logger=mock_logger)
         self.assertTrue(result.exists(), "Cache file should exist")
         self.assertTrue(result.is_file(), "Cache path should be a file")
-        
+
         start_time = time.time()
         result_2 = cache_cellvit_256(logger=mock_logger)
         end_time = time.time()
         execution_time = end_time - start_time
         self.assertLess(execution_time, 0.05, "Cache retrieval took too long")
-        self.assertEqual(result, result_2, "Cache retrieval should return the same path")
-            
+        self.assertEqual(
+            result, result_2, "Cache retrieval should return the same path"
+        )
+
     def test_cache_classifier(self):
         """Test the caching of the classifier directory."""
         mock_logger = MagicMock()
@@ -79,8 +93,9 @@ class TestCacheModels(unittest.TestCase):
         self.assertEqual(result, classifier_dir, "Cache directory should be the same")
 
         # check if the zip file is removed
-        self.assertFalse(zip_dir.exists(), "Zip file should be removed after extraction")
-
+        self.assertFalse(
+            zip_dir.exists(), "Zip file should be removed after extraction"
+        )
 
 
 if __name__ == "__main__":

@@ -9,7 +9,10 @@ from typing import Optional
 import logging
 from cellvit.utils.logger import NullLogger
 
-def check_cupy(check_gpu: True, logger: Optional[logging.Logger] = NullLogger()) -> bool:
+
+def check_cupy(
+    check_gpu: True, logger: Optional[logging.Logger] = NullLogger()
+) -> bool:
     """Check if CuPy is installed and working correctly.
 
     Args:
