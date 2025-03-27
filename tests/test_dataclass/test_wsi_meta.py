@@ -9,15 +9,16 @@ import unittest
 from pathlib import Path
 from cellvit.data.dataclass.wsi_meta import load_wsi_meta
 import logging
+import os
 
 
 class TestWSIMeta(unittest.TestCase):
     def setUp(self):
         self.logger = logging.getLogger("TestWSIMeta")
-        self.test_data_path = Path("./tests/data/test_wsi_database")
-        self.svs_file_1 = self.test_data_path / "CMU-1-Small-Region.svs"
-        self.svs_file_2 = self.test_data_path / "JP2K-33003-2.svs"
-        self.tiff_file = self.test_data_path / "Philips-1.tiff"
+        self.test_data_path = Path(os.environ["DATABASE_DIR"])
+        self.svs_file_1 = self.test_data_path / "x20_svs" / "CMU-1-Small-Region.svs"
+        self.svs_file_2 = self.test_data_path / "x40_svs" / "JP2K-33003-2.svs"
+        self.tiff_file = self.test_data_path / "Philips" / "Philips-1.tiff"
 
     def test_load_wsi_meta_with_svs_file_1(self):
         """Test loading WSI metadata from SVS file 1."""

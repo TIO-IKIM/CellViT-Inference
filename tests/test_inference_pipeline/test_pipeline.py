@@ -170,8 +170,11 @@ class TestCellViTInference(unittest.TestCase):
         inference._setup_amp()
         inference._setup_worker()
 
+        wsi_path = (
+            Path(os.environ["DATABASE_DIR"]) / "BRACS" / "BRACS_1640_N_3_cropped.tiff"
+        )
         inference.process_wsi(
-            wsi_path="./tests/data/test_wsi_database/BRACS_1640_N_3_cropped.tiff",
+            wsi_path=wsi_path,
             wsi_mpp=0.25,
             wsi_magnification=40,
         )

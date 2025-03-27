@@ -31,7 +31,7 @@ def cache_cellvit_sam_h(logger: Optional[logging.Logger] = None) -> Path:
     check_and_download(
         directory_path=CACHE_DIR,
         file_name="CellViT-SAM-H-x40-AMP.pth",
-        download_link="https://zenodo.org/records/15024474/files/CellViT-SAM-H-x40-AMP.pth",
+        download_link="https://zenodo.org/records/15094831/files/CellViT-SAM-H-x40-AMP.pth",
         logger=logger,
     )
     return Path(CACHE_DIR) / "CellViT-SAM-H-x40-AMP.pth"
@@ -50,7 +50,7 @@ def cache_cellvit_256(logger: Optional[logging.Logger] = None) -> Path:
     check_and_download(
         directory_path=CACHE_DIR,
         file_name="CellViT-256-x40-AMP.pth",
-        download_link="https://zenodo.org/records/15024474/files/CellViT-256-x40-AMP.pth",
+        download_link="https://zenodo.org/records/15094831/files/CellViT-256-x40-AMP.pth",
         logger=logger,
     )
     return Path(CACHE_DIR) / "CellViT-256-x40-AMP.pth"
@@ -72,7 +72,7 @@ def cache_classifier(logger: Optional[logging.Logger] = None) -> Path:
         check_and_download(
             directory_path=CACHE_DIR,
             file_name="classifier.zip",
-            download_link="https://zenodo.org/records/15024474/files/classifier.zip",
+            download_link="https://zenodo.org/records/15094831/files/classifier.zip",
             logger=logger,
         )
         with zipfile.ZipFile(zip_dir, "r") as zip_ref:
