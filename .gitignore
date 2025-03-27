@@ -15,7 +15,8 @@ __pycache__/
 *.svs
 *.tiff
 /test_database*
-/test-results
+/test_results
+/test_scripts
 
 # notebooks
 /notebooks

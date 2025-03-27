@@ -742,7 +742,10 @@ class SystemConfiguration:
         self.ray_worker = int(available_ray_cpus / self.ray_remote_cpus)
 
     def overwrite_ray_worker(self, worker_count: int) -> None:
+        if self.ray_worker >= 10:
+            ray_worker = 9
         self.ray_worker = worker_count
+        self.ray_remote_cpus = int((self.cpu_count - 2) / self.ray_worker)
 
     def overwrite_ray_remote_cpus(self, ray_remote_cpus: int) -> None:
         self.ray_remote_cpus = ray_remote_cpus

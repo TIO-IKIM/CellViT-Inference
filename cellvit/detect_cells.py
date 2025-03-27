@@ -78,7 +78,7 @@ def main():
                         )  # Assign the largest file
                         wsi_index_keep.append(wsi_index)
                 else:
-                    if wsi_file.exist():
+                    if wsi_file.exists():
                         wsi_index_keep.append(wsi_index)
             args["wsi_filelist"] = (
                 args["wsi_filelist"].loc[wsi_index_keep].reset_index(drop=True)
@@ -119,9 +119,9 @@ def main():
                             wsi_mpp = None
                         if args["wsi_mpp"]:
                             wsi_mpp = args["wsi_mpp"]
-                        assert isinstance(
-                            wsi_mpp, (int, float)
-                        ), "WSI mpp must be an int or float"
+                        assert (
+                            isinstance(wsi_mpp, (int, float)) or wsi_mpp is None
+                        ), "WSI mpp must be an int, float, or None"
                 elif args["wsi_mpp"]:
                     wsi_mpp = args["wsi_mpp"]
                 else:
@@ -135,9 +135,9 @@ def main():
                             wsi_magnification = None
                             if args["wsi_magnification"]:
                                 wsi_magnification = args["wsi_magnification"]
-                        assert isinstance(
-                            wsi_magnification, (int, float)
-                        ), "WSI magn must be an int or float"
+                            assert (
+                                isinstance(wsi_mpp, (int, float)) or wsi_mpp is None
+                            ), "WSI mpp must be an int, float, or None"
                 elif args["wsi_magnification"]:
                     wsi_magnification = args["wsi_magnification"]
                 else:

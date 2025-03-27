@@ -223,7 +223,7 @@ class InferenceConfiguration:
         batch_size = inference_config.get("batch_size")
         if batch_size is not None:
             assert isinstance(batch_size, int), "Batch size must be of type integer"
-            assert 1 < batch_size < 32, "Batch size must be between 2 and 32"
+            assert 1 < batch_size <= 48, "Batch size must be between 2 and 48"
             self.batch_size = batch_size
 
     def __set_outdir(self, config: dict) -> None:
@@ -333,6 +333,7 @@ class InferenceConfiguration:
         if ray_worker is not None:
             assert isinstance(ray_worker, int), "Ray worker must be of type integer"
             assert ray_worker > 0, "Ray worker must be greater than 0"
+            assert ray_worker <= 10, "Please provide less then 10 worker"
             self.ray_worker = ray_worker
 
     def __set_ray_remote_cpus(self, config: dict) -> None:
@@ -460,7 +461,10 @@ class InferenceConfiguration:
                 "wsi_filelist" in process_dataset
                 and process_dataset["wsi_filelist"] is not None
             ), "Either 'wsi_folder' or 'wsi_filelist' must be provided, but not both."
-            if "wsi_folder" in process_dataset:
+            if (
+                "wsi_folder" in process_dataset
+                and process_dataset["wsi_folder"] is not None
+            ):
                 assert isinstance(
                     process_dataset["wsi_folder"], str
                 ), "WSI folder must be of type string"
