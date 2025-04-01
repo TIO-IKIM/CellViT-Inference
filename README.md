@@ -14,7 +14,7 @@ ___
 # CellViT/CellViT++ Inference
 <div align="center">
 
-[Key Features](#key-features) • [Installation](#installation) • [Documentation](#documentation) • [Usage](#basic-usage) • [Examples](#examples-and-usage) • [Citation](#citation)
+[Key Features](#key-features) • [Documentation](#documentation) • [Installation](#installation) • [Usage](#basic-usage) • [Examples](#examples-and-usage) • [Citation](#citation)
 
 </div>
 
@@ -47,7 +47,15 @@ ___
 
 The full documentation is available at: [https://tio-ikim.github.io/CellViT-Inference/](https://tio-ikim.github.io/CellViT-Inference/)
 
----
+
+### Documentation Sections
+
+| Section | Description |
+|---------|-------------|
+| [📚 Installation Guide](https://tio-ikim.github.io/CellViT-Inference/getting-started.html) | Detailed installation instructions for various environments |
+| [📝 Usage Documentation](https://tio-ikim.github.io/CellViT-Inference/usage.html) | Comprehensive guide on how to use CellViT-Inference |
+| [💡 Examples](https://tio-ikim.github.io/CellViT-Inference/examples.html) | Sample configurations and use cases |
+
 
 ## Installation
 
@@ -58,9 +66,7 @@ The full documentation is available at: [https://tio-ikim.github.io/CellViT-Infe
 - 💾 **Storage**: At least 30 GB disk space.
 - 🖥️ **CPU**: Minimum of 16 CPU cores.
 
-### Local installation
-
-#### Prerequisites
+### Prerequisites
 
 Before installing the package, ensure that the following prerequisites are met:
 
@@ -86,6 +92,8 @@ sudo apt-get install libvips openslide gcc g++ libopencv-core-dev libopencv-imgp
 ```
 
 </details>
+
+### Package installation
 
 #### To install the package, follow these steps:
 
@@ -118,6 +126,36 @@ To enable hardware-accelerated libraries, you can install the following optional
 
 1. CuPy (CUDA accelerated NumPy): https://cupy.dev/
 2. cuCIM (RAPIDS cuCIM library): https://github.com/rapidsai/cucim
+
+
+### Install from Git Repository as integrative framework
+
+If you prefer to install CellViT-Inference directly from the GitHub repository, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/TIO-IKIM/CellViT-Inference.git
+   cd CellViT-Inference
+   ```
+
+2. Install the required prerequisites as mentioned in the [Prerequisites](#prerequisites) section.
+
+3. Install PyTorch according to your system requirements (as described in the main installation steps).
+
+4. Install the package in development mode:
+   ```bash
+   pip install -e .
+   ```
+
+5. Verify the installation:
+   ```bash
+   cellvit-check
+   ```
+
+Installing in development mode (`-e` flag) allows you to modify the source code and have the changes reflected immediately without needing to reinstall the package. This is useful for developers who want to contribute to the project or make custom modifications.
+
+> [!NOTE]
+> When installing from Git, you will always have the latest development version, which may include experimental features not yet available in the PyPI release.
 
 ### Check your installation and the system
 
