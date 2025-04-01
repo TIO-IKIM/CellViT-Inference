@@ -60,11 +60,13 @@ Before installing the package, ensure that the following prerequisites are met a
     - libtiff-dev - TIFF image format library
 
   On Linux-based systems, you can install these using:
-    ```sh
 
-    sudo apt-get install libvips openslide gcc g++ libopencv-core-dev libopencv-imgproc-dev libsnappy-dev libgeos-dev llvm libjpeg-dev libpng-dev libtiff-dev
+  ```sh
 
-    ```
+  sudo apt-get install libvips openslide gcc g++ libopencv-core-dev libopencv-imgproc-dev libsnappy-dev libgeos-dev llvm libjpeg-dev libpng-dev libtiff-dev
+
+  ```
+
 </details>
 
 
