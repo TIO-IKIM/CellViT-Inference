@@ -205,7 +205,7 @@ The `caching-directory` is used to store model weights, requiring at least 3GB o
 To download a test database into your current directory:
 
 ```bash
-download-test-database # run in your terminal
+cellvit-download-examples # run in your terminal
 ```
 
 This command will download a test database into the current directory. The database is used for testing purposes and contains sample data to demonstrate the functionality of the package.

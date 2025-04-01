@@ -11,7 +11,7 @@ Test Database
 
     .. code-block:: bash
 
-        download-test-database # run in your terminal
+        cellvit-download-examples # run in your terminal
 
 This command will download a test database into the current directory. The database is used for testing purposes and contains sample data to demonstrate the functionality of the package.
 The database is not required for the package to function, but it can be useful for testing and development purposes.
