@@ -3,7 +3,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/tio-ikim/cellvit-inference/badge)](https://www.codefactor.io/repository/github/tio-ikim/cellvit-inference)
 <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=Pytorch&logoColor=white"/>
 [![arXiv](https://img.shields.io/badge/arXiv-2501.05269-b31b1b.svg)](https://arxiv.org/abs/2501.05269)
-[![Documentation](https://img.shields.io/badge/Documentation-Read%20the%20Docs-blue.svg?style=for-the-badge&logo=read-the-docs&logoColor=white)](https://tio-ikim.github.io/CellViT-Inference/)
+[![Documentation](https://img.shields.io/badge/docs-CellViT--Inference-blue.svg)](https://tio-ikim.github.io/CellViT-Inference/)
 ___
 <p align="center">
   <img src="./docs/source/_static/banner.png"/>
