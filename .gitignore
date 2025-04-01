@@ -10,6 +10,8 @@
 *.pyc
 __pycache__/
 **/cache/
+.pytest_cache/
+.ruff_cache/
 
 # wsi and examples
 *.svs
@@ -35,3 +37,6 @@ dist
 .coverage*
 check_examples.sh
 *.log
+
+Readmenew.md
+docs/build

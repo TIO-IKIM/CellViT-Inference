@@ -1,0 +1,59 @@
+/* Banner styling */
+.full-width-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 0 2rem 0;
+}
+
+/* Feature cards */
+.feature-card {
+    border: 1px solid #E1BEE7;
+    transition: transform 0.2s;
+}
+
+.feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(74, 20, 140, 0.2);
+}
+
+/* Video demo section */
+.video-demo-container {
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.demo-video {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.video-caption {
+    color: #666;
+    font-size: 0.9em;
+    margin-top: 0.5rem;
+}
+
+/* Existing banner styles (keep these) */
+.full-width-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+}
+
+/* Adjust logo size in navigation */
+.md-header-nav__button.md-logo img {
+    height: 2.4rem !important;
+    width: auto !important;
+    margin-top: 0.2rem;
+}
+
+/* Dark/light mode adaptation */
+[data-md-color-scheme="slate"] .md-header-nav__button.md-logo img {
+    filter: invert(1) hue-rotate(180deg);
+}
