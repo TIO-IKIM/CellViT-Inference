@@ -32,9 +32,10 @@ ___
 #### Visualization
 <div align="center">
 
-![Example](docs/figures/web-viewer.gif)
+<video width="320" height="240" controls>
+  <source src="docs/source/_static/cellvit.mp4" type="video/mp4">
+</video>
 
-For more information about the viewer, see [below](#web-based-viewer)
 </div>
 
 ## Installation
