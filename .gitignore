@@ -1,42 +1,46 @@
-# pytorch
+# PyTorch model files
 *.pt
 *.pth
 *.bin
 
-# vscode
-.vscode
+# VS Code settings
+.vscode/
 
-# cache
+# Python cache and temporary files
 *.pyc
 __pycache__/
 **/cache/
 .pytest_cache/
 .ruff_cache/
+.coverage*
 
-# wsi and examples
+# WSI and example datasets
 *.svs
 *.tiff
 /test_database*
-/test_results
-/test_scripts
+/test_results/
+/test_scripts/
 
-# notebooks
-/notebooks
+# Notebooks
+/notebooks/
 
-# other
-.DS_Store
+# Logs and miscellaneous files
+*.log
 cufile.log
 gdc-client
-cellvit.egg-info
-dist
+.DS_Store
 
-./tests/data
-./tests/test_data
-!tests/data/test_wsi_database/BRACS_1640_N_3_cropped.tiff
+# Build and distribution directories
+dist/
+cellvit.egg-info/
+docs/build/
 
-.coverage*
+# Tests and test data
+/tests/data/
+/tests/test_data/
+
+# Miscellaneous scripts
 check_examples.sh
-*.log
 
-Readmenew.md
-docs/build
+# Unnecessary files
+test_scripts

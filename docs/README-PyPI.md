@@ -4,35 +4,10 @@
 <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=Pytorch&logoColor=white"/>
 [![arXiv](https://img.shields.io/badge/arXiv-2501.05269-b31b1b.svg)](https://arxiv.org/abs/2501.05269)
 [![Documentation](https://img.shields.io/badge/docs-CellViT--Inference-blue.svg)](https://tio-ikim.github.io/CellViT-Inference/)
-___
-<p align="center">
-  <img src="./docs/source/_static/banner.png"/>
-</p>
 
-___
 
 # CellViT/CellViT++ Inference
-<div align="center">
 
-[Key Features](#key-features) • [Documentation](#documentation) • [Installation](#installation) • [Usage](#basic-usage) • [Examples](#examples-and-usage) • [Citation](#citation)
-
-</div>
-
-> [!IMPORTANT]  
-> The package is now available on PyPI: `pip install cellvit-inference`
-
-> [!TIP]
-> This repository is solely for performing inference on WSIs using CellViT++ and the basic CellViT model. It includes CellViT-HIPT-256 and CellViT-SAM-H as well as lightweight classifier modules. This repo does not contain training code.
->
-> To access the previous version (CellViT), follow this [link](https://github.com/TIO-IKIM/CellViT)  
-> To access the CellViT++ repo, follow this [link](https://github.com/TIO-IKIM/CellViT-plus-plus)
-
-## Key Features
-
-- 🚀 Optimized inference pipeline for high-performance processing
-- 🔄 Support for multiple WSI formats and magnifications
-- 📊 Comprehensive analysis and visualization tools
-- 💻 Easy to install via PyPI (pip)
 
 ---
 
@@ -47,6 +22,7 @@ ___
 
 The full documentation is available at: [https://tio-ikim.github.io/CellViT-Inference/](https://tio-ikim.github.io/CellViT-Inference/)
 
+The code can be assessed here: [https://github.com/TIO-IKIM/CellViT-Inference](https://github.com/TIO-IKIM/CellViT-Inference)
 
 ### Documentation Sections
 
@@ -128,35 +104,6 @@ To enable hardware-accelerated libraries, you can install the following optional
 2. cuCIM (RAPIDS cuCIM library): https://github.com/rapidsai/cucim
 
 
-### Install from Git Repository as integrative framework
-
-If you prefer to install CellViT-Inference directly from the GitHub repository, follow these steps:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/TIO-IKIM/CellViT-Inference.git
-   cd CellViT-Inference
-   ```
-
-2. Install the required prerequisites as mentioned in the [Prerequisites](#prerequisites) section.
-
-3. Install PyTorch according to your system requirements (as described in the main installation steps).
-
-4. Install the package in development mode:
-   ```bash
-   pip install -e .
-   ```
-
-5. Verify the installation:
-   ```bash
-   cellvit-check
-   ```
-
-Installing in development mode (`-e` flag) allows you to modify the source code and have the changes reflected immediately without needing to reinstall the package. This is useful for developers who want to contribute to the project or make custom modifications.
-
-> [!NOTE]
-> When installing from Git, you will always have the latest development version, which may include experimental features not yet available in the PyPI release.
-
 ### Check your installation and the system
 
 To verify a successful installation, run the following command:
@@ -168,56 +115,6 @@ cellvit-check
 The output should confirm that all required libraries are installed and accessible. If any libraries are missing, refer to the installation instructions for the respective library. This command will also check for optional dependencies and will print a warning if they are not installed. Installing these optional libraries is **not required**.
 
 If using a virtual environment, ensure it is activated before running the command.
-
-## Basic Usage
-
-This package is designed as a command-line tool. Configuration can be provided either directly via the CellViT CLI or by using a configuration file. The configuration file is a YAML file containing the settings for the inference pipeline.
-The main script is located in the `cellvit` module, and can be run using the following command:
-
-```bash
-cellvit-inference
-```
-
-You then have to either specify a configuration file:
-
-```bash
-cellvit-inference --config <path_to_config_file>
-```
-
-or provide the required parameters directly in the command line. To list all available parameters, run:
-
-```bash
-cellvit-inference --help
-```
-
-You can select to run inference for one slide only or for a batch of slides. For more information, please refer to the Usage section in the documentation.
-
-### Configuration
-
-The `caching-directory` is used to store model weights, requiring at least 3GB of free space. By default, this is set to `~/.cache/cellvit`, but it can be changed by setting the environment variable `CELLVIT_CACHE` to a desired path. Remember to set this variable before running the command.
-
-| Variable | Description |
-|----------|-------------|
-| `CELLVIT_CACHE` | Path to the caching directory. Default is `~/.cache/cellvit`. |
-
-### Downloading Test Database
-
-To download a test database into your current directory:
-
-```bash
-download-test-database # run in your terminal
-```
-
-This command will download a test database into the current directory. The database is used for testing purposes and contains sample data to demonstrate the functionality of the package.
-The database is not required for the package to function, but it can be useful for testing and development purposes.
-
-**Note:**
-Contains sample data in these folders:
-
-- `x40_svs/`: High-mag WSIs (.svs format)
-- `x20_svs/`: Low-mag WSIs (.svs format)
-- `BRACS/`: Breast cancer WSIs (.tiff format)
-- `Philips/`: Alternative scanner format
 
 ## Examples and Usage
 

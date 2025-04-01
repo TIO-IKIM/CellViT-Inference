@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cellvit"
-version = "0.1.0"
+version = "0.1.0a1"
 description = "CellViT Inference Pipeline for Whole Slide Images (WSI) in Memory"
 authors = [
     { name = "Fabian Hörst", email = "fabian.hoerst@uk-essen.de" }
 ]
-license = {text = "CC BY-NC-ND 4.0"}
+license = {text = "Apache 2.0 with common clause, see LICENSE"}
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Education",
@@ -19,7 +19,7 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Operating System :: POSIX :: Other",
 ]
-readme = "README.md"
+readme = "docs/README-PyPI.md"
 requires-python = ">=3.9"
 dependencies = [
     "colorama",
