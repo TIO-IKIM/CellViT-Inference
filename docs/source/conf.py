@@ -50,10 +50,10 @@ html_theme_options = {
     "color_primary": "purple",
     "color_accent": "deep-purple",
     # Other theme options
-    "base_url": "http://localhost:8000/",
+    "base_url": "https://tio-ikim.github.io/CellViT-Inference",
     "repo_url": "https://github.com/TIO-IKIM/CellViT",
-    "repo_name": "CellViT++ Inference",
-    "nav_title": "CellViT++ Inference Documentation",
+    "repo_name": "CellViT/CellViT++ Inference",
+    "nav_title": "CellViT/CellViT++ Inference Documentation",
     "logo_icon": "&#xe88a",
     "globaltoc_depth": 2,
     "globaltoc_collapse": True,
