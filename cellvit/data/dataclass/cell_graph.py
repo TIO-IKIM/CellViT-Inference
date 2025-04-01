@@ -27,3 +27,4 @@ class CellGraphDataWSI:
     x: torch.Tensor
     positions: torch.Tensor
     metadata: dict
+    nuclei_types: torch.Tensor

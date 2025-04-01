@@ -831,6 +831,7 @@ class CellViTInference:
                 "wsi_metadata": wsi.metadata,
                 "nuclei_types": self.label_map,
             },
+            "nuclei_types": [],
         }
 
         self.logger.info("Unpack Batches")
@@ -845,6 +846,9 @@ class CellViTInference:
             cell_dict_detection = cell_dict_detection + batch_detection
             graph_data["cell_tokens"] = graph_data["cell_tokens"] + batch_cell_tokens
             graph_data["positions"] = graph_data["positions"] + batch_cell_positions
+            graph_data["nuclei_types"] = graph_data["nuclei_types"] + [
+                v["type"] for v in batch_detection
+            ]
 
         # cleaning overlapping cells
         if len(cell_dict_wsi) == 0:
@@ -857,6 +861,9 @@ class CellViTInference:
             graph_data["cell_tokens"][idx_c] for idx_c in keep_idx
         ]
         graph_data["positions"] = [graph_data["positions"][idx_c] for idx_c in keep_idx]
+        graph_data["nuclei_types"] = [
+            graph_data["nuclei_types"][idx_c] for idx_c in keep_idx
+        ]
         self.logger.info(f"Detected cells after cleaning: {len(keep_idx)}")
 
         # reallign grid if interpolation was used (including target_mpp_tolerance)
@@ -963,6 +970,7 @@ class CellViTInference:
                 x=torch.stack(graph_data["cell_tokens"]),
                 positions=torch.stack(graph_data["positions"]),
                 metadata=graph_data["metadata"],
+                nuclei_types=torch.tensor(graph_data["nuclei_types"]),
             )
             torch.save(graph, str(wsi_outdir / "cells.pt"))
 

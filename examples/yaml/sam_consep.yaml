@@ -3,6 +3,7 @@ nuclei_taxonomy: consep
 
 output_format:
   outdir: ./test_results/BRACS/consep/SAM
+  graph: true
 
 process_wsi:
   wsi_path: ./test_database/BRACS/BRACS_1640_N_3_cropped.tiff
