@@ -85,6 +85,7 @@ Before installing the package, ensure that the following prerequisites are met:
 - libpng-dev - PNG image format library
 - libtiff-dev - TIFF image format library
 
+Most of the times, they are already installed on your system. Just give it a try and check out CellViT.
 On Linux-based systems, you can install these using:
 
 ```sh

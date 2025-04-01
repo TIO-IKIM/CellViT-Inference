@@ -6,7 +6,7 @@ This package provides the inference code to run CellViT/CellViT++ models, design
 Prerequisites
 -------------
 
-Before installing the package, ensure that the following prerequisites are met as listed below.
+Before installing the package, ensure that the following prerequisites are met as listed below. Most of the times, they are already installed on your system. Just give it a try and check out CellViT. If you encounter any issues, please refer to the installation instructions for the respective library.
 
 .. collapse:: Required binaries
 
