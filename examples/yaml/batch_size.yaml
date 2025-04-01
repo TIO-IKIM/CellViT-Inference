@@ -1,0 +1,7 @@
+model: SAM
+output_format:
+    outdir: ./test_results/x40_svs/batch_size/SAM
+inference:
+    batch_size: 32
+process_dataset:
+    wsi_folder: ./test_database/x40_svs

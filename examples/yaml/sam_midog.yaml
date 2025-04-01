@@ -1,8 +1,8 @@
 model: SAM
-nuclei_taxonomy: lizard
+nuclei_taxonomy: midog
 
 output_format:
-    outdir: ./test_results/BRACS/lizard/SAM
+    outdir: ./test_results/BRACS/midog/SAM
 
 process_wsi:
     wsi_path: ./test_database/BRACS/BRACS_1640_N_3_cropped.tiff

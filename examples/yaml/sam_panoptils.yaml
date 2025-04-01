@@ -2,12 +2,9 @@ model: SAM
 nuclei_taxonomy: panoptils
 
 output_format:
-  outdir: ./test_results/BRACS/panoptils/SAM
+    outdir: ./test_results/BRACS/panoptils/SAM
 
 process_wsi:
-  wsi_path: ./test_database/BRACS/BRACS_1640_N_3_cropped.tiff
-  wsi_mpp: 0.25
-  wsi_magnification: 40
-
-system:
-  cpu_count: 16
+    wsi_path: ./test_database/BRACS/BRACS_1640_N_3_cropped.tiff
+    wsi_mpp: 0.25
+    wsi_magnification: 40

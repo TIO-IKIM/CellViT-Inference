@@ -1,0 +1,7 @@
+model: SAM
+output_format:
+    outdir: ./test_results/x40_svs/cpu_count/SAM
+process_dataset:
+    wsi_folder: ./test_database/x40_svs
+system:
+    cpu_count: 16

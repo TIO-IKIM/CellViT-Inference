@@ -705,7 +705,7 @@ class SystemConfiguration:
         (cpu_count, memory), env = get_cpu_resources()
         gpu_resources = get_gpu_resources()
 
-        self.cpu_count = cpu_count
+        self.cpu_count = int(cpu_count)
         self.memory = memory
         self.runtime_environment = env
         self.has_gpu = gpu_resources["has_gpu"]
@@ -753,7 +753,7 @@ class SystemConfiguration:
         self.ray_worker = int(available_ray_cpus / self.ray_remote_cpus)
 
     def overwrite_available_cpus(self, cpu_count: int) -> None:
-        self.cpu_count = cpu_count
+        self.cpu_count = int(cpu_count)
         self._calculate_ray_worker()
 
     def overwrite_memory(self, memory: int) -> None:

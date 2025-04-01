@@ -1,0 +1,5 @@
+model: HIPT
+output_format:
+    outdir: /test_results/all/HIPT
+process_dataset:
+    wsi_filelist: ./test_database/filelist.csv

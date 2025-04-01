@@ -212,7 +212,7 @@ To see debug messages if errors occur and inspect the tissue detection, you can 
             cellvit-inference \
                 --model SAM \
                 --outdir ./test_results/x40_svs/minimal/SAM \
-                --debug
+                --debug \
                 process_wsi \
                 --wsi_path ./test_database/x40_svs/JP2K-33003-2.svs
 
@@ -1077,7 +1077,7 @@ Set the batch-size (amount of 1024 x 1024 patches per batch):
 
             cellvit-inference \
                 --model SAM \
-                --batch_size 32
+                --batch_size 32 \
                 --outdir ./test_results/x40_svs/batch_size/SAM \
                 process_dataset \
                 --wsi_folder ./test_database/x40_svs

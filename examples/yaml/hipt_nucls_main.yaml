@@ -1,8 +1,8 @@
-model: SAM
-nuclei_taxonomy: lizard
+model: HIPT
+nuclei_taxonomy: nucls_main
 
 output_format:
-    outdir: ./test_results/BRACS/lizard/SAM
+    outdir: ./test_results/BRACS/nucls_main/HIPT
 
 process_wsi:
     wsi_path: ./test_database/BRACS/BRACS_1640_N_3_cropped.tiff

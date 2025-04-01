@@ -1,0 +1,6 @@
+model: SAM
+output_format:
+    outdir: ./test_results/Philips/folder/SAM
+process_dataset:
+    wsi_folder: ./test_database/Philips
+    wsi_extension: tiff

@@ -1,0 +1,8 @@
+model: SAM
+output_format:
+    outdir: ./test_results/x40_svs/compression_graph_geojson/SAM
+    geojson: true
+    graph: true
+    compression: true
+process_wsi:
+    wsi_path: ./test_database/x40_svs/JP2K-33003-2.svs
