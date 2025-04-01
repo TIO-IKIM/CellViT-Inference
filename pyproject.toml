@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cellvit"
-version = "0.1.0a1"
+version = "0.1.0a2"
 description = "CellViT Inference Pipeline for Whole Slide Images (WSI) in Memory"
 authors = [
     { name = "Fabian Hörst", email = "fabian.hoerst@uk-essen.de" }
@@ -48,6 +48,11 @@ dependencies = [
 
 [tool.setuptools]
 packages = {find = {exclude = ["tests", "tests.*"]}}
+
+[project.urls]
+Homepage = "https://github.com/TIO-IKIM/CellViT-Inference"
+Documentation = "https://tio-ikim.github.io/CellViT-Inference/"
+License = "https://github.com/TIO-IKIM/CellViT-Inference/blob/main/LICENSE"
 
 [project.scripts]
 cellvit-inference = "cellvit.detect_cells:main"
