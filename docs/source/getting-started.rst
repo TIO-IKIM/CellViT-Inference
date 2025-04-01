@@ -57,7 +57,7 @@ To install the package, follow these steps:
 
     .. code-block:: bash
 
-        pip install cellvit-inference
+        pip install cellvit
 
 Optional
 ^^^^^^^^

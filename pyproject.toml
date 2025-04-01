@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cellvit"
-version = "0.1.0a2"
+version = "0.1.1a1"
 description = "CellViT Inference Pipeline for Whole Slide Images (WSI) in Memory"
 authors = [
     { name = "Fabian Hörst", email = "fabian.hoerst@uk-essen.de" }

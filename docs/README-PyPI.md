@@ -93,7 +93,7 @@ sudo apt-get install libvips openslide gcc g++ libopencv-core-dev libopencv-imgp
 4. Install the CellViT-Inference package using pip:
 
    ```bash
-   pip install cellvit-inference
+   pip install cellvit
    ```
 
 #### Optional

@@ -19,7 +19,7 @@ ___
 </div>
 
 > [!IMPORTANT]  
-> The package is now available on PyPI: `pip install cellvit-inference`
+> The package is now available on PyPI: `pip install cellvit`
 
 > [!TIP]
 > This repository is solely for performing inference on WSIs using CellViT++ and the basic CellViT model. It includes CellViT-HIPT-256 and CellViT-SAM-H as well as lightweight classifier modules. This repo does not contain training code.
@@ -117,7 +117,7 @@ sudo apt-get install libvips openslide gcc g++ libopencv-core-dev libopencv-imgp
 4. Install the CellViT-Inference package using pip:
 
    ```bash
-   pip install cellvit-inference
+   pip install cellvit
    ```
 
 #### Optional
