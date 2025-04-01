@@ -10,6 +10,8 @@
 *.pyc
 __pycache__/
 **/cache/
+.pytest_cache/
+.ruff_cache/
 
 # wsi and examples
 *.svs
@@ -33,3 +35,6 @@ dist
 !tests/data/test_wsi_database/BRACS_1640_N_3_cropped.tiff
 
 .coverage*
+
+Readmenew.md
+docs/build
