@@ -1,47 +1,32 @@
-[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-31014/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
-[![CodeFactor](https://www.codefactor.io/repository/github/tio-ikim/cellvit-plus-plus/badge)](https://www.codefactor.io/repository/github/tio-ikim/cellvit-plus-plus)
+[![CodeFactor](https://www.codefactor.io/repository/github/tio-ikim/cellvit-inference/badge)](https://www.codefactor.io/repository/github/tio-ikim/cellvit-inference)
 <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=Pytorch&logoColor=white"/></a>
-![Visitors](https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fgithub.com%2FTIO-IKIM%2FCellViT-plus-plus&label=Visitors&countColor=%2337d67a&style=flat)
 [![arXiv](https://img.shields.io/badge/arXiv-2501.05269-b31b1b.svg)](https://arxiv.org/abs/2501.05269)
 ___
 <p align="center">
-  <img src="./docs/figures/banner.png"/>
+  <img src="./docs/source/_static/banner.png"/>
 </p>
 
 ___
 
-# CellViT++: Energy-Efficient and Adaptive Cell Segmentation and Classification Using Foundation
+# CellViT/CellViT++ Inference
 <div align="center">
 
-[Key Features](#key-features) • [Installation](#installation) • [Inference](#inference) • [Examples](#examples) • [Re-training](#re-training-your-own-classifier) • [Reproducability](#reproducability) • [Viewer](#web-based-viewer) • [Annotation](#annotation-tool) • [Acknowledgements](#acknowledgements) • [Citation](#Citation)
+[Key Features](#key-features) • [Installation](#installation) • [Examples](#examples) • [Re-training](#re-training-your-own-classifier) • [Citation](#Citation)
 
 </div>
 
+> [!IMPORTANT]  
+> The package is now available on PyPI: `pip install cellvit`
 
 > [!TIP]
+> This repository is solely based to perform inference on WIS using CellViT++ and the basic CellViT model. For this, we include CellViT-HIPT-256 and CellViT-SAM-H as well as the lightweight classifier modules. This repo does not contain training codes.
 > To access the previous version (CellViT), follow this [link](https://github.com/TIO-IKIM/CellViT)
+> To access the CellViT++ repo, follow this [link](https://github.com/TIO-IKIM/CellViT-plus-plus)
 
 
-## Key Features
 
----
-
-> **Update 08.08.2023**:
->
-> :ballot_box_with_check: Adding token based classifiers to be used for multiple cell classification taxonomies
->
-> :ballot_box_with_check: Efficient runtime for finetuning by using caching
->
-> :ballot_box_with_check: Improved CLI and functionality - See Examples
->
-> :ballot_box_with_check: Web-based Viewer (see [Visualization](#Visualization))
->
-> :ballot_box_with_check: We include [PathoPatcher](https://github.com/TIO-IKIM/PathoPatcher) as pre-processing framework
->
-> :ballot_box_with_check: More stable - If issues occur, please contact us!
----
 
 
 #### Visualization
