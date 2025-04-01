@@ -50,5 +50,6 @@ dependencies = [
 packages = {find = {exclude = ["tests", "tests.*"]}}
 
 [project.scripts]
-detect-cells = "cellvit.detect_cells:main"
-check-system = "cellvit.check_system:main"
+cellvit-inference = "cellvit.detect_cells:main"
+cellvit-check = "cellvit.check_system:main"
+cellvit-download-examples = "cellvit.utils.cache_test_database:cache_test_database"

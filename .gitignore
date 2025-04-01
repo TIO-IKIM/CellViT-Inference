@@ -33,3 +33,5 @@ dist
 !tests/data/test_wsi_database/BRACS_1640_N_3_cropped.tiff
 
 .coverage*
+check_examples.sh
+*.log

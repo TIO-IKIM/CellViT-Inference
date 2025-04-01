@@ -15,6 +15,7 @@ import zipfile
 from pathlib import Path
 from typing import Optional
 import logging
+import csv
 
 
 def cache_test_database(
@@ -42,6 +43,15 @@ def cache_test_database(
         )
         with zipfile.ZipFile(zip_dir, "r") as zip_ref:
             zip_ref.extractall(run_dir)
+        filelist_path = database_dir / "filelist.csv"
+        with open(filelist_path, mode="w", newline="") as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(["path", "wsi_mpp", "wsi_magnification"])
+            writer.writerow(
+                ["./test_database/BRACS/BRACS_1640_N_3_cropped.tiff", "0.25", "40"]
+            )
+            writer.writerow(["./test_database/x20_svs/CMU-1-Small-Region.svs", "", ""])
+
         os.remove(zip_dir)
     else:
         if zip_dir.exists():
