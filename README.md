@@ -56,6 +56,11 @@ The full documentation is available at: [https://tio-ikim.github.io/CellViT-Infe
 | [📝 Usage Documentation](https://tio-ikim.github.io/CellViT-Inference/usage.html) | Comprehensive guide on how to use CellViT-Inference |
 | [💡 Examples](https://tio-ikim.github.io/CellViT-Inference/examples.html) | Sample configurations and use cases |
 
+## Colab Example
+
+If you want to have a quick test, check out the colab notebook
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TIO-IKIM/CellViT-Inference/blob/main/CellViT_Inference.ipynb)
 
 ## Installation
 
