@@ -37,6 +37,14 @@ Feature Highlights
 
         Comprehensive API documentation
 
+    .. grid-item-card:: ⚡ Open in Colab
+        :link: https://colab.research.google.com/github/TIO-IKIM/CellViT-Inference/blob/main/CellViT_Inference.ipynb
+        :class-card: feature-card
+        :img-top: https://colab.research.google.com/assets/colab-badge.svg
+
+        Run examples directly in Google Colab
+
+
 Video Demonstration
 ===================
 

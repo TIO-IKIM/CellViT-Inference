@@ -4,14 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cellvit"
-version = "0.1.1a1"
+version = "1.0.0b"
 description = "CellViT Inference Pipeline for Whole Slide Images (WSI) in Memory"
 authors = [
     { name = "Fabian Hörst", email = "fabian.hoerst@uk-essen.de" }
 ]
 license = {text = "Apache 2.0 with common clause, see LICENSE"}
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Education",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Programming Language :: Python :: 3",
