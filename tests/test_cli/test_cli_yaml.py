@@ -125,8 +125,8 @@ class TestInferenceConfiguration(unittest.TestCase):
             InferenceConfiguration(invalid_config)
         self.assertEqual(
             str(context.exception),
-            "Batch size must be between 2 and 32",
-            "Batch size must be between 2 and 32",
+            "Batch size must be between 2 and 48",
+            "Batch size must be between 2 and 48",
         )
 
     @patch("torch.cuda.device_count")

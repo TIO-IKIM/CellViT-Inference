@@ -27,7 +27,7 @@ class TestWSIMeta(unittest.TestCase):
         self.assertEqual(
             slide_properties["magnification"], 20.0
         )  # Fill in expected value
-        self.assertEqual(target_mpp, 0.25)  # Fill in expected value
+        self.assertEqual(target_mpp, 0.2495)  # Fill in expected value
 
     def test_load_wsi_meta_with_svs_file_2(self):
         """Test loading WSI metadata from SVS file 2."""

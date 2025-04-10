@@ -653,22 +653,23 @@ def create_batch_pooling_actor(num_cpus: int = 8):
                 batch_cell_positions = batch_cell_positions + patch_cell_positions
 
             if self.detection_cell_postprocessor.classifier is not None:
-                batch_cell_tokens_pt = torch.stack(batch_cell_tokens)
-                updated_preds = self.detection_cell_postprocessor.classifier(
-                    batch_cell_tokens_pt
-                )
-                updated_preds = F.softmax(updated_preds, dim=1)
-                updated_classes = torch.argmax(updated_preds, dim=1)
-                updated_class_preds = updated_preds[
-                    torch.arange(updated_classes.shape[0]), updated_classes
-                ]
+                if len(batch_cell_tokens) > 0:
+                    batch_cell_tokens_pt = torch.stack(batch_cell_tokens)
+                    updated_preds = self.detection_cell_postprocessor.classifier(
+                        batch_cell_tokens_pt
+                    )
+                    updated_preds = F.softmax(updated_preds, dim=1)
+                    updated_classes = torch.argmax(updated_preds, dim=1)
+                    updated_class_preds = updated_preds[
+                        torch.arange(updated_classes.shape[0]), updated_classes
+                    ]
 
-                for f, z in zip(batch_complete, updated_classes):
-                    f["type"] = int(z)
-                for f, z in zip(batch_complete, updated_class_preds):
-                    f["type_prob"] = int(z)
-                for f, z in zip(batch_detection, updated_classes):
-                    f["type"] = int(z)
+                    for f, z in zip(batch_complete, updated_classes):
+                        f["type"] = int(z)
+                    for f, z in zip(batch_complete, updated_class_preds):
+                        f["type_prob"] = int(z)
+                    for f, z in zip(batch_detection, updated_classes):
+                        f["type"] = int(z)
             if self.detection_cell_postprocessor.binary:
                 for f in batch_complete:
                     f["type"] = 1

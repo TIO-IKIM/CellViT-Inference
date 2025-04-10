@@ -475,7 +475,7 @@ class CellViTInference:
             Tuple[Callable, Callable]: Postprocessing module
         """
         if self.system_configuration["cupy"]:
-            from cellvit.inference.postprocessing_numpy import (
+            from cellvit.inference.postprocessing_cupy import (
                 DetectionCellPostProcessor,
                 create_batch_pooling_actor,
             )
