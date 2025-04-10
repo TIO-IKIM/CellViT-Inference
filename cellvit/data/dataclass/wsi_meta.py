@@ -10,6 +10,8 @@ from typing import Tuple
 import logging
 from openslide import OpenSlide
 from pathlib import Path
+from pathopatch.utils.patch_util import target_mpp_to_downsample
+import math
 
 
 def load_wsi_meta(
@@ -94,11 +96,62 @@ def load_wsi_meta(
         target_mpp = slide_mpp
         logger.info(f"Using target_mpp: {target_mpp} instead of 0.25")
     else:
-        target_mpp = 0.25
+        # target_mpp = 0.25
+        downsample, _ = target_mpp_to_downsample(slide_mpp, 0.25)
+        target_mpp = find_target_mpp(slide_mpp, downsample)
         logger.warning(
-            f"We need to rescale to {0.25}, handle with care! Check the final results!"
+            f"We need to rescale to {target_mpp:<.5f}, handle with care! Check the final results!"
         )
+
     slide_properties["slide_mpp"] = slide_properties[
         "mpp"
     ]  # to align with pathopatch...
     return slide_properties, target_mpp
+
+
+def find_target_mpp(base_mpp: float, downsample: int) -> float:
+    """Find target mpp closest to 0.25 MPP
+
+    Args:
+        base_mpp (float): Base mpp of the slide
+        downsample (int): Downsample
+
+    Returns:
+        float: Target MPP
+    """
+    # find the target mpp closest to 0.25 given that the following holds:
+    product = base_mpp * downsample
+    k_ideal = 4.0 / product
+    if k_ideal < 1:
+        k = 1
+    else:
+        k_floor = math.floor(k_ideal)
+        k_ceil = math.ceil(k_ideal)
+
+        if math.isclose(k_ideal, k_floor, abs_tol=1e-9):
+            k = int(k_floor)
+        elif math.isclose(k_ideal, k_ceil, abs_tol=1e-9):
+            k = int(k_ceil)
+        else:
+            target_floor = (k_floor / 16.0) * product
+            target_ceil = (k_ceil / 16.0) * product
+
+            diff_floor = abs(target_floor - 0.25)
+            diff_ceil = abs(target_ceil - 0.25)
+
+            if diff_floor < diff_ceil:
+                k = k_floor
+            elif diff_ceil < diff_floor:
+                k = k_ceil
+            else:
+                k = k_ceil  # Prefer higher k if equidistant
+
+    target_mpp = (k / 16.0) * product
+
+    rescaling_factor = target_mpp / (base_mpp * downsample)
+    patch_size = rescaling_factor * 1024
+    overlap = rescaling_factor * 32
+    assert patch_size % 2 == 0, f"Patch size {patch_size} must be even"
+    assert overlap % 2 == 0, f"Overlap {overlap} must be even"
+
+    return target_mpp

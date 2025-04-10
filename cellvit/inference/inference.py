@@ -518,9 +518,10 @@ class CellViTInference:
         """Reallign grid if interpolation was used (including target_mpp_tolerance)
 
         Args:
-            cell_dict_wsi (list[dict]): Input cell dict
+            cell_dict_wsi (list[dict]):  Input cell dict
             cell_dict_detection (list[dict]): Input cell dict (detection)
-            rescaling_factor (float): Rescaling factor
+            graph_data (_type_): Graph
+            rescaling_factor (float): Rescaling Factor
 
         Returns:
             Tuple[list[dict],list[dict]]:
@@ -876,8 +877,7 @@ class CellViTInference:
                 cell_dict_wsi=cell_dict_wsi,
                 cell_dict_detection=cell_dict_detection,
                 graph_data=graph_data,
-                rescaling_factor=wsi.metadata["target_patch_mpp"]
-                / wsi.metadata["base_mpp"],
+                rescaling_factor=wsi_inference_dataset.rescaling_factor,
             )
 
         # reallign cells if either row or columns is one (dimension in one direction smaller)
