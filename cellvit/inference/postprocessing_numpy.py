@@ -724,11 +724,11 @@ def create_batch_pooling_actor(num_cpus: int = 8):
             wsi_scaling_factor = wsi.metadata["downsampling"]
             patch_size = wsi.metadata["patch_size"]
             x_global = int(
-                patch_metadata["row"] * patch_size * wsi_scaling_factor
+                patch_metadata["row"] * patch_size
                 - (patch_metadata["row"] + 0.5) * wsi.metadata["patch_overlap"]
             )
             y_global = int(
-                patch_metadata["col"] * patch_size * wsi_scaling_factor
+                patch_metadata["col"] * patch_size
                 - (patch_metadata["col"] + 0.5) * wsi.metadata["patch_overlap"]
             )
 
@@ -745,9 +745,13 @@ def create_batch_pooling_actor(num_cpus: int = 8):
                 ):
                     continue
                 offset_global = np.array([x_global, y_global])
-                centroid_global = np.rint(cell["centroid"] + np.flip(offset_global))
-                contour_global = cell["contour"] + np.flip(offset_global)
-                bbox_global = cell["bbox"] + offset_global
+                centroid_global = np.rint(
+                    (cell["centroid"] + np.flip(offset_global)) * wsi_scaling_factor
+                )
+                contour_global = (
+                    cell["contour"] + np.flip(offset_global)
+                ) * wsi_scaling_factor
+                bbox_global = (cell["bbox"] + offset_global) * wsi_scaling_factor
                 cell_dict = {
                     "bbox": bbox_global.tolist(),
                     "centroid": centroid_global.tolist(),
