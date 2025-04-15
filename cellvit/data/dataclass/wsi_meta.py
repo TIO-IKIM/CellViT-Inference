@@ -12,6 +12,7 @@ from openslide import OpenSlide
 from pathlib import Path
 from pathopatch.utils.patch_util import target_mpp_to_downsample
 import math
+import re
 
 
 def load_wsi_meta(
@@ -47,7 +48,7 @@ def load_wsi_meta(
         try:
             pattern = re.compile(r"MPP(?: =)? (\d+\.\d+)")
             # Use the pattern to find the match in the string
-            match = pattern.search(self.slide_openslide.properties["openslide.comment"])
+            match = pattern.search(slide_openslide.properties["openslide.comment"])
             # Extract the float value
             if match:
                 slide_mpp = float(match.group(1))
