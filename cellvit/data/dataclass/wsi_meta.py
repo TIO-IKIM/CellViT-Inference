@@ -121,6 +121,8 @@ def find_target_mpp(base_mpp: float, downsample: int) -> float:
     """
     # find the target mpp closest to 0.25 given that the following holds:
     product = base_mpp * downsample
+    if product >= 0.20 and product <= 0.30:
+        return product
     k_ideal = 4.0 / product
     if k_ideal < 1:
         k = 1
