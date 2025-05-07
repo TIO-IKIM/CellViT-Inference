@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#3f51b5">
+  <script src="_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Examples &#8212; CellViT++ Inference 1.0.0b documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=17be01a0" />
+    <script src="_static/documentation_options.js?v=40ff50a0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="api-reference.html" />
+    <link rel="prev" title="Usage" href="usage.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=purple data-md-color-accent=deep-purple>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#examples" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="index.html" title="CellViT++ Inference 1.0.0b documentation"
+           class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">&#xe88a</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">CellViT/CellViT++ Inference Documentation</span>
+          <span class="md-header-nav__topic"> Examples </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/TIO-IKIM/CellViT" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    CellViT/CellViT++ Inference
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = ""versions.json"",
+        target_loc = "../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">CellViT++ Inference 1.0.0b documentation</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="index.html" title="CellViT++ Inference 1.0.0b documentation" class="md-nav__button md-logo">
+      
+        <i class="md-icon">&#xe88a</i>
+      
+    </a>
+    <a href="index.html"
+       title="CellViT++ Inference 1.0.0b documentation">CellViT/CellViT++ Inference Documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/TIO-IKIM/CellViT" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    CellViT/CellViT++ Inference
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="getting-started.html" class="md-nav__link">Getting Started</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="usage.html" class="md-nav__link">Usage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Examples </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Examples</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#examples--page-root" class="md-nav__link">Examples</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#test-database" class="md-nav__link">Test Database</a>
+        </li>
+        <li class="md-nav__item"><a href="#basic-examples" class="md-nav__link">Basic Examples</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#basic-run-for-the-cellvit-hipt-backbone-vit-s" class="md-nav__link">Basic run for the CellViT-HIPT-Backbone (ViT-S)</a>
+        </li>
+        <li class="md-nav__item"><a href="#basic-run-for-the-cellvit-sam-h-backbone-vit-h" class="md-nav__link">Basic run for the CellViT-SAM-H-Backbone (ViT-H)</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#output-customization" class="md-nav__link">Output Customization</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#binary-classification" class="md-nav__link">Binary Classification</a>
+        </li>
+        <li class="md-nav__item"><a href="#qupath-compatible-geojson" class="md-nav__link">QuPath-Compatible GeoJSON</a>
+        </li>
+        <li class="md-nav__item"><a href="#advanced-output-formats" class="md-nav__link">Advanced Output Formats</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#debugging-log-level" class="md-nav__link">Debugging Log-Level</a>
+        </li>
+        <li class="md-nav__item"><a href="#metadata-handover" class="md-nav__link">Metadata Handover</a>
+        </li>
+        <li class="md-nav__item"><a href="#processing-multiple-wsi-entire-dataset" class="md-nav__link">Processing Multiple WSI (Entire Dataset)</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#folder-processing" class="md-nav__link">Folder Processing</a>
+        </li>
+        <li class="md-nav__item"><a href="#csv-filelist-processing" class="md-nav__link">CSV Filelist Processing</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#slides-with-x20-0-50-mpp" class="md-nav__link">Slides with x20 / 0.50 MPP</a>
+        </li>
+        <li class="md-nav__item"><a href="#classification-taxonomies" class="md-nav__link">Classification Taxonomies</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#consep-classification" class="md-nav__link">CoNSeP Classification</a>
+        </li>
+        <li class="md-nav__item"><a href="#lizard-classification" class="md-nav__link">Lizard Classification</a>
+        </li>
+        <li class="md-nav__item"><a href="#nucls-classification" class="md-nav__link">NuCLS Classification</a>
+        </li>
+        <li class="md-nav__item"><a href="#panoptils-classification" class="md-nav__link">PanOpTILS Classification</a>
+        </li>
+        <li class="md-nav__item"><a href="#ocelot-classification" class="md-nav__link">Ocelot Classification</a>
+        </li>
+        <li class="md-nav__item"><a href="#midog-classification" class="md-nav__link">MIDOG Classification</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#hardware-setup" class="md-nav__link">Hardware Setup</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#batch-size" class="md-nav__link">Batch-size</a>
+        </li>
+        <li class="md-nav__item"><a href="#cpu-cores" class="md-nav__link">CPU-cores</a>
+        </li>
+        <li class="md-nav__item"><a href="#ray-setup-multiprocessing" class="md-nav__link">Ray-Setup (Multiprocessing)</a>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="_sources/examples.rst.txt">Show Source</a> </li>
+
+  </ul>
+</nav>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="#test-database" class="md-nav__link">Test Database</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#basic-examples" class="md-nav__link">Basic Examples</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#output-customization" class="md-nav__link">Output Customization</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#debugging-log-level" class="md-nav__link">Debugging Log-Level</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#metadata-handover" class="md-nav__link">Metadata Handover</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#processing-multiple-wsi-entire-dataset" class="md-nav__link">Processing Multiple WSI (Entire Dataset)</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#slides-with-x20-0-50-mpp" class="md-nav__link">Slides with x20 / 0.50 MPP</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#classification-taxonomies" class="md-nav__link">Classification Taxonomies</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#hardware-setup" class="md-nav__link">Hardware Setup</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api-reference.html" class="md-nav__link">API Reference</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#examples--page-root" class="md-nav__link">Examples</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#test-database" class="md-nav__link">Test Database</a>
+        </li>
+        <li class="md-nav__item"><a href="#basic-examples" class="md-nav__link">Basic Examples</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#basic-run-for-the-cellvit-hipt-backbone-vit-s" class="md-nav__link">Basic run for the CellViT-HIPT-Backbone (ViT-S)</a>
+        </li>
+        <li class="md-nav__item"><a href="#basic-run-for-the-cellvit-sam-h-backbone-vit-h" class="md-nav__link">Basic run for the CellViT-SAM-H-Backbone (ViT-H)</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#output-customization" class="md-nav__link">Output Customization</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#binary-classification" class="md-nav__link">Binary Classification</a>
+        </li>
+        <li class="md-nav__item"><a href="#qupath-compatible-geojson" class="md-nav__link">QuPath-Compatible GeoJSON</a>
+        </li>
+        <li class="md-nav__item"><a href="#advanced-output-formats" class="md-nav__link">Advanced Output Formats</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#debugging-log-level" class="md-nav__link">Debugging Log-Level</a>
+        </li>
+        <li class="md-nav__item"><a href="#metadata-handover" class="md-nav__link">Metadata Handover</a>
+        </li>
+        <li class="md-nav__item"><a href="#processing-multiple-wsi-entire-dataset" class="md-nav__link">Processing Multiple WSI (Entire Dataset)</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#folder-processing" class="md-nav__link">Folder Processing</a>
+        </li>
+        <li class="md-nav__item"><a href="#csv-filelist-processing" class="md-nav__link">CSV Filelist Processing</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#slides-with-x20-0-50-mpp" class="md-nav__link">Slides with x20 / 0.50 MPP</a>
+        </li>
+        <li class="md-nav__item"><a href="#classification-taxonomies" class="md-nav__link">Classification Taxonomies</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#consep-classification" class="md-nav__link">CoNSeP Classification</a>
+        </li>
+        <li class="md-nav__item"><a href="#lizard-classification" class="md-nav__link">Lizard Classification</a>
+        </li>
+        <li class="md-nav__item"><a href="#nucls-classification" class="md-nav__link">NuCLS Classification</a>
+        </li>
+        <li class="md-nav__item"><a href="#panoptils-classification" class="md-nav__link">PanOpTILS Classification</a>
+        </li>
+        <li class="md-nav__item"><a href="#ocelot-classification" class="md-nav__link">Ocelot Classification</a>
+        </li>
+        <li class="md-nav__item"><a href="#midog-classification" class="md-nav__link">MIDOG Classification</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#hardware-setup" class="md-nav__link">Hardware Setup</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#batch-size" class="md-nav__link">Batch-size</a>
+        </li>
+        <li class="md-nav__item"><a href="#cpu-cores" class="md-nav__link">CPU-cores</a>
+        </li>
+        <li class="md-nav__item"><a href="#ray-setup-multiprocessing" class="md-nav__link">Ray-Setup (Multiprocessing)</a>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="_sources/examples.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="examples">
+<h1 id="examples--page-root">Examples<a class="headerlink" href="#examples--page-root" title="Link to this heading">¶</a></h1>
+<p>Below we provide examples for the most common use cases of the CellViT package. The examples are provided in both CLI and YAML format. The CLI examples can be run directly in your terminal, while the YAML examples can be used to create a configuration file and then run with the <cite>cellvit-inference –config /path/to/your/config.yaml</cite> command.</p>
+<section id="test-database">
+<h2 id="test-database">Test Database<a class="headerlink" href="#test-database" title="Link to this heading">¶</a></h2>
+<div class="example admonition">
+<p class="admonition-title">Download test database into current directory</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-download-examples<span class="w"> </span><span class="c1"># run in your terminal</span>
+</pre></div>
+</div>
+</div>
+<p>This command will download a test database into the current directory. The database is used for testing purposes and contains sample data to demonstrate the functionality of the package.
+The database is not required for the package to function, but it can be useful for testing and development purposes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Contains sample data in these folders:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x40_svs/</span></code>: High-mag WSIs (.svs format)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x20_svs/</span></code>: Low-mag WSIs (.svs format)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BRACS/</span></code>: Breast cancer WSIs (.tiff format)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Philips/</span></code>: Alternative scanner format</p></li>
+</ul>
+</div>
+</section>
+<section id="basic-examples">
+<h2 id="basic-examples">Basic Examples<a class="headerlink" href="#basic-examples" title="Link to this heading">¶</a></h2>
+<section id="basic-run-for-the-cellvit-hipt-backbone-vit-s">
+<h3 id="basic-run-for-the-cellvit-hipt-backbone-vit-s">Basic run for the CellViT-HIPT-Backbone (ViT-S)<a class="headerlink" href="#basic-run-for-the-cellvit-hipt-backbone-vit-s" title="Link to this heading">¶</a></h3>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/x40_svs/minimal/HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/x40_svs/JP2K-33003-2.svs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HIPT</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/x40_svs/minimal/HIPT</span>
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/x40_svs/JP2K-33003-2.svs</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="basic-run-for-the-cellvit-sam-h-backbone-vit-h">
+<h3 id="basic-run-for-the-cellvit-sam-h-backbone-vit-h">Basic run for the CellViT-SAM-H-Backbone (ViT-H)<a class="headerlink" href="#basic-run-for-the-cellvit-sam-h-backbone-vit-h" title="Link to this heading">¶</a></h3>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/x40_svs/minimal/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/x40_svs/JP2K-33003-2.svs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/x40_svs/minimal/SAM</span>
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/x40_svs/JP2K-33003-2.svs</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="output-customization">
+<h2 id="output-customization">Output Customization<a class="headerlink" href="#output-customization" title="Link to this heading">¶</a></h2>
+<section id="binary-classification">
+<h3 id="binary-classification">Binary Classification<a class="headerlink" href="#binary-classification" title="Link to this heading">¶</a></h3>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nuclei_taxonomy<span class="w"> </span>binary<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/x40_svs/binary/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/x40_svs/JP2K-33003-2.svs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">binary</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/x40_svs/binary/SAM</span>
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/x40_svs/JP2K-33003-2.svs</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="qupath-compatible-geojson">
+<h3 id="qupath-compatible-geojson">QuPath-Compatible GeoJSON<a class="headerlink" href="#qupath-compatible-geojson" title="Link to this heading">¶</a></h3>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/x40_svs/geojson/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--geojson<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/x40_svs/JP2K-33003-2.svs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/x40_svs/geojson/SAM</span>
+<span class="w">    </span><span class="nt">geojson</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/x40_svs/JP2K-33003-2.svs</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="advanced-output-formats">
+<h3 id="advanced-output-formats">Advanced Output Formats<a class="headerlink" href="#advanced-output-formats" title="Link to this heading">¶</a></h3>
+<p>All types of output formats can be combined. This example provides the output as a <cite>.geojson</cite> file, a cell graph as <cite>.pt</cite> file and additionally applies snappy compression to the output files:</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/x40_svs/compression_graph_geojson/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--geojson<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--graph<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--compression<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/x40_svs/JP2K-33003-2.svs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/x40_svs/compression_graph_geojson/SAM</span>
+<span class="w">    </span><span class="nt">geojson</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">graph</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">compression</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/x40_svs/JP2K-33003-2.svs</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="debugging-log-level">
+<h2 id="debugging-log-level">Debugging Log-Level<a class="headerlink" href="#debugging-log-level" title="Link to this heading">¶</a></h2>
+<p>To see debug messages if errors occur and inspect the tissue detection, you can use the debug flag. This will create a folder with the name of the WSI in the output directory and save the tissue detection results there. Also this comes with improved log messages.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/x40_svs/minimal/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--debug<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/x40_svs/JP2K-33003-2.svs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/x40_svs/minimal/SAM</span>
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/x40_svs/JP2K-33003-2.svs</span>
+<span class="nt">debug</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="metadata-handover">
+<h2 id="metadata-handover">Metadata Handover<a class="headerlink" href="#metadata-handover" title="Link to this heading">¶</a></h2>
+<p>With this approach the metadata can either be provided if not available from the WSI (e.g., some tiff-formats do not include metadata) or overwrite existing metadata. This example is for a single file. For a more sophisticated example see the dataset processing examples given below.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/minimal/HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/BRACS/BRACS_1640_N_3_cropped.tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HIPT</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/minimal/HIPT</span>
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="processing-multiple-wsi-entire-dataset">
+<h2 id="processing-multiple-wsi-entire-dataset">Processing Multiple WSI (Entire Dataset)<a class="headerlink" href="#processing-multiple-wsi-entire-dataset" title="Link to this heading">¶</a></h2>
+<p>We provide a simple way to process an entire dataset. We provide two options for this. Either, you can hand over a folder with the WSI files and the program will automatically detect all WSI files in the folder and process them. Or you can provide a list of WSI files in a <cite>.csv`</cite> file.</p>
+<section id="folder-processing">
+<h3 id="folder-processing">Folder Processing<a class="headerlink" href="#folder-processing" title="Link to this heading">¶</a></h3>
+<p>Simplest Version (just provide a folder with WSI files in .svs format):</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/x40_svs/folder/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_dataset<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_folder<span class="w"> </span>./test_database/x40_svs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/x40_svs/folder/SAM</span>
+<span class="nt">process_dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_folder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/x40_svs</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Example with a differing WSI-format (here: .tiff):</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/Philips/folder/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_dataset<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_folder<span class="w"> </span>./test_database/Philips<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_extension<span class="w"> </span>tiff
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/Philips/folder/SAM</span>
+<span class="nt">process_dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_folder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/Philips</span>
+<span class="w">    </span><span class="nt">wsi_extension</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tiff</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Handover of metadata (e.g., MPP and magnification):</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/folder/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_dataset<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_folder<span class="w"> </span>./test_database/BRACS<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_extension<span class="w"> </span>tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/folder/SAM</span>
+<span class="nt">process_dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_folder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS</span>
+<span class="w">    </span><span class="nt">wsi_extension</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="csv-filelist-processing">
+<h3 id="csv-filelist-processing">CSV Filelist Processing<a class="headerlink" href="#csv-filelist-processing" title="Link to this heading">¶</a></h3>
+<p>An example of a CSV-Filelist is given in the test database. The structure is at follows:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">path,wsi_mpp,wsi_magnification</span>
+<span class="l l-Scalar l-Scalar-Plain">./test_database/x20_svs/CMU-1-Small-Region.svs,,</span>
+<span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff,0.25,40</span>
+</pre></div>
+</div>
+<p>The filelist must at least have the <strong>path</strong> column. The wsi_mpp and wsi_magnification columns are optional. If they are not provided, the program will try to read them from the WSI metadata.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">path</span>
+<span class="l l-Scalar l-Scalar-Plain">./test_database/x20_svs/CMU-1-Small-Region.svs</span>
+</pre></div>
+</div>
+<p>As can be seen in the example above, it is possible to define the MPP and magnification for each WSI separately and input files with differing extensions.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/all/HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_dataset<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_filelist<span class="w"> </span>./test_database/filelist.csv
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HIPT</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/test_results/all/HIPT</span>
+<span class="nt">process_dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_filelist</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/filelist.csv</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>You can also set the wsi_mpp and wsi_magnification globally. Be careful, this will overwrite the values in the CSV file:</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/all/HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_dataset<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_filelist<span class="w"> </span>./test_database/filelist.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HIPT</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/test_results/all/HIPT</span>
+<span class="nt">process_dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_filelist</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/filelist.csv</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="slides-with-x20-0-50-mpp">
+<h2 id="slides-with-x20-0-50-mpp">Slides with x20 / 0.50 MPP<a class="headerlink" href="#slides-with-x20-0-50-mpp" title="Link to this heading">¶</a></h2>
+<p>Inference can be run on slides not matching x40 magnification (0.25 MPP). This is useful for example if you have a slide with 0.50 MPP and want to run inference on it. The model will automatically adapt to the given MPP and magnification. The example below shows how to run inference on a slide with 0.50 MPP and 20x magnification.</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/x20_svs/minimal/HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/x20_svs/CMU-1-Small-Region.svs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HIPT</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/x20_svs/minimal/HIPT</span>
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/x20_svs/CMU-1-Small-Region.svs</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="classification-taxonomies">
+<h2 id="classification-taxonomies">Classification Taxonomies<a class="headerlink" href="#classification-taxonomies" title="Link to this heading">¶</a></h2>
+<section id="consep-classification">
+<h3 id="consep-classification">CoNSeP Classification<a class="headerlink" href="#consep-classification" title="Link to this heading">¶</a></h3>
+<p>This classifier was trained on the CoNSeP dataset, which is specifically designed for colorectal nuclear segmentation and phenotyping. The dataset contains 24,319 annotated nuclei from 41 H&amp;E-stained images, and we utilized the following label map for classification:</p>
+<p>Label Map:</p>
+<ul class="simple">
+<li><p><strong>0</strong>: Other</p></li>
+<li><p><strong>1</strong>: Inflammatory</p></li>
+<li><p><strong>2</strong>: Epithelial</p></li>
+<li><p><strong>3</strong>: Spindle-Shaped</p></li>
+</ul>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI - SAM</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nuclei_taxonomy<span class="w"> </span>consep<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/consep/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/BRACS/BRACS_1640_N_3_cropped.tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML - SAM</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">consep</span>
+
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/consep/SAM</span>
+
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI - HIPT</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nuclei_taxonomy<span class="w"> </span>consep<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/consep/HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/BRACS/BRACS_1640_N_3_cropped.tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML - HIPT</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HIPT</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">consep</span>
+
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/consep/HIPT</span>
+
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lizard-classification">
+<h3 id="lizard-classification">Lizard Classification<a class="headerlink" href="#lizard-classification" title="Link to this heading">¶</a></h3>
+<p>Lizard is the largest known available dataset for nuclear segmentation and phenotyping, containing nearly half a million nuclei for colon tissue.</p>
+<p>Label Map:</p>
+<ul class="simple">
+<li><p><strong>0</strong>: Neutrophil</p></li>
+<li><p><strong>1</strong>: Epithelial</p></li>
+<li><p><strong>2</strong>: Lymphocyte</p></li>
+<li><p><strong>3</strong>: Plasma</p></li>
+<li><p><strong>4</strong>: Eosinophil</p></li>
+<li><p><strong>5</strong>: Connective Tissue</p></li>
+</ul>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI - SAM</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nuclei_taxonomy<span class="w"> </span>lizard<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/lizard/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/BRACS/BRACS_1640_N_3_cropped.tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML - SAM</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lizard</span>
+
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/lizard/SAM</span>
+
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI - HIPT</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nuclei_taxonomy<span class="w"> </span>lizard<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/lizard/HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/BRACS/BRACS_1640_N_3_cropped.tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML - HIPT</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HIPT</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lizard</span>
+
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/lizard/HIPT</span>
+
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="nucls-classification">
+<h3 id="nucls-classification">NuCLS Classification<a class="headerlink" href="#nucls-classification" title="Link to this heading">¶</a></h3>
+<p>The NuCLS dataset contains over 220,000 labeled nuclei from breast cancer images from TCGA. We provide classification for both <strong>Main Groups</strong> and <strong>Super Groups</strong> in nuclear phenotyping:</p>
+<p>nucls_super:
+0: Tumor
+1: nonTIL Stromal
+2: sTIL
+3: Other Nucleus</p>
+<p>Label Map for main NuCLS classes:</p>
+<ul class="simple">
+<li><p><strong>0</strong>: Tumor nonMitotic</p></li>
+<li><p><strong>1</strong>: Tumor Mitotic</p></li>
+<li><p><strong>2</strong>: nonTILnonMQ Stromal</p></li>
+<li><p><strong>3</strong>: Macrophage</p></li>
+<li><p><strong>4</strong>: Lymphocyte</p></li>
+<li><p><strong>5</strong>: Plasma Cell</p></li>
+<li><p><strong>6</strong>: Other Nucleus</p></li>
+</ul>
+<p>Label Map for super NuCLS classes:</p>
+<ul class="simple">
+<li><p><strong>0</strong>: Tumor</p></li>
+<li><p><strong>1</strong>: nonTIL Stromal</p></li>
+<li><p><strong>2</strong>: sTIL</p></li>
+<li><p><strong>3</strong>: Other Nucleus</p></li>
+</ul>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI - SAM - Main NuCLS</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nuclei_taxonomy<span class="w"> </span>nucls_main<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/nucls_main/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/BRACS/BRACS_1640_N_3_cropped.tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML - SAM - Main NuCLS</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nucls_main</span>
+
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/nucls_main/SAM</span>
+
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI - HIPT - Main NuCLS</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nuclei_taxonomy<span class="w"> </span>nucls_main<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/nucls_main/HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/BRACS/BRACS_1640_N_3_cropped.tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML - HIPT - Main NuCLS</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HIPT</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nucls_main</span>
+
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/nucls_main/HIPT</span>
+
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI - SAM - Super NuCLS</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nuclei_taxonomy<span class="w"> </span>nucls_super<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/nucls_super/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/BRACS/BRACS_1640_N_3_cropped.tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML - SAM - Super NuCLS</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nucls_super</span>
+
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/nucls_super/SAM</span>
+
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI - HIPT - Super NuCLS</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nuclei_taxonomy<span class="w"> </span>nucls_super<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/nucls_super/HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/BRACS/BRACS_1640_N_3_cropped.tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML - HIPT - Super NuCLS</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HIPT</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nucls_super</span>
+
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/nucls_super/HIPT</span>
+
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="panoptils-classification">
+<h3 id="panoptils-classification">PanOpTILS Classification<a class="headerlink" href="#panoptils-classification" title="Link to this heading">¶</a></h3>
+<p>PanopTILs was created by reconciling and expanding two public datasets, BCSS and NuCLS, to enable in-depth analysis of the tumor microenvironment (TME) in whole-slide images (WSI) of H&amp;E stained slides of breast cancer.</p>
+<p>Label Map:</p>
+<ul class="simple">
+<li><p><strong>0</strong>: Other Cells</p></li>
+<li><p><strong>1</strong>: Epithelial Cells</p></li>
+<li><p><strong>2</strong>: Stromal Cells</p></li>
+<li><p><strong>3</strong>: TILs</p></li>
+</ul>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI - SAM</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nuclei_taxonomy<span class="w"> </span>panoptils<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/panoptils/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/BRACS/BRACS_1640_N_3_cropped.tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML - SAM</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">panoptils</span>
+
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/panoptils/SAM</span>
+
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI - HIPT</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nuclei_taxonomy<span class="w"> </span>panoptils<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/panoptils/HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/BRACS/BRACS_1640_N_3_cropped.tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML - HIPT</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HIPT</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">panoptils</span>
+
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/panoptils/HIPT</span>
+
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ocelot-classification">
+<h3 id="ocelot-classification">Ocelot Classification<a class="headerlink" href="#ocelot-classification" title="Link to this heading">¶</a></h3>
+<p>​The OCELOT dataset is a histopathology resource designed to enhance tumor cell detection methods by providing small field-of-view image patches annotated with precise cell locations and classifications.</p>
+<p>Label Map:</p>
+<ul class="simple">
+<li><p><strong>0</strong>: Other Cells</p></li>
+<li><p><strong>1</strong>: Tumor</p></li>
+</ul>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI - SAM</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nuclei_taxonomy<span class="w"> </span>ocelot<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/ocelot/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/BRACS/BRACS_1640_N_3_cropped.tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML - SAM</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ocelot</span>
+
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/ocelot/SAM</span>
+
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI - HIPT</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nuclei_taxonomy<span class="w"> </span>ocelot<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/ocelot/HIPT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/BRACS/BRACS_1640_N_3_cropped.tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML - HIPT</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HIPT</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ocelot</span>
+
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/ocelot/HIPT</span>
+
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="midog-classification">
+<h3 id="midog-classification">MIDOG Classification<a class="headerlink" href="#midog-classification" title="Link to this heading">¶</a></h3>
+<p>The MIDOG dataset is tailored for Mitotic cell detection. However, we <strong>do not recommend</strong> using it within CellViT, as it might have a inferior performance on rare types such as mitotic figures.</p>
+<p>Label Map:</p>
+<ul class="simple">
+<li><p><strong>0</strong>: Mitotic</p></li>
+<li><p><strong>1</strong>: Non-Mitotic</p></li>
+</ul>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI - SAM</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--nuclei_taxonomy<span class="w"> </span>midog<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/BRACS/midog/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_wsi<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_path<span class="w"> </span>./test_database/BRACS/BRACS_1640_N_3_cropped.tiff<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_mpp<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_magnification<span class="w"> </span><span class="m">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML - SAM</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">midog</span>
+
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/BRACS/midog/SAM</span>
+
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/BRACS/BRACS_1640_N_3_cropped.tiff</span>
+<span class="w">    </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.25</span>
+<span class="w">    </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40</span>
+</pre></div>
+</div>
+<p class="sd-card-text">Note: wsi_mpp and wsi_magnification are just necessary because the example file has no metadata.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>We do not provide a MIDOG classifier for the HIPT backbone</p>
+</div>
+</section>
+</section>
+<section id="hardware-setup">
+<h2 id="hardware-setup">Hardware Setup<a class="headerlink" href="#hardware-setup" title="Link to this heading">¶</a></h2>
+<p>The CellViT inference code is determined to automatically detect the available hardware and use it for inference. For this, we detect the available GPUs, CPUs and Memory and use them for inference. This <em>should</em> work regardless if you are using a bare metal server, a cloud instance, slurm-clusters, docker container or kubernetes clusters. However, if problems occur and you want to apply hardware constraints, we provide an interface to set the hardware constraints manually.
+If you want to see the hardware setup that CellViT is detecting on your setup, you can run the <cite>cellvit-check</cite> command in your terminal.</p>
+<section id="batch-size">
+<h3 id="batch-size">Batch-size<a class="headerlink" href="#batch-size" title="Link to this heading">¶</a></h3>
+<p>Set the batch-size (amount of 1024 x 1024 patches per batch):</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--batch_size<span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/x40_svs/batch_size/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_dataset<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_folder<span class="w"> </span>./test_database/x40_svs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/x40_svs/batch_size/SAM</span>
+<span class="nt">inference</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32</span>
+<span class="nt">process_dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_folder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/x40_svs</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="cpu-cores">
+<h3 id="cpu-cores">CPU-cores<a class="headerlink" href="#cpu-cores" title="Link to this heading">¶</a></h3>
+<p>Set available CPU-cores:</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/x40_svs/cpu_count/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cpu_count<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_dataset<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_folder<span class="w"> </span>./test_database/x40_svs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/x40_svs/cpu_count/SAM</span>
+<span class="nt">process_dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_folder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/x40_svs</span>
+<span class="nt">system</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cpu_count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ray-setup-multiprocessing">
+<h3 id="ray-setup-multiprocessing">Ray-Setup (Multiprocessing)<a class="headerlink" href="#ray-setup-multiprocessing" title="Link to this heading">¶</a></h3>
+<p>We are using ray for post-processing and scheduling the HV-Net postprocessing strategy. Set available CPU-cores and number of ray-worker (ray is used for parallelization). Each ray worker is post-processing one batch in parallel:</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/x40_svs/cpu_count_ray_worker/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cpu_count<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--ray_worker<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_dataset<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_folder<span class="w"> </span>./test_database/x40_svs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/x40_svs/cpu_count_ray_count/SAM</span>
+<span class="nt">process_dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_folder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/x40_svs</span>
+<span class="nt">system</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cpu_count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">    </span><span class="nt">ray_worker</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Usually, the each ray worker is getting a shared portion of the available CPUs. To set the CPUs per worker, we provide the following option:</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+CLI</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w"> </span>SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>./test_results/x40_svs/ray_worker_cpu_remote/SAM<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cpu_count<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--ray_worker<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--ray_remote_cpus<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>process_dataset<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wsi_folder<span class="w"> </span>./test_database/x40_svs
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+YAML</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAM</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">outdir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_results/x40_svs/ray_worker_cpu_remote/SAM</span>
+<span class="nt">process_dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">wsi_folder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./test_database/x40_svs</span>
+<span class="nt">system</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cpu_count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
+<span class="w">    </span><span class="nt">ray_worker</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="w">    </span><span class="nt">ray_remote_cpus</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="usage.html" title="Usage"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> "Previous" </span> Usage </span>
+              </div>
+            </a>
+          
+          
+            <a href="api-reference.html" title="API Reference"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> "Next" </span> API Reference </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2025, Fabian Hörst, University Hospital Essen (AöR), Essen, Germany.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

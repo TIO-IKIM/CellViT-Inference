@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#3f51b5">
+  <script src="_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Getting Started &#8212; CellViT++ Inference 1.0.0b documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=17be01a0" />
+    <script src="_static/documentation_options.js?v=40ff50a0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Usage" href="usage.html" />
+    <link rel="prev" title="Feature Highlights" href="index.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=purple data-md-color-accent=deep-purple>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#getting-started" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="index.html" title="CellViT++ Inference 1.0.0b documentation"
+           class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">&#xe88a</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">CellViT/CellViT++ Inference Documentation</span>
+          <span class="md-header-nav__topic"> Getting Started </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/TIO-IKIM/CellViT" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    CellViT/CellViT++ Inference
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = ""versions.json"",
+        target_loc = "../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">CellViT++ Inference 1.0.0b documentation</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="index.html" title="CellViT++ Inference 1.0.0b documentation" class="md-nav__button md-logo">
+      
+        <i class="md-icon">&#xe88a</i>
+      
+    </a>
+    <a href="index.html"
+       title="CellViT++ Inference 1.0.0b documentation">CellViT/CellViT++ Inference Documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/TIO-IKIM/CellViT" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    CellViT/CellViT++ Inference
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Getting Started </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Getting Started</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#getting-started--page-root" class="md-nav__link">Getting Started</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#prerequisites" class="md-nav__link">Prerequisites</a>
+        </li>
+        <li class="md-nav__item"><a href="#installation" class="md-nav__link">Installation</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#required" class="md-nav__link">Required</a>
+        </li>
+        <li class="md-nav__item"><a href="#optional" class="md-nav__link">Optional</a>
+        </li>
+        <li class="md-nav__item"><a href="#check" class="md-nav__link">Check</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#basic-usage" class="md-nav__link">Basic Usage</a>
+        </li>
+        <li class="md-nav__item"><a href="#configuration" class="md-nav__link">Configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#next-steps" class="md-nav__link">Next Steps</a>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="_sources/getting-started.rst.txt">Show Source</a> </li>
+
+  </ul>
+</nav>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="#prerequisites" class="md-nav__link">Prerequisites</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#installation" class="md-nav__link">Installation</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#basic-usage" class="md-nav__link">Basic Usage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#configuration" class="md-nav__link">Configuration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#next-steps" class="md-nav__link">Next Steps</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="usage.html" class="md-nav__link">Usage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="examples.html" class="md-nav__link">Examples</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api-reference.html" class="md-nav__link">API Reference</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#getting-started--page-root" class="md-nav__link">Getting Started</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#prerequisites" class="md-nav__link">Prerequisites</a>
+        </li>
+        <li class="md-nav__item"><a href="#installation" class="md-nav__link">Installation</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#required" class="md-nav__link">Required</a>
+        </li>
+        <li class="md-nav__item"><a href="#optional" class="md-nav__link">Optional</a>
+        </li>
+        <li class="md-nav__item"><a href="#check" class="md-nav__link">Check</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#basic-usage" class="md-nav__link">Basic Usage</a>
+        </li>
+        <li class="md-nav__item"><a href="#configuration" class="md-nav__link">Configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#next-steps" class="md-nav__link">Next Steps</a>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="_sources/getting-started.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="getting-started">
+<h1 id="getting-started--page-root">Getting Started<a class="headerlink" href="#getting-started--page-root" title="Link to this heading">¶</a></h1>
+<p>This package provides the inference code to run CellViT/CellViT++ models, designed for easier setup and usage. It does not include training code or any components unrelated to inference. It is recommended to use this package in a virtual environment (e.g., conda or venv) to avoid package conflicts.</p>
+<section id="prerequisites">
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h2>
+<p>Before installing the package, ensure that the following prerequisites are met as listed below. Most of the times, they are already installed on your system. Just give it a try and check out CellViT. If you encounter any issues, please refer to the installation instructions for the respective library.</p>
+<div class="sphinx_collapse docutils">
+<input class="sphinx_collapse__input" id="9791cef6-d6a3-444b-962c-b0089d288bc4" name="9791cef6-d6a3-444b-962c-b0089d288bc4" type="checkbox"/><label class="sphinx_collapse__label" for="9791cef6-d6a3-444b-962c-b0089d288bc4"><i class="sphinx_collapse__icon"></i>Required binaries</label><div class="sphinx_collapse__content docutils">
+<ul class="simple">
+<li><p><strong>libvips</strong> - Image processing library</p></li>
+<li><p><strong>openslide</strong> - Whole slide image library</p></li>
+<li><p><strong>gcc/g++</strong> - C/C++ compilers</p></li>
+<li><p><strong>libopencv-core-dev</strong> - OpenCV core development files</p></li>
+<li><p><strong>libopencv-imgproc-dev</strong> - OpenCV image processing modules</p></li>
+<li><p><strong>libsnappy-dev</strong> - Compression library</p></li>
+<li><p><strong>libgeos-dev</strong> - Geometry engine library</p></li>
+<li><p><strong>llvm</strong> - Compiler infrastructure</p></li>
+<li><p><strong>libjpeg-dev</strong> - JPEG image format library</p></li>
+<li><p><strong>libpng-dev</strong> - PNG image format library</p></li>
+<li><p><strong>libtiff-dev</strong> - TIFF image format library</p></li>
+</ul>
+<p>On Linux-based systems, you can install these using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libvips<span class="w"> </span>openslide<span class="w"> </span>gcc<span class="w"> </span>g++<span class="w"> </span>libopencv-core-dev<span class="w"> </span>libopencv-imgproc-dev<span class="w"> </span>libsnappy-dev<span class="w"> </span>libgeos-dev<span class="w"> </span>llvm<span class="w"> </span>libjpeg-dev<span class="w"> </span>libpng-dev<span class="w"> </span>libtiff-dev
+</pre></div>
+</div>
+<p>For other systems, please consult the relevant package management documentation.</p>
+</div>
+</div>
+</section>
+<section id="installation">
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<section id="required">
+<h3 id="required">Required<a class="headerlink" href="#required" title="Link to this heading">¶</a></h3>
+<p>To install the package, follow these steps:</p>
+<ol class="arabic">
+<li><p>Ensure that all prerequisites are installed as outlined above.</p></li>
+<li><p>Verify that OpenSlide (<a class="reference external" href="https://openslide.org/">https://openslide.org/</a>) is installed and accessible. If using conda, you can install it with:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>openslide
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install PyTorch for your system by following the instructions at <a class="reference external" href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a>. Ensure that PyTorch &gt;= 2.0 is installed. To view available versions and their corresponding CUDA versions, visit <a class="reference external" href="https://pytorch.org/get-started/previous-versions/">https://pytorch.org/get-started/previous-versions/</a>.
+CellViT-Inference has been tested with PyTorch 2.2.2 and CUDA 12.1. To install the recommended versions, run:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">torch</span><span class="o">==</span><span class="m">2</span>.2.2<span class="w"> </span><span class="nv">torchvision</span><span class="o">==</span><span class="m">0</span>.17.2<span class="w"> </span><span class="nv">torchaudio</span><span class="o">==</span><span class="m">2</span>.2.2<span class="w"> </span>--index-url<span class="w"> </span>https://download.pytorch.org/whl/cu121
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install the CellViT-Inference package using pip:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>cellvit
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="optional">
+<h3 id="optional">Optional<a class="headerlink" href="#optional" title="Link to this heading">¶</a></h3>
+<p>To enable hardware-accelerated libraries, you can install the following optional dependencies:</p>
+<ol class="arabic simple">
+<li><p>CuPy (CUDA accelerated NumPy): <a class="reference external" href="https://cupy.dev/">https://cupy.dev/</a></p></li>
+<li><p>cuCIM (RAPIDS cuCIM library): <a class="reference external" href="https://github.com/rapidsai/cucim">https://github.com/rapidsai/cucim</a></p></li>
+</ol>
+</section>
+<section id="check">
+<h3 id="check">Check<a class="headerlink" href="#check" title="Link to this heading">¶</a></h3>
+<p>To verify a successful installation, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-check
+</pre></div>
+</div>
+<p>The output should confirm that all required libraries are installed and accessible. If any libraries are missing, refer to the installation instructions for the respective library. This command will also check for optional dependencies and will print a warning if they are not installed. Installing these optional libraries is <strong>not required</strong>.</p>
+<p>If using a virtual environment, ensure it is activated before running the command.</p>
+</section>
+</section>
+<section id="basic-usage">
+<h2 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading">¶</a></h2>
+<p>This package is designed as a command-line tool. Configuration can be provided either directly via the CellViT CLI or by using a configuration file. The configuration file is a YAML file containing the settings for the inference pipeline.
+The main script is located in the <cite>cellvit</cite> module, and can be run using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference
+</pre></div>
+</div>
+<p>You then have to either specify a configuration file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span>--config<span class="w"> </span>&lt;path_to_config_file&gt;
+</pre></div>
+</div>
+<p>or provide the required parameters directly in the command line. To list all available parameters, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span>--help
+</pre></div>
+</div>
+<p>You can select to run inference for one slide only or for a batch of slides. For more information, please refer to the <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a> section.</p>
+</section>
+<section id="configuration">
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h2>
+<p>The <cite>caching-directory</cite> is used to store model weights, requiring at least 3GB of free space. By default, this is set to <code class="docutils literal notranslate"><span class="pre">~/.cache/cellvit</span></code>, but it can be changed by setting the environment variable <code class="docutils literal notranslate"><span class="pre">CELLVIT_CACHE</span></code> to a desired path. Remember to set this variable before running the command.</p>
+<table>
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CELLVIT_CACHE</span></code></p></td>
+<td><p>Path to the caching directory. Default is <code class="docutils literal notranslate"><span class="pre">~/.cache/cellvit</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="next-steps">
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="usage.html"><span class="doc">Usage</span></a></p></li>
+<li><p><a class="reference internal" href="examples.html"><span class="doc">Examples</span></a></p></li>
+<li><p><a class="reference internal" href="api-reference.html"><span class="doc">API Reference</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="index.html" title="Feature Highlights"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> "Previous" </span> Feature Highlights </span>
+              </div>
+            </a>
+          
+          
+            <a href="usage.html" title="Usage"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> "Next" </span> Usage </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2025, Fabian Hörst, University Hospital Essen (AöR), Essen, Germany.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
