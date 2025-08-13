@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#3f51b5">
+  <script src="_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Usage &#8212; CellViT++ Inference 1.0.0b documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=17be01a0" />
+    <script src="_static/documentation_options.js?v=40ff50a0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+    <link rel="prev" title="Getting Started" href="getting-started.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=purple data-md-color-accent=deep-purple>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#usage" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="index.html" title="CellViT++ Inference 1.0.0b documentation"
+           class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">&#xe88a</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">CellViT/CellViT++ Inference Documentation</span>
+          <span class="md-header-nav__topic"> Usage </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/TIO-IKIM/CellViT" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    CellViT/CellViT++ Inference
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = ""versions.json"",
+        target_loc = "../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">CellViT++ Inference 1.0.0b documentation</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="index.html" title="CellViT++ Inference 1.0.0b documentation" class="md-nav__button md-logo">
+      
+        <i class="md-icon">&#xe88a</i>
+      
+    </a>
+    <a href="index.html"
+       title="CellViT++ Inference 1.0.0b documentation">CellViT/CellViT++ Inference Documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/TIO-IKIM/CellViT" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    CellViT/CellViT++ Inference
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="getting-started.html" class="md-nav__link">Getting Started</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Usage </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Usage</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#usage--page-root" class="md-nav__link">Usage</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#basic-usage" class="md-nav__link">Basic Usage</a>
+        </li>
+        <li class="md-nav__item"><a href="#configuration-options" class="md-nav__link">Configuration Options</a>
+        </li>
+        <li class="md-nav__item"><a href="#yaml-configuration" class="md-nav__link">YAML-Configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#cli-configuration" class="md-nav__link">CLI-Configuration</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#general-configuration" class="md-nav__link">General configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#process-a-single-image" class="md-nav__link">Process a single image</a>
+        </li>
+        <li class="md-nav__item"><a href="#process-a-dataset" class="md-nav__link">Process a dataset</a>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="_sources/usage.rst.txt">Show Source</a> </li>
+
+  </ul>
+</nav>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="#basic-usage" class="md-nav__link">Basic Usage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#configuration-options" class="md-nav__link">Configuration Options</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#yaml-configuration" class="md-nav__link">YAML-Configuration</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#cli-configuration" class="md-nav__link">CLI-Configuration</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="examples.html" class="md-nav__link">Examples</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api-reference.html" class="md-nav__link">API Reference</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#usage--page-root" class="md-nav__link">Usage</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#basic-usage" class="md-nav__link">Basic Usage</a>
+        </li>
+        <li class="md-nav__item"><a href="#configuration-options" class="md-nav__link">Configuration Options</a>
+        </li>
+        <li class="md-nav__item"><a href="#yaml-configuration" class="md-nav__link">YAML-Configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#cli-configuration" class="md-nav__link">CLI-Configuration</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#general-configuration" class="md-nav__link">General configuration</a>
+        </li>
+        <li class="md-nav__item"><a href="#process-a-single-image" class="md-nav__link">Process a single image</a>
+        </li>
+        <li class="md-nav__item"><a href="#process-a-dataset" class="md-nav__link">Process a dataset</a>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="_sources/usage.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="usage">
+<h1 id="usage--page-root">Usage<a class="headerlink" href="#usage--page-root" title="Link to this heading">¶</a></h1>
+<section id="basic-usage">
+<h2 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To load images, we relly on the <a class="reference external" href="https://openslide.org/">OpenSlide</a> library. Please only use images that are supported by OpenSlide.
+If you encounter any issues with loading images, please check the OpenSlide documentation for supported formats.
+If you are using a virtual environment, ensure it is activated before running the command.
+If you want to use <code class="docutils literal notranslate"><span class="pre">.tiff</span></code> or other plain images that are not supported by OpenSlide, install <a class="reference external" href="https://www.libvips.org/">libvips</a>  and convert them to pyramid format.
+For example, you can use the following command to convert a plain image to pyramid format:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vips<span class="w"> </span>tiffsave<span class="w"> </span>input.tiff<span class="w"> </span>output.tiff<span class="w"> </span>--tile<span class="w"> </span>--tile-width<span class="w"> </span><span class="m">256</span><span class="w"> </span>--tile-height<span class="w"> </span><span class="m">256</span><span class="w"> </span>--pyramid<span class="w"> </span>--compression<span class="w"> </span>jpeg<span class="w"> </span>--Q<span class="w"> </span><span class="m">90</span><span class="w"> </span>--vips-progress
+</pre></div>
+</div>
+<p>This will create a pyramid image that can be used with CellViT.</p>
+</div>
+<p>This package is designed as a command-line tool. Configuration can be provided either directly via the CellViT CLI or by using a configuration file. The configuration file is a YAML file containing the settings for the inference pipeline.
+The main script is located in the <cite>cellvit</cite> module, and can be run using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference
+</pre></div>
+</div>
+<p>You then have to either specify a configuration file</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span>--config<span class="w"> </span>&lt;path_to_config_file&gt;
+</pre></div>
+</div>
+<p>or provide the required parameters directly in the command line. To list all available parameters, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cellvit-inference<span class="w"> </span>--help
+</pre></div>
+</div>
+<p>You can select to run inference for one slide only or for a batch of slides.</p>
+</section>
+<section id="configuration-options">
+<h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Link to this heading">¶</a></h2>
+<p>The configuration options are divided into several sections, each with its own purpose. Below is a summary of the main sections and their parameters. They appear in the <cite>.yaml</cite> file as well as in the CLI.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Always one of the process_wsi or process_dataset options must be selected. They are mutually exclusive.</p>
+</div>
+<table>
+<thead>
+<tr class="row-odd"><th class="head"><p>Section</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Required</p></th>
+<th class="head"><p>Further Information</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>General</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>model</p></td>
+<td><div class="line-block">
+<div class="line">Segmentation model to use</div>
+<div class="line">Choices: [“SAM”, “HIPT”]</div>
+</div>
+</td>
+<td><p>str</p></td>
+<td><p>➖</p></td>
+<td><p>✔️</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>nuclei_taxonomy</p></td>
+<td><div class="line-block">
+<div class="line">Defines the nuclei classification taxonomy</div>
+<div class="line">Choices: [“binary”, “pannuke”, “consep”, “lizard”, “midog”, “nucls_main”, “nucls_super”, “ocelot”, “panoptils”]</div>
+</div>
+</td>
+<td><p>str</p></td>
+<td><p>“pannuke”</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Inference</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>gpu</p></td>
+<td><p>GPU ID to use for inference</p></td>
+<td><p>int</p></td>
+<td><p>0</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>enforce_amp</p></td>
+<td><p>Whether to use Automatic Mixed Precision (AMP) for inference</p></td>
+<td><p>bool</p></td>
+<td><p>false</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>batch_size</p></td>
+<td><p>Number of images (1024 x 1024 patches) processed per batch</p></td>
+<td><p>int</p></td>
+<td><p>8</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Output Settings</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>outdir</p></td>
+<td><p>Path to the output directory where results will be stored</p></td>
+<td><p>str</p></td>
+<td><p>➖</p></td>
+<td><p>✔️</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>geojson</p></td>
+<td><p>Whether to export results in GeoJSON format (for QuPath or other tools)</p></td>
+<td><p>bool</p></td>
+<td><p>false</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>graph</p></td>
+<td><p>Whether to generate a cell graph representation</p></td>
+<td><p>bool</p></td>
+<td><p>false</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>compression</p></td>
+<td><p>Whether to use Snappy compression for output files</p></td>
+<td><p>bool</p></td>
+<td><p>false</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>System</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>cpu_count</p></td>
+<td><p>Number of CPU cores to use for inference</p></td>
+<td><p>int</p></td>
+<td><p>System configuration</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>ray_worker</p></td>
+<td><p>Number of ray worker to use for inference (limited by cpu-count)</p></td>
+<td><p>int</p></td>
+<td><p>System configuration</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>ray_remote_cpus</p></td>
+<td><p>Number of CPUs per ray worker</p></td>
+<td><p>int</p></td>
+<td><p>System configuration</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>memory</p></td>
+<td><p>RAM in MB to use</p></td>
+<td><p>int</p></td>
+<td><p>System configuration</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Debug</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>debug</p></td>
+<td><p>If debug should be used - this changes to logger level and requires ray[default]. Also outputs segmentation mask of the tissue preprocessing</p></td>
+<td><p>bool</p></td>
+<td><p>false</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Processing Mode: Process a Single Whole Slide Image (WSI)</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>wsi_path</p></td>
+<td><p>Path to the Whole Slide Image (WSI) file</p></td>
+<td><p>str</p></td>
+<td><p>➖</p></td>
+<td><p>✔️</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>wsi_mpp</p></td>
+<td><p>Microns per pixel (spatial resolution of the slide)</p></td>
+<td><p>float</p></td>
+<td><p>Extracted automatically from file (if available)</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>wsi_magnification</p></td>
+<td><p>Magnification level of the slide (e.g., 40)</p></td>
+<td><p>int</p></td>
+<td><p>Extracted automatically from file (if available)</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Processing Mode: Process a Dataset (Multiple WSI Files)</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>wsi_folder</p></td>
+<td><p>Path to a folder containing multiple WSI files</p></td>
+<td><p>str</p></td>
+<td><p>➖</p></td>
+<td><p>✔️ (if wsi_filelist is NOT used)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>wsi_filelist</p></td>
+<td><p>Path to a CSV file listing WSI files (must have a ‘path’ column)</p></td>
+<td><p>str</p></td>
+<td><p>➖</p></td>
+<td><p>✔️ (if wsi_folder is NOT used)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>wsi_extension</p></td>
+<td><p>File extension of WSI files (used for detection within wsi_folder)</p></td>
+<td><p>str</p></td>
+<td><p>svs</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>wsi_mpp</p></td>
+<td><p>Microns per pixel (spatial resolution of the slide). Overwrites slide settings and also mpp set in the filelist</p></td>
+<td><p>float</p></td>
+<td><p>Extracted automatically from file (if available)</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>wsi_magnification</p></td>
+<td><p>Magnification level of the slide (e.g., 40). Overwrites slide settings and also magnification set in the filelist</p></td>
+<td><p>int</p></td>
+<td><p>Extracted automatically from file (if available)</p></td>
+<td><p>➖</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="yaml-configuration">
+<h2 id="yaml-configuration">YAML-Configuration<a class="headerlink" href="#yaml-configuration" title="Link to this heading">¶</a></h2>
+<p>The configuration file for CellViT Inference is structured in <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> format. Below is an example configuration with explanations for each setting.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ==========================</span>
+<span class="c1"># CellViT Inference Config</span>
+<span class="c1"># ==========================</span>
+
+<span class="c1"># Model selection (REQUIRED)</span>
+<span class="nt">model</span><span class="p">:</span><span class="w">                </span><span class="c1"># REQUIRED | str: Segmentation model to use.</span>
+<span class="w">                      </span><span class="c1"># Choices: ["SAM", "HIPT"]</span>
+<span class="c1"># Nuclei classification taxonomy (OPTIONAL)</span>
+<span class="nt">nuclei_taxonomy</span><span class="p">:</span><span class="w">      </span><span class="c1"># OPTIONAL | str: Defines the nuclei classification taxonomy.</span>
+<span class="w">                      </span><span class="c1"># Choices: ["binary", "pannuke", "consep", "lizard", "midog", "nucls_main", "nucls_super", "ocelot", "panoptils"]</span>
+<span class="w">                      </span><span class="c1"># Default: "pannuke"</span>
+
+<span class="c1"># ==========================</span>
+<span class="c1"># Inference Settings (OPTIONAL)</span>
+<span class="c1"># ==========================</span>
+<span class="nt">inference</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">gpu</span><span class="p">:</span><span class="w">                </span><span class="c1"># OPTIONAL | int: GPU ID to use for inference.</span>
+<span class="w">                      </span><span class="c1"># Default: 0 (use first available GPU)</span>
+<span class="w">  </span><span class="nt">enforce_amp</span><span class="p">:</span><span class="w">        </span><span class="c1"># OPTIONAL | bool: Whether to use Automatic Mixed Precision (AMP) for inference.</span>
+<span class="w">                      </span><span class="c1"># Default: false (disabled)</span>
+<span class="w">  </span><span class="nt">batch_size</span><span class="p">:</span><span class="w">         </span><span class="c1"># OPTIONAL | int: Number of images (1024 x 1024 patches) processed per batch.</span>
+<span class="w">                      </span><span class="c1"># Default: 8</span>
+
+<span class="c1"># ==========================</span>
+<span class="c1"># Output Settings</span>
+<span class="c1"># ==========================</span>
+<span class="nt">output_format</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">outdir</span><span class="p">:</span><span class="w">             </span><span class="c1"># REQUIRED | str: Path to the output directory where results will be stored.</span>
+<span class="w">  </span><span class="nt">geojson</span><span class="p">:</span><span class="w">            </span><span class="c1"># OPTIONAL | bool: Whether to export results in GeoJSON format (for QuPath or other tools).</span>
+<span class="w">                      </span><span class="c1"># Default: false (disabled)</span>
+<span class="w">  </span><span class="nt">graph</span><span class="p">:</span><span class="w">              </span><span class="c1"># OPTIONAL | bool: Whether to generate a cell graph representation.</span>
+<span class="w">                      </span><span class="c1"># Default: false (disabled)</span>
+<span class="w">  </span><span class="nt">compression</span><span class="p">:</span><span class="w">        </span><span class="c1"># OPTIONAL | bool: Whether to use Snappy compression for output files.</span>
+<span class="w">                      </span><span class="c1"># Default: false (disabled)</span>
+
+<span class="c1"># ==========================</span>
+<span class="c1"># Processing Mode (Choose One)</span>
+<span class="c1"># ==========================</span>
+<span class="c1"># Either `process_wsi` (for a single image) or `process_dataset` (for multiple images) should be used.</span>
+
+<span class="c1"># --- Process a Single Whole Slide Image (WSI) ---</span>
+<span class="nt">process_wsi</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">wsi_path</span><span class="p">:</span><span class="w">           </span><span class="c1"># REQUIRED | str: Path to the Whole Slide Image (WSI) file.</span>
+<span class="w">  </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w">            </span><span class="c1"># OPTIONAL | float: Microns per pixel (spatial resolution of the slide).</span>
+<span class="w">                      </span><span class="c1"># Default: Extracted automatically from file (if available).</span>
+<span class="w">  </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w">  </span><span class="c1"># OPTIONAL | int: Magnification level of the slide (e.g., 20x, 40x).</span>
+<span class="w">                      </span><span class="c1"># Default: Extracted automatically from file (if available).</span>
+
+<span class="c1"># --- Process a Dataset (Multiple WSI Files) ---</span>
+<span class="nt">process_dataset</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">wsi_folder</span><span class="p">:</span><span class="w">         </span><span class="c1"># REQUIRED (if `wsi_filelist` is NOT used) | str: Path to a folder containing multiple WSI files.</span>
+<span class="w">                      </span><span class="c1"># Either `wsi_folder` OR `wsi_filelist` must be provided (not both).</span>
+<span class="w">  </span><span class="nt">wsi_extension</span><span class="p">:</span><span class="w">      </span><span class="c1"># OPTIONAL | str: File extension of WSI files (used for detection within wsi_folder).</span>
+<span class="w">                      </span><span class="c1"># Default: "svs"</span>
+<span class="w">  </span><span class="nt">wsi_filelist</span><span class="p">:</span><span class="w">       </span><span class="c1"># REQUIRED (if `wsi_folder` is NOT used) | str: Path to a CSV file listing WSI files.</span>
+<span class="w">                      </span><span class="c1"># CSV must have a 'path' column, with optional 'wsi_mpp' and 'wsi_magnification' columns.</span>
+<span class="w">                      </span><span class="c1"># If 'wsi_mpp' and 'wsi_magnification' are provided, they override global settings.</span>
+<span class="w">  </span><span class="nt">wsi_mpp</span><span class="p">:</span><span class="w">            </span><span class="c1"># OPTIONAL | float: Microns per pixel (spatial resolution).</span>
+<span class="w">                      </span><span class="c1"># Default: Extracted automatically from file (if available).</span>
+<span class="w">                      </span><span class="c1"># Can be used with both `wsi_folder` and `wsi_filelist`.</span>
+<span class="w">  </span><span class="nt">wsi_magnification</span><span class="p">:</span><span class="w">  </span><span class="c1"># OPTIONAL | int: Magnification level of the slides.</span>
+<span class="w">                      </span><span class="c1"># Default: Extracted automatically from file (if available).</span>
+<span class="w">                      </span><span class="c1"># Can be used with both `wsi_folder` and `wsi_filelist`.</span>
+
+<span class="c1"># ==========================</span>
+<span class="c1"># System Settings (OPTIONAL)</span>
+<span class="c1"># ==========================</span>
+<span class="nt">system</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">cpu_count</span><span class="p">:</span><span class="w">          </span><span class="c1"># OPTIONAL | int: Number of CPU cores to use for inference.</span>
+<span class="w">                      </span><span class="c1"># Default: Uses system configuration.</span>
+<span class="w">  </span><span class="nt">ray_worker</span><span class="p">:</span><span class="w">         </span><span class="c1"># OPTIONAL | int: Number of ray workers to use for inference. Limited by cpu_count.</span>
+<span class="w">                      </span><span class="c1"># Default: Uses system configuration.</span>
+<span class="w">  </span><span class="nt">ray_remote_cpus</span><span class="p">:</span><span class="w">    </span><span class="c1"># OPTIONAL | int: Number of CPUs per ray worker.</span>
+<span class="w">                      </span><span class="c1"># Default: Uses system configuration.</span>
+<span class="w">  </span><span class="nt">memory</span><span class="p">:</span><span class="w">             </span><span class="c1"># OPTIONAL | int: RAM in MB to use.</span>
+<span class="w">                      </span><span class="c1"># Default: Uses system configuration.</span>
+
+<span class="c1"># ==========================</span>
+<span class="c1"># Debug Settings (OPTIONAL)</span>
+<span class="c1"># ==========================</span>
+<span class="nt">debug</span><span class="p">:</span><span class="w">                </span><span class="c1"># OPTIONAL | bool: If debug should be used - this changes to logger level and requires ray[default]</span>
+<span class="w">                      </span><span class="c1"># Default: False</span>
+</pre></div>
+</div>
+<p>Examples for <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> configuration files can be found in the <a class="reference internal" href="examples.html"><span class="doc">Examples</span></a> section.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The configuration file must be in YAML format.</p></li>
+<li><p>Either run a single WSI or a dataset of WSIs, but not both at the same time.</p></li>
+<li><p>The <cite>wsi_path</cite> and <cite>wsi_folder</cite> or <cite>wsi_filelist</cite> parameters are mutually exclusive.</p></li>
+<li><p>The <cite>wsi_mpp</cite> and <cite>wsi_magnification</cite> parameters can be set globally or per WSI in the file list.</p></li>
+<li><p>The <cite>output_format</cite> section allows you to customize the output format and compression settings.</p></li>
+<li><p>The <cite>system</cite> section allows you to customize the CPU and memory settings for inference.</p></li>
+<li><p>The <cite>debug</cite> section allows you to enable debug mode for more detailed logging.</p></li>
+<li><p>The configuration file can be passed as a command-line argument using the <cite>–config</cite> flag.</p></li>
+</ul>
+</div>
+</section>
+<section id="cli-configuration">
+<h2 id="cli-configuration">CLI-Configuration<a class="headerlink" href="#cli-configuration" title="Link to this heading">¶</a></h2>
+<p>The CLI configuration allows you to specify the parameters directly in the command line.</p>
+<section id="general-configuration">
+<h3 id="general-configuration">General configuration<a class="headerlink" href="#general-configuration" title="Link to this heading">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">usage: cellvit-inference [-h] [--config CONFIG] [--model {SAM,HIPT}] [--nuclei_taxonomy {binary,pannuke,consep,lizard,midog,nucls_main,nucls_super,ocelot,panoptils}] [--gpu GPU]</span>
+<span class="go">                  [--enforce_amp] [--batch_size BATCH_SIZE] [--outdir OUTDIR] [--geojson] [--graph] [--compression] [--cpu_count CPU_COUNT] [--ray_worker RAY_WORKER]</span>
+<span class="go">                  [--ray_remote_cpus RAY_REMOTE_CPUS] [--memory MEMORY] [--debug]</span>
+<span class="go">                  {process_wsi,process_dataset} ...</span>
+
+<span class="go">Perform CellViT++ inference</span>
+
+<span class="go">positional arguments:</span>
+<span class="go">  {process_wsi,process_dataset}</span>
+<span class="go">                        Select processing mode</span>
+<span class="go">    process_wsi         Process a single Whole Slide Image</span>
+<span class="go">    process_dataset     Process multiple WSI files</span>
+
+<span class="go">options:</span>
+<span class="go">  -h, --help            show this help message and exit</span>
+<span class="go">  --config CONFIG       Path to a YAML configuration file. If provided, CLI arguments are ignored. (default: None)</span>
+<span class="go">  --model {SAM,HIPT}    Segmentation model to use (default: None), REQUIRED</span>
+<span class="go">  --nuclei_taxonomy {binary,pannuke,consep,lizard,midog,nucls_main,nucls_super,ocelot,panoptils}</span>
+<span class="go">                        Defines the nuclei classification taxonomy (default: pannuke), OPTIONAL</span>
+<span class="go">  --debug               Enable debug mode (changes logger level and requires ray[default]) (default: False), OPTIONAL</span>
+
+<span class="go">Inference Settings:</span>
+<span class="go">  --gpu GPU             GPU ID to use for inference (default: 0), OPTIONAL</span>
+<span class="go">  --enforce_amp         Whether to use Automatic Mixed Precision (AMP) for inference (default: False), OPTIONAL</span>
+<span class="go">  --batch_size BATCH_SIZE</span>
+<span class="go">                        Number of images processed per batch (default: 8), OPTIONAL</span>
+
+<span class="go">Output Settings:</span>
+<span class="go">  --outdir OUTDIR       Path to the output directory where results will be stored (default: None), REQUIRED</span>
+<span class="go">  --geojson             Whether to export results in GeoJSON format (for QuPath or other tools) (default: False), OPTIONAL</span>
+<span class="go">  --graph               Whether to generate a cell graph representation (default: False), OPTIONAL</span>
+<span class="go">  --compression         Whether to use Snappy compression for output files (default: False), OPTIONAL</span>
+
+<span class="go">System Settings:</span>
+<span class="go">  --cpu_count CPU_COUNT</span>
+<span class="go">                        Number of CPU cores to use for inference (default: None), OPTIONAL</span>
+<span class="go">  --ray_worker RAY_WORKER</span>
+<span class="go">                        Number of ray worker to use for inference (limited by cpu-count) (default: None), OPTIONAL</span>
+<span class="go">  --ray_remote_cpus RAY_REMOTE_CPUS</span>
+<span class="go">                        Number of CPUs per ray worker (default: None), OPTIONAL</span>
+<span class="go">  --memory MEMORY       RAM in MB to use (default: None), OPTIONAL</span>
+</pre></div>
+</div>
+</section>
+<section id="process-a-single-image">
+<h3 id="process-a-single-image">Process a single image<a class="headerlink" href="#process-a-single-image" title="Link to this heading">¶</a></h3>
+<p>All previous configuration options need to be set before running the command with <code class="docutils literal notranslate"><span class="pre">process_wsi</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cellvit-inference [previous options] process_wsi [wsi_options]</span>
+</pre></div>
+</div>
+<p>The <a href="#id1"><span class="problematic" id="id2">``</span></a>process_wsi``options are:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">usage: cellvit-inference process_wsi [-h] (--wsi_folder WSI_FOLDER | --wsi_filelist WSI_FILELIST) [--wsi_extension WSI_EXTENSION] [--wsi_mpp WSI_MPP]</span>
+<span class="go">                                    [--wsi_magnification WSI_MAGNIFICATION]</span>
+
+<span class="go">options:</span>
+<span class="go">  -h, --help            show this help message and exit</span>
+<span class="go">  --wsi_path WSI_PATH   Path to the Whole Slide Image (WSI) file, REQUIRED</span>
+<span class="go">  --wsi_mpp WSI_MPP     Microns per pixel (spatial resolution of the slide), OPTIONAL</span>
+<span class="go">                        Default: Extracted automatically from file (if available)</span>
+<span class="go">  --wsi_magnification WSI_MAGNIFICATION</span>
+<span class="go">                        Magnification level of the slide (e.g., 40), OPTIONAL</span>
+<span class="go">                        Default: Extracted automatically from file (if available)</span>
+</pre></div>
+</div>
+</section>
+<section id="process-a-dataset">
+<h3 id="process-a-dataset">Process a dataset<a class="headerlink" href="#process-a-dataset" title="Link to this heading">¶</a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cellvit-inference [previous options] process_dataset [wsi_options]</span>
+</pre></div>
+</div>
+<p>The <a href="#id3"><span class="problematic" id="id4">``</span></a>process_dataset``options are:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">usage: cellvit-inference process_dataset [-h] (--wsi_folder WSI_FOLDER | --wsi_filelist WSI_FILELIST) [--wsi_extension WSI_EXTENSION] [--wsi_mpp WSI_MPP]</span>
+<span class="go">                                    [--wsi_magnification WSI_MAGNIFICATION]</span>
+
+<span class="go">options:</span>
+<span class="go">  -h, --help            show this help message and exit</span>
+<span class="go">  --wsi_folder WSI_FOLDER</span>
+<span class="go">                        Path to a folder containing multiple WSI files, REQUIRED if wsi_filelist is NOT used</span>
+<span class="go">  --wsi_filelist WSI_FILELIST</span>
+<span class="go">                        Path to a CSV file listing WSI files (must have a 'path' column), REQUIRED if wsi_folder is NOT used</span>
+<span class="go">  --wsi_extension WSI_EXTENSION</span>
+<span class="go">                        File extension of WSI files (used for detection within wsi_folder), OPTIONAL</span>
+<span class="go">  --wsi_mpp WSI_MPP     Microns per pixel (spatial resolution), OPTIONAL</span>
+<span class="go">                        Default: Extracted automatically from file (if available)</span>
+<span class="go">                        Can be used with both wsi_folder and wsi_filelist</span>
+<span class="go">  --wsi_magnification WSI_MAGNIFICATION</span>
+<span class="go">                        Magnification level of the slides, OPTIONAL</span>
+<span class="go">                        Default: Extracted automatically from file (if available)</span>
+<span class="go">                        Can be used with both wsi_folder and wsi_filelist</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The <cite>wsi_path</cite> and <cite>wsi_folder</cite> or <cite>wsi_filelist</cite> parameters are mutually exclusive.</p></li>
+<li><p>The <cite>wsi_mpp</cite> and <cite>wsi_magnification</cite> parameters can be set globally or per WSI in the file list.</p></li>
+<li><p>The <cite>output_format</cite> section allows you to customize the output format and compression settings.</p></li>
+<li><p>The <cite>system</cite> section allows you to customize the CPU and memory settings for inference.</p></li>
+<li><p>The <cite>debug</cite> section allows you to enable debug mode for more detailed logging.</p></li>
+<li><p>The configuration file can be passed as a command-line argument using the <cite>–config</cite> flag.</p></li>
+<li><p>The <cite>–wsi_folder</cite> option is used to specify a folder containing multiple WSI files.</p></li>
+<li><p>The <cite>–wsi_filelist</cite> option is used to specify a CSV file listing WSI files, even from different folders. Provide the entire WSI-paths in the <cite>path</cite> column.</p></li>
+<li><p>The <cite>–wsi_extension</cite> option is used to specify the file extension of WSI files (e.g., “svs”).</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="getting-started.html" title="Getting Started"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> "Previous" </span> Getting Started </span>
+              </div>
+            </a>
+          
+          
+            <a href="examples.html" title="Examples"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> "Next" </span> Examples </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2025, Fabian Hörst, University Hospital Essen (AöR), Essen, Germany.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

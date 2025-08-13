@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#3f51b5">
+  <script src="_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>cellvit.utils package &#8212; CellViT++ Inference 1.0.0b documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx_collapse.css?v=226d88b4" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=17be01a0" />
+    <script src="_static/documentation_options.js?v=40ff50a0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="cellvit" href="modules.html" />
+    <link rel="prev" title="cellvit.models.utils package" href="cellvit.models.utils.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=purple data-md-color-accent=deep-purple>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#cellvit.utils" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="index.html" title="CellViT++ Inference 1.0.0b documentation"
+           class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">&#xe88a</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">CellViT/CellViT++ Inference Documentation</span>
+          <span class="md-header-nav__topic"> cellvit.utils package </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/TIO-IKIM/CellViT" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    CellViT/CellViT++ Inference
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = ""versions.json"",
+        target_loc = "../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">CellViT++ Inference 1.0.0b documentation</a></li>
+          <li class="md-tabs__item"><a href="api-reference.html" class="md-tabs__link">API Reference</a></li>
+          <li class="md-tabs__item"><a href="cellvit.html" class="md-tabs__link">cellvit package</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="index.html" title="CellViT++ Inference 1.0.0b documentation" class="md-nav__button md-logo">
+      
+        <i class="md-icon">&#xe88a</i>
+      
+    </a>
+    <a href="index.html"
+       title="CellViT++ Inference 1.0.0b documentation">CellViT/CellViT++ Inference Documentation</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/TIO-IKIM/CellViT" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    CellViT/CellViT++ Inference
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+    
+      <a href="getting-started.html" class="md-nav__link">Getting Started</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="usage.html" class="md-nav__link">Usage</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="examples.html" class="md-nav__link">Examples</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api-reference.html" class="md-nav__link">API Reference</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="api-reference.html#package-overview" class="md-nav__link">Package Overview</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api-reference.html#core-modules" class="md-nav__link">Core Modules</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api-reference.html#models" class="md-nav__link">Models</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api-reference.html#utilities" class="md-nav__link">Utilities</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api-reference.html#full-module-documentation" class="md-nav__link">Full Module Documentation</a>
+      
+    
+    </li></ul>
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#cellvit-utils--page-root" class="md-nav__link">cellvit.utils package</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#submodules" class="md-nav__link">Submodules</a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit-utils-cache-models-module" class="md-nav__link">cellvit.utils.cache_models module</a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit-utils-cache-test-database-module" class="md-nav__link">cellvit.utils.cache_test_database module</a>
+        </li>
+        <li class="md-nav__item"><a href="#module-cellvit.utils.check_cupy" class="md-nav__link">cellvit.utils.check_cupy module</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#cellvit.utils.check_cupy.check_cupy" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">check_cupy()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#module-cellvit.utils.check_module" class="md-nav__link">cellvit.utils.check_module module</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#cellvit.utils.check_module.check_module" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">check_module()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.check_module.perform_module_check" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">perform_module_check()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit-utils-check-ray-module" class="md-nav__link">cellvit.utils.check_ray module</a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit-utils-clean-classifier-module" class="md-nav__link">cellvit.utils.clean_classifier module</a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit-utils-download-module" class="md-nav__link">cellvit.utils.download module</a>
+        </li>
+        <li class="md-nav__item"><a href="#module-cellvit.utils.logger" class="md-nav__link">cellvit.utils.logger module</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.ColoredFormatter" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ColoredFormatter</span></code></a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.ColoredFormatter.format" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ColoredFormatter.format()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.ColoredFormatter.None" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ColoredFormatter.None</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.ColoredFormatter.__init__" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ColoredFormatter.__init__()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.ColoredFormatter.converter" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ColoredFormatter.converter()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.ColoredFormatter.default_msec_format" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ColoredFormatter.default_msec_format</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.ColoredFormatter.default_time_format" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ColoredFormatter.default_time_format</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#id0" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ColoredFormatter.format()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.ColoredFormatter.formatException" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ColoredFormatter.formatException()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.ColoredFormatter.formatMessage" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ColoredFormatter.formatMessage()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.ColoredFormatter.formatStack" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ColoredFormatter.formatStack()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.ColoredFormatter.formatTime" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ColoredFormatter.formatTime()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.ColoredFormatter.usesTime" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">ColoredFormatter.usesTime()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.Logger" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Logger</span></code></a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.Logger.level" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Logger.level</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.Logger.comment" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Logger.comment</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.Logger.log_parent_dir" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Logger.log_parent_dir</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.Logger.use_timestamp" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Logger.use_timestamp</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.Logger.formatter" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Logger.formatter</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.Logger.file_level" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Logger.file_level</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.Logger.create_logger" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Logger.create_logger()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.Logger.__init__" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Logger.__init__()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.Logger.create_handler" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Logger.create_handler()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#id1" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">Logger.create_logger()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.NullLogger" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">NullLogger</span></code></a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.NullLogger.critical" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">NullLogger.critical()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.NullLogger.debug" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">NullLogger.debug()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.NullLogger.error" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">NullLogger.error()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.NullLogger.info" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">NullLogger.info()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.NullLogger.warning" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">NullLogger.warning()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.PrintLogger" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">PrintLogger</span></code></a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.PrintLogger.critical" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">PrintLogger.critical()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.PrintLogger.debug" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">PrintLogger.debug()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.PrintLogger.error" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">PrintLogger.error()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.PrintLogger.info" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">PrintLogger.info()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit.utils.logger.PrintLogger.warning" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">PrintLogger.warning()</span></code></a>
+        </li></ul>
+            </nav>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit-utils-ressource-manager-module" class="md-nav__link">cellvit.utils.ressource_manager module</a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit-utils-tools-module" class="md-nav__link">cellvit.utils.tools module</a>
+        </li>
+        <li class="md-nav__item"><a href="#cellvit-utils-tools-cp-module" class="md-nav__link">cellvit.utils.tools_cp module</a>
+        </li></ul>
+            </nav>
+        </li>
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="_sources/cellvit.utils.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="module-cellvit.utils">
+<span id="cellvit-utils-package"></span><h1 id="cellvit-utils--page-root">cellvit.utils package<a class="headerlink" href="#cellvit-utils--page-root" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2 id="submodules">Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="cellvit-utils-cache-models-module">
+<h2 id="cellvit-utils-cache-models-module">cellvit.utils.cache_models module<a class="headerlink" href="#cellvit-utils-cache-models-module" title="Link to this heading">¶</a></h2>
+</section>
+<section id="cellvit-utils-cache-test-database-module">
+<h2 id="cellvit-utils-cache-test-database-module">cellvit.utils.cache_test_database module<a class="headerlink" href="#cellvit-utils-cache-test-database-module" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-cellvit.utils.check_cupy">
+<span id="cellvit-utils-check-cupy-module"></span><h2 id="module-cellvit.utils.check_cupy">cellvit.utils.check_cupy module<a class="headerlink" href="#module-cellvit.utils.check_cupy" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="cellvit.utils.check_cupy.check_cupy">
+<span class="sig-prename descclassname"><span class="pre">cellvit.utils.check_cupy.</span></span><span class="sig-name descname"><span class="pre">check_cupy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check_gpu:</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger:</span> <span class="pre">~logging.Logger</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">&lt;cellvit.utils.logger.NullLogger</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/cellvit/utils/check_cupy.html#check_cupy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.check_cupy.check_cupy" title="Link to this definition">¶</a></dt>
+<dd><p>Check if CuPy is installed and working correctly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>check_gpu</strong> (<em>True</em>) – Check if CuPy can access the GPU.</p></li>
+<li><p><strong>logger</strong> (<em>Optional</em><em>[</em><em>logging.Logger</em><em>]</em><em>, </em><em>optional</em>) – Logger. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>SystemError</strong> – No CUDA-capable GPU detected by CuPy.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if CuPy is installed and working correctly.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+</section>
+<section id="module-cellvit.utils.check_module">
+<span id="cellvit-utils-check-module-module"></span><h2 id="module-cellvit.utils.check_module">cellvit.utils.check_module module<a class="headerlink" href="#module-cellvit.utils.check_module" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="cellvit.utils.check_module.check_module">
+<span class="sig-prename descclassname"><span class="pre">cellvit.utils.check_module.</span></span><span class="sig-name descname"><span class="pre">check_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/cellvit/utils/check_module.html#check_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.check_module.check_module" title="Link to this definition">¶</a></dt>
+<dd><p>Check if a module is installed in the environment.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="cellvit.utils.check_module.perform_module_check">
+<span class="sig-prename descclassname"><span class="pre">cellvit.utils.check_module.</span></span><span class="sig-name descname"><span class="pre">perform_module_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#cellvit.utils.logger.ColoredFormatter.None" title="cellvit.utils.logger.ColoredFormatter.None"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#cellvit.utils.logger.ColoredFormatter.None" title="cellvit.utils.logger.ColoredFormatter.None"><span class="pre">None</span></a></span></span><a class="reference internal" href="_modules/cellvit/utils/check_module.html#perform_module_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.check_module.perform_module_check" title="Link to this definition">¶</a></dt>
+<dd><p>Check if a module is installed in the environment and log the result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>module_name</strong> (<em>str</em>) – Name of the module to check.</p></li>
+<li><p><strong>logger</strong> (<em>Optional</em><em>[</em><em>logging.Logger</em><em>]</em><em>, </em><em>optional</em>) – Logger. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>e</strong> – ImportError if the module is not installed.</p>
+</dd>
+</dl>
+</dd></dl>
+</section>
+<section id="cellvit-utils-check-ray-module">
+<h2 id="cellvit-utils-check-ray-module">cellvit.utils.check_ray module<a class="headerlink" href="#cellvit-utils-check-ray-module" title="Link to this heading">¶</a></h2>
+</section>
+<section id="cellvit-utils-clean-classifier-module">
+<h2 id="cellvit-utils-clean-classifier-module">cellvit.utils.clean_classifier module<a class="headerlink" href="#cellvit-utils-clean-classifier-module" title="Link to this heading">¶</a></h2>
+</section>
+<section id="cellvit-utils-download-module">
+<h2 id="cellvit-utils-download-module">cellvit.utils.download module<a class="headerlink" href="#cellvit-utils-download-module" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-cellvit.utils.logger">
+<span id="cellvit-utils-logger-module"></span><h2 id="module-cellvit.utils.logger">cellvit.utils.logger module<a class="headerlink" href="#module-cellvit.utils.logger" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cellvit.utils.logger.ColoredFormatter">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cellvit.utils.logger.</span></span><span class="sig-name descname"><span class="pre">ColoredFormatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datefmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#ColoredFormatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.ColoredFormatter" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Formatter</span></code></p>
+<p>A custom formatter class that adds color to log messages based on the log level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>logging.Formatter</strong> – The base class for formatting log messages.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.ColoredFormatter.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#ColoredFormatter.format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.ColoredFormatter.format" title="Link to this definition">¶</a></dt>
+<dd><p>Formats the log record and adds color based on the log level.</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cellvit.utils.logger.ColoredFormatter.None">
+<span class="sig-name descname"><span class="pre">None</span></span><a class="headerlink" href="#cellvit.utils.logger.ColoredFormatter.None" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<p class="rubric">Example</p>
+<p>formatter = ColoredFormatter()
+log_handler.setFormatter(formatter)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.ColoredFormatter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datefmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cellvit.utils.logger.ColoredFormatter.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize the formatter with specified format strings.</p>
+<p>Initialize the formatter either with the specified format string, or a
+default as described above. Allow for specialized date formatting with
+the optional datefmt argument. If datefmt is omitted, you get an
+ISO8601-like (or RFC 3339-like) format.</p>
+<p>Use a style parameter of ‘%’, ‘{’ or ‘$’ to specify that you want to
+use one of %-formatting, <code class="xref py py-meth docutils literal notranslate"><span class="pre">str.format()</span></code> (<code class="docutils literal notranslate"><span class="pre">{}</span></code>) formatting or
+<code class="xref py py-class docutils literal notranslate"><span class="pre">string.Template</span></code> formatting in your format string.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.2: </span>Added the <code class="docutils literal notranslate"><span class="pre">style</span></code> parameter.</p>
+</div>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.ColoredFormatter.converter">
+<span class="sig-name descname"><span class="pre">converter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cellvit.utils.logger.ColoredFormatter.converter" title="Link to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>localtime([seconds]) -&gt; (tm_year,tm_mon,tm_mday,tm_hour,tm_min,</dt><dd><p>tm_sec,tm_wday,tm_yday,tm_isdst)</p>
+</dd>
+</dl>
+<p>Convert seconds since the Epoch to a time tuple expressing local time.
+When ‘seconds’ is not passed in, convert the current time instead.</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cellvit.utils.logger.ColoredFormatter.default_msec_format">
+<span class="sig-name descname"><span class="pre">default_msec_format</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'%s,%03d'</span></em><a class="headerlink" href="#cellvit.utils.logger.ColoredFormatter.default_msec_format" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cellvit.utils.logger.ColoredFormatter.default_time_format">
+<span class="sig-name descname"><span class="pre">default_time_format</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'%Y-%m-%d</span> <span class="pre">%H:%M:%S'</span></em><a class="headerlink" href="#cellvit.utils.logger.ColoredFormatter.default_time_format" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#ColoredFormatter.format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>Formats the log record and adds color based on the log level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>record</strong> (<em>logging.LogRecord</em>) – The log record to be formatted.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The formatted log message with added color.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<p>log_message = super().format(record)
+return f’{COLOR_CODES_LOGGING[record.levelname]}{log_message}’</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.ColoredFormatter.formatException">
+<span class="sig-name descname"><span class="pre">formatException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ei</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cellvit.utils.logger.ColoredFormatter.formatException" title="Link to this definition">¶</a></dt>
+<dd><p>Format and return the specified exception information as a string.</p>
+<p>This default implementation just uses
+traceback.print_exception()</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.ColoredFormatter.formatMessage">
+<span class="sig-name descname"><span class="pre">formatMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cellvit.utils.logger.ColoredFormatter.formatMessage" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.ColoredFormatter.formatStack">
+<span class="sig-name descname"><span class="pre">formatStack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stack_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cellvit.utils.logger.ColoredFormatter.formatStack" title="Link to this definition">¶</a></dt>
+<dd><p>This method is provided as an extension point for specialized
+formatting of stack information.</p>
+<p>The input data is a string as returned from a call to
+<code class="xref py py-func docutils literal notranslate"><span class="pre">traceback.print_stack()</span></code>, but with the last trailing newline
+removed.</p>
+<p>The base implementation just returns the value passed in.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.ColoredFormatter.formatTime">
+<span class="sig-name descname"><span class="pre">formatTime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datefmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cellvit.utils.logger.ColoredFormatter.formatTime" title="Link to this definition">¶</a></dt>
+<dd><p>Return the creation time of the specified LogRecord as formatted text.</p>
+<p>This method should be called from format() by a formatter which
+wants to make use of a formatted time. This method can be overridden
+in formatters to provide for any specific requirement, but the
+basic behaviour is as follows: if datefmt (a string) is specified,
+it is used with time.strftime() to format the creation time of the
+record. Otherwise, an ISO8601-like (or RFC 3339-like) format is used.
+The resulting string is returned. This function uses a user-configurable
+function to convert the creation time to a tuple. By default,
+time.localtime() is used; to change this for a particular formatter
+instance, set the ‘converter’ attribute to a function with the same
+signature as time.localtime() or time.gmtime(). To change it for all
+formatters, for example if you want all logging times to be shown in GMT,
+set the ‘converter’ attribute in the Formatter class.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.ColoredFormatter.usesTime">
+<span class="sig-name descname"><span class="pre">usesTime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cellvit.utils.logger.ColoredFormatter.usesTime" title="Link to this definition">¶</a></dt>
+<dd><p>Check if the format uses the creation time of the record.</p>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cellvit.utils.logger.Logger">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cellvit.utils.logger.</span></span><span class="sig-name descname"><span class="pre">Logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'CRITICAL'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ERROR'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'WARNING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'INFO'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DEBUG'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'logs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_timestamp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'CRITICAL'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ERROR'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'WARNING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'INFO'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DEBUG'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#Logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.Logger" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>“A Logger for sys-logging and RotatingFileHandler-logging using the python logging module.</p>
+<p>Initialize a Logger for sys-logging and RotatingFileHandler-logging by using python logging module.
+The logger can be used out of the box without any changes, but is also adaptable for specific use cases.
+In basic configuration, just the log level must be provided. If log_dir is provided, another handler object is created
+logging into a file into the log_dir directory. The filename can be changes by using comment, which basically is the filename.
+To create different log files with specific timestamp set ‘use_timestamp’ = True. This adds an additional timestamp to the filename.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> (<em>Literal</em><em>[</em><em>"CRITICAL"</em><em>, </em><em>"ERROR"</em><em>, </em><em>"WARNING"</em><em>, </em><em>"INFO"</em><em>, </em><em>"DEBUG"</em><em>]</em>) – Logger.level</p></li>
+<li><p><strong>log_dir</strong> (<em>Union</em><em>[</em><em>Path</em><em>, </em><em>str</em><em>]</em><em>, </em><em>optional</em>) – Path to save logfile in. Defaults to None.</p></li>
+<li><p><strong>comment</strong> (<em>str</em><em>, </em><em>optional</em>) – additional comment for save file. Defaults to ‘logs’.</p></li>
+<li><p><strong>formatter</strong> (<em>str</em><em>, </em><em>optional</em>) – Custom formatter. Defaults to None.</p></li>
+<li><p><strong>use_timestamp</strong> (<em>bool</em><em>, </em><em>optional</em>) – Using timestamp for time-logging. Defaults to False.</p></li>
+<li><p><strong>file_level</strong> (<em>Literal</em><em>[</em><em>"CRITICAL"</em><em>, </em><em>"ERROR"</em><em>, </em><em>"WARNING"</em><em>, </em><em>"INFO"</em><em>, </em><em>"DEBUG"</em><em>]</em><em>, </em><em>optional</em>) – Set Logger.level. for output file.
+Can be useful if a different logging level should be used for terminal output and logging file.
+If no level is selected, file level logging is the same as for console. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cellvit.utils.logger.Logger.level">
+<span class="sig-name descname"><span class="pre">level</span></span><a class="headerlink" href="#cellvit.utils.logger.Logger.level" title="Link to this definition">¶</a></dt>
+<dd><p>The level of logging.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cellvit.utils.logger.Logger.comment">
+<span class="sig-name descname"><span class="pre">comment</span></span><a class="headerlink" href="#cellvit.utils.logger.Logger.comment" title="Link to this definition">¶</a></dt>
+<dd><p>The comment to be added to the log file name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cellvit.utils.logger.Logger.log_parent_dir">
+<span class="sig-name descname"><span class="pre">log_parent_dir</span></span><a class="headerlink" href="#cellvit.utils.logger.Logger.log_parent_dir" title="Link to this definition">¶</a></dt>
+<dd><p>The directory where the log file will be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[Path, str]</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cellvit.utils.logger.Logger.use_timestamp">
+<span class="sig-name descname"><span class="pre">use_timestamp</span></span><a class="headerlink" href="#cellvit.utils.logger.Logger.use_timestamp" title="Link to this definition">¶</a></dt>
+<dd><p>Whether to use timestamp for time-logging.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cellvit.utils.logger.Logger.formatter">
+<span class="sig-name descname"><span class="pre">formatter</span></span><a class="headerlink" href="#cellvit.utils.logger.Logger.formatter" title="Link to this definition">¶</a></dt>
+<dd><p>The formatter for the log messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cellvit.utils.logger.Logger.file_level">
+<span class="sig-name descname"><span class="pre">file_level</span></span><a class="headerlink" href="#cellvit.utils.logger.Logger.file_level" title="Link to this definition">¶</a></dt>
+<dd><p>The level of logging for the output file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">create_handler(logger</span></span></dt>
+<dd><p>logging.Logger): Creates logging handler for sys output and rotating files in parent_dir.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.Logger.create_logger">
+<span class="sig-name descname"><span class="pre">create_logger</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">logging.Logger</span></span></span><a class="reference internal" href="_modules/cellvit/utils/logger.html#Logger.create_logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.Logger.create_logger" title="Link to this definition">¶</a></dt>
+<dd><p>Creates the logger.</p>
+</dd></dl>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>FileNotFoundError</strong> – If the specified log directory does not exist.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">"INFO"</span><span class="p">,</span> <span class="n">log_dir</span><span class="o">=</span><span class="s2">"/path/to/log_dir"</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">"my_logs"</span><span class="p">,</span> <span class="n">use_timestamp</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">logger</span><span class="o">.</span><span class="n">create_logger</span><span class="p">()</span>
+<span class="go">&lt;Logger __main__ (INFO)&gt;</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.Logger.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'CRITICAL'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ERROR'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'WARNING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'INFO'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DEBUG'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'logs'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_timestamp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'CRITICAL'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ERROR'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'WARNING'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'INFO'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'DEBUG'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#cellvit.utils.logger.ColoredFormatter.None" title="cellvit.utils.logger.ColoredFormatter.None"><span class="pre">None</span></a></span></span><a class="reference internal" href="_modules/cellvit/utils/logger.html#Logger.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.Logger.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.Logger.create_handler">
+<span class="sig-name descname"><span class="pre">create_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#Logger.create_handler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.Logger.create_handler" title="Link to this definition">¶</a></dt>
+<dd><p>Create logging handler for sys output and rotating files in parent_dir.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>logger</strong> (<em>logging.Logger</em>) – The Logger</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">create_logger</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Logger</span></span></span><a class="reference internal" href="_modules/cellvit/utils/logger.html#Logger.create_logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dd><p>Create the logger</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The logger to be used.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#cellvit.utils.logger.Logger" title="cellvit.utils.logger.Logger">Logger</a></p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cellvit.utils.logger.NullLogger">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cellvit.utils.logger.</span></span><span class="sig-name descname"><span class="pre">NullLogger</span></span><a class="reference internal" href="_modules/cellvit/utils/logger.html#NullLogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.NullLogger" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A logger that does nothing.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.NullLogger.critical">
+<span class="sig-name descname"><span class="pre">critical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#NullLogger.critical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.NullLogger.critical" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.NullLogger.debug">
+<span class="sig-name descname"><span class="pre">debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#NullLogger.debug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.NullLogger.debug" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.NullLogger.error">
+<span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#NullLogger.error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.NullLogger.error" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.NullLogger.info">
+<span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#NullLogger.info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.NullLogger.info" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.NullLogger.warning">
+<span class="sig-name descname"><span class="pre">warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#NullLogger.warning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.NullLogger.warning" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="cellvit.utils.logger.PrintLogger">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cellvit.utils.logger.</span></span><span class="sig-name descname"><span class="pre">PrintLogger</span></span><a class="reference internal" href="_modules/cellvit/utils/logger.html#PrintLogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.PrintLogger" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A logger that does nothing.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.PrintLogger.critical">
+<span class="sig-name descname"><span class="pre">critical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#PrintLogger.critical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.PrintLogger.critical" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.PrintLogger.debug">
+<span class="sig-name descname"><span class="pre">debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#PrintLogger.debug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.PrintLogger.debug" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.PrintLogger.error">
+<span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#PrintLogger.error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.PrintLogger.error" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.PrintLogger.info">
+<span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#PrintLogger.info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.PrintLogger.info" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="cellvit.utils.logger.PrintLogger.warning">
+<span class="sig-name descname"><span class="pre">warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cellvit/utils/logger.html#PrintLogger.warning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cellvit.utils.logger.PrintLogger.warning" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+</section>
+<section id="cellvit-utils-ressource-manager-module">
+<h2 id="cellvit-utils-ressource-manager-module">cellvit.utils.ressource_manager module<a class="headerlink" href="#cellvit-utils-ressource-manager-module" title="Link to this heading">¶</a></h2>
+</section>
+<section id="cellvit-utils-tools-module">
+<h2 id="cellvit-utils-tools-module">cellvit.utils.tools module<a class="headerlink" href="#cellvit-utils-tools-module" title="Link to this heading">¶</a></h2>
+</section>
+<section id="cellvit-utils-tools-cp-module">
+<h2 id="cellvit-utils-tools-cp-module">cellvit.utils.tools_cp module<a class="headerlink" href="#cellvit-utils-tools-cp-module" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="cellvit.models.utils.html" title="cellvit.models.utils package"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> "Previous" </span> cellvit.models.utils package </span>
+              </div>
+            </a>
+          
+          
+            <a href="modules.html" title="cellvit"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> "Next" </span> cellvit </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2025, Fabian Hörst, University Hospital Essen (AöR), Essen, Germany.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
